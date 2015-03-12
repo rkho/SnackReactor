@@ -1,4 +1,4 @@
-# Project Name #
+# Snack Reactor #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -17,28 +17,25 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > SnackReactor
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > The best food near your organization.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > SnackReactor helps you find places to eat near your work or school, based on the experiences of your colleagues. You search based on price and healthiness, and serve up the most relevant results to make your decision easy. Picking a spot for a quick bite has never been better.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > It's easy to get into a rut, eating at the same places near your work every day. Some sites give you too many serach options, and too many results, making picking a restaurant hard. And reviews are based on strangers' expreiences, so you don't know if you can trust them.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > SnackReactor keeps the options to a minimum - health and price. We take care of the rest, serving up a few options based on your history and your colleagues' ratings (so you know they're trustworthy).
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
-
-## How to Get Started ##
-  > Describe how easy it is to get started.
+  > "SnackReactor is simply the best way to find places to eat near your work or school." - The SnackReactor Team
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "Before SnackReactor, I ate 3 meals a day at the Westfield food court. Now I never have trouble finding new places to eat near work." - Lauren M.
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Go to SnackReactor.com and try it today.
