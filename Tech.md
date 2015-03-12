@@ -5,11 +5,11 @@ Angular
 ## MVP ##
 
 Find restaurant based on criteria
-  SQL database
-  Bookshelf/Knex
+  SQL database - Lauren
+  Bookshelf/Knex - Lauren
 
 Add restaurant
-  Yelp API
+  Google Maps or Places API
 Star Rating (specific to your org)
 Authenticate via Github Organizations
   Passport
