@@ -14,6 +14,9 @@ var cookieParser = require('cookie-parser');
 var errorHandler = require('errorhandler');
 var path = require('path');
 var config = require('./environment');
+var session = require('express-session');
+var passport = require('./passport.config.js');
+
 
 module.exports = function(app) {
   var env = app.get('env');
@@ -26,6 +29,18 @@ module.exports = function(app) {
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
+
+  //initialize session and authentication
+  //must initailize express-session before passport session.
+  app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    // store: new BookshelfStore({model: SessionModel}), //disabled until DB setup
+  }));
+
+  app.use(passport.initialize());
+  app.use(passport.session());
   
   if ('production' === env) {
     app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
