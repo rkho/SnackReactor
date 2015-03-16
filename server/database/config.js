@@ -4,18 +4,15 @@ var path = require('path');
 var db = Bookshelf.initialize({
   client: 'sqlite3',
   connection: {
-    // host -- this is an environmental variable -- not sure if it's written correctly
-    host: 'process.env.DATABASE_HOST',
-    user: 'fearless_soup',
-    // putting the password here does not seem secure...?
-    password: 'password',
-    database: 'snackreactordb',
+    // Change for production
+    host: '127.0.0.1',
+    // user: 'fearless_soup',
+    // password: 'password',
+    // database: 'snackreactordb',
     charset: 'utf8',
-    // this is the example path that was in the shortly express config -- need to update
-    filename: path.join(__dirname, '../db/shortly.sqlite')
+    filename: path.join(__dirname, './snackreactordb.sqlite')
   }
 });
-
 
 db.knex.schema.hasTable('restaurants').then(function(exists) {
   if (!exists) {
@@ -27,14 +24,13 @@ db.knex.schema.hasTable('restaurants').then(function(exists) {
       place.json('google_api_data');
       place.string('hours');
       place.string('geocode');
-      place.text('description', text);
+      place.text('description');
       place.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
     });
   }
 });
-
 
 db.knex.schema.hasTable('users').then(function(exists) {
   if (!exists) {
@@ -57,7 +53,6 @@ db.knex.schema.hasTable('users').then(function(exists) {
   }
 });
 
-
 db.knex.schema.hasTable('ratings').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('ratings', function (rating) {
@@ -71,7 +66,6 @@ db.knex.schema.hasTable('ratings').then(function(exists) {
     });
   }
 });
-
 
 db.knex.schema.hasTable('organizations').then(function(exists) {
   if (!exists) {
@@ -87,7 +81,4 @@ db.knex.schema.hasTable('organizations').then(function(exists) {
   }
 });
 
-
 module.exports = db;
-
-
