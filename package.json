@@ -5,11 +5,11 @@
   "dependencies": {
     "bluebird": "^2.9.14",
     "body-parser": "~1.5.0",
+    "bookshelf": "^0.7.9",
     "chai": "^2.1.1",
     "chai-as-promised": "^4.3.0",
     "composable-middleware": "^0.3.0",
     "compression": "~1.0.1",
-    "connect-mongo": "^0.4.1",
     "cookie-parser": "~1.0.1",
     "ejs": "~0.8.4",
     "errorhandler": "~1.0.0",
@@ -17,10 +17,16 @@
     "express-session": "~1.0.2",
     "google-locations": "^0.1.2",
     "google-places": "0.0.2",
+    "knex": "^0.7.6",
     "lodash": "~2.4.1",
     "method-override": "~1.0.0",
     "morgan": "~1.0.0",
-    "serve-favicon": "~2.0.1"
+    "passport": "^0.2.1",
+    "passport-github": "^0.1.5",
+    "passport-local": "^1.0.0",
+    "serve-favicon": "~2.0.1",
+    "sqlite3": "^3.0.5",
+    "superagent": "^1.1.0"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
