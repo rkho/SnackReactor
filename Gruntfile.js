@@ -581,6 +581,15 @@ module.exports = function (grunt) {
       ]);
     }
 
+    // else if (target === 'testbug') {
+    //   return grunt.task.run([
+    //     'env:all',
+    //     'env:test',
+    //     'concurrent:debug',
+    //     'mochaTest',
+    //   ]);
+    // }
+
     else grunt.task.run([
       'test:server',
       'test:client'
