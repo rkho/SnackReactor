@@ -1,19 +1,17 @@
-// difference between sqlite / bookshelf / knex
-
-// need to require knex here?
 var Bookshelf = require('bookshelf');
 var path = require('path');
 
 var db = Bookshelf.initialize({
   client: 'sqlite3',
   connection: {
+    // host -- this is an environmental variable -- not sure if it's written correctly
     host: 'process.env.DATABASE_HOST',
-    // need to name...?
-    user: 'fearlessSoup',
+    user: 'fearless_soup',
+    // putting the password here does not seem secure...?
     password: 'password',
     database: 'snackreactordb',
     charset: 'utf8',
-    // filename: path.join(__dirname, '../db/shortly.sqlite')
+    // this is the example path that was in the shortly express config -- need to update
     filename: path.join(__dirname, '../db/shortly.sqlite')
   }
 });
@@ -89,18 +87,7 @@ db.knex.schema.hasTable('organizations').then(function(exists) {
   }
 });
 
-// join table -- this may be incorrect; probably doesn't need .select()
-knex()
-  .join(tableName, firstJoinColumn, '=', secondJoinColumn);
-
-// example:
-// knex('users')
-//   .join('contacts', 'users.id', '=', 'contacts.user_id')
-//   .select('users.id', 'contacts.phone')
-
-
 
 module.exports = db;
-
 
 
