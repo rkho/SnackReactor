@@ -1,5 +1,5 @@
 var passport = require('passport');
-// var User = require('../models/user.js');
+var User = require('../database/models/user.js');
 var GithubStrategy = require('passport-github').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var request = require('superagent');
@@ -11,12 +11,12 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  // User.forge()
-  // .where({id: id})
-  // .fetch()
-  // .then(function(user){
-  //   done(null,user.attributes);
-  // });
+  User.forge()
+  .where({id: id})
+  .fetch()
+  .then(function(user){
+    done(null,user.toJSON());
+  });
   done(null,id);
 });
 
