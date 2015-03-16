@@ -1,13 +1,13 @@
 'use strict';
 
 var places = require('./places.js');
-var chaiAsPromised = require("chai-as-promised");
+// var chaiAsPromised = require("chai-as-promised");
 var Promise = require('bluebird');
 var chai = require('chai')
   , expect = chai.expect
   , should = chai.should();
 
-chai.use(chaiAsPromised);
+// chai.use(chaiAsPromised);
 
 describe('Places Module', function() {
 
@@ -30,9 +30,7 @@ describe('Places Module', function() {
     places.getDetails('ChIJNc25vYWAhYARppFtCl9Stb0')
     .then(function(details){
       expect(details).to.be.an('object');
-      expect(details).to.have.length(1);
-      var result = details[0].result;
-      expect(result.name).to.equal('Hack Reactor');
+      expect(details.name).to.equal('Hack Reactor');
       done();
     });
   });

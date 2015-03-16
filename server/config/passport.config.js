@@ -6,8 +6,7 @@ var request = require('superagent');
 
 
 passport.serializeUser(function(user, done) {
-    // done(null, user.get('id'));
-    done(null,user);
+    done(null, user.get('id'));
 });
 
 passport.deserializeUser(function(id, done) {
@@ -17,44 +16,42 @@ passport.deserializeUser(function(id, done) {
   .then(function(user){
     done(null,user.toJSON());
   });
-  done(null,id);
 });
 
 
 var findOrCreateUserOauth = function (accessToken, refreshToken, profile, done, strategy){
-  // User.forge()
-  // .where({auth_type: strategy, auth_id: profile.id})
-  // .fetch()
-  // .then(function(user){
-  //   if (!user){
-  //     User.forge({
-  //       email: null, // need to snag from pending table
-  //       username: null,
-  //       password: null,
-  //       admin_level: 0,
-  //       accessToken: accessToken,
-  //       refreshToken: refreshToken,
-  //       profile: profile,
-  //       auth_type: strategy,
-  //       auth_id: profile.id,
-  //       invite_id: null // need to snag
-  //     })
-  //     .save()
-  //     .then(function(user){
-  //       return done(null,user);
-  //     })
-  //   } else {
-  //     return done(null,user);
-  //   }
-  //below is temporary until database in place
-  // });
-  request.get('https://api.github.com/user/orgs')
-  .query({access_token: accessToken})
-  .end(function(err,res){
-    // console.log(res.body); // this is the list of organizations
-    // console.log(profile);
-    return done(null,profile);
-  })
+  User.forge()
+  .where({auth_type: strategy, auth_id: profile.id})
+  .fetch()
+  .then(function(user){
+    if (!user){ //if the user doesn't exist, create it
+      if (strategy === 'github'){ // grab their github org
+        request.get('https://api.github.com/user/orgs')
+        .query({access_token: accessToken})
+        .end(function(err,res){
+          // console.log(res.body); // this is the list of organizations
+          // console.log(profile);
+          User.forge({
+            email: profile.email,
+            username: null,
+            password: null,
+            admin_level: 0,
+            accessToken: accessToken,
+            refreshToken: refreshToken,
+            profile: profile,
+            auth_type: strategy,
+            auth_id: profile.id
+          })
+          .save()
+          .then(function(user){
+            return done(null,user);
+          })
+        });
+      }
+    } else { //if the user already existed, just return it
+      return done(null,user);
+    }
+  });
 };
 
 passport.use(new GithubStrategy({
