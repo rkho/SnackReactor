@@ -7,7 +7,6 @@ Promise.promisifyAll(locations);
 exports.getDetails = function(placeID) {
   return locations.detailsAsync({placeid: placeID})
           .then(function(response){
-            console.log(response)
             if (response.status !== 'OK') console.error('Error getting details for place ID: ' + placeID);
             return response.result;
           });
