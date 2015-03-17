@@ -1,28 +1,25 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
+<!-- <div ng-include="'components/navbar/navbar.html'"></div>
+ -->    
 
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-  </div>
-</header>
+ <div class="modal" id="signInModal"></div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li>
-      </ul>
+
+
+<div ng-controller="MainCtrl" class="main">
+<!-- <a href="/results" class="btn modalOpener" data-target="signInModal" ng-click="show()">Sign in</a>
+ -->    <div class="overlay"></div>
+    <div class="content">
+      <div class="headline">
+          <h1>Snack Reactor</h1>
+          <p class="subtitle">Find the best places to eat based on recommendations from your peers!</p>
+      </div>
+      <div class="options">
+        <button id="price"  ng-class="{'on':priceClicked, 'off':!priceClicked}" ng-click="priceClick()">price</button><br>
+        <button id="health" ng-class="{'on':healthClicked, 'off':!healthClicked}" ng-click="healthClick()">health</button><br>
+        <a href="/results" id="search" ng-style='searchStyle' ng-click="searchStyle={'background-color':'#FF9900'}">searchhere</a>
+
+<!--         <a href="/results" id="search" ng-click="search()">Search</a>
+ -->    </div>
     </div>
-  </div>
 </div>
 
-<footer class="footer">
-  <div class="container">
-      <p>Angular Fullstack v2.0.13 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
-  </div>
-</footer>
