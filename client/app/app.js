@@ -9,7 +9,36 @@ angular.module('snackReactorApp', [
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider
-      .otherwise('/');
+      .otherwise('/signin');
+
+    $stateProvider
+     .state('main', {
+      url: '/',
+      templateUrl: 'app/main/main.html',
+      controller: 'MainCtrl'
+    });
+
+    $stateProvider
+    .state('signin', {
+      url: '/signin',
+      templateUrl: 'app/signin/signin.html',
+      controller: 'SigninCtrl'
+    });
+
+    $stateProvider
+     .state('results', {
+      url: '/results',
+      templateUrl: 'app/results/results.html',
+      controller: 'ResultsCtrl'
+    });
+
+     $stateProvider
+     .state('restaurants', {
+      url: '/restaurants',
+      templateUrl: 'app/restaurants/restaurants.html',
+      controller: 'RestaurantsCtrl'
+    });
+
 
     $locationProvider.html5Mode(true);
   });
