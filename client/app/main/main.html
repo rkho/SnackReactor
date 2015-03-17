@@ -7,16 +7,17 @@
 
 <div ng-controller="MainCtrl" class="main">
 <!-- <a href="/results" class="btn modalOpener" data-target="signInModal" ng-click="show()">Sign in</a>
- -->    <div class="overlay"></div>
-    <div class="content">
-      <div class="headline">
-          <h1>Snack Reactor</h1>
-          <p class="subtitle">Find the best places to eat based on recommendations from your peers!</p>
-      </div>
-      <div class="options">
-        <button id="price"  ng-class="{'on':priceClicked, 'off':!priceClicked}" ng-click="priceClick()">price</button><br>
-        <button id="health" ng-class="{'on':healthClicked, 'off':!healthClicked}" ng-click="healthClick()">health</button><br>
-        <a href="/results" id="search" ng-style='searchStyle' ng-click="searchStyle={'background-color':'#FF9900'}">searchhere</a>
+-->    
+<div class="overlay"></div>
+<div class="content">
+<div class="headline">
+<h1>Snack Reactor</h1>
+<p class="subtitle">Find the best places to eat based on recommendations from your peers!</p>
+</div>
+<div class="options">
+<button id="price"  ng-class="{'on':priceClicked, 'off':!priceClicked}" ng-click="priceClick()">price</button><br>
+<button id="health" ng-class="{'on':healthClicked, 'off':!healthClicked}" ng-click="healthClick()">health</button><br>
+<a href="/results" id="search" ng-style='searchStyle' ng-click="searchStyle={'background-color':'#FF9900'}">searchhere</a>
 
 <!--         <a href="/results" id="search" ng-click="search()">Search</a>
  -->    </div>
