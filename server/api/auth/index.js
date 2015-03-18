@@ -29,4 +29,12 @@ router.post('/checkloggedin', function(req, res){
   } else res.send(401);
 })
 
+router.get('/logout', function(req, res){
+  req.session.destroy(function(err){
+    if (err) console.error('Error destroying session: ' + err);
+    req.logout();
+    res.redirect('/');
+  });
+});
+
 module.exports = router;
