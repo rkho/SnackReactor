@@ -391,10 +391,10 @@ module.exports = function (grunt) {
       },
       azure: {
               options: {
-                remote: 'https://snackreactor.scm.azurewebsites.net/snackreactor.git',
-                branch: 'master',
-                login: process.env.AZURE_LOGIN,
-                token: process.env.AZURE_TOKEN
+                remote: process.env.AZURE_REMOTE,
+                branch: 'master'
+                // login: process.env.AZURE_LOGIN,
+                // token: process.env.AZURE_TOKEN
               }
             }
     },
