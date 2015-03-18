@@ -56,7 +56,6 @@ module.exports.parseHours = function(opening_hours){
       period[1] = parseTime(periods[i].open.time);
       period[2] = parseTime(periods[i].close.time);
     }
-    console.log(period);
     result.push(period);
   }
   return result;

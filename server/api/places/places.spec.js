@@ -18,8 +18,6 @@ describe('Places Module', function() {
 
     places.getDetailsFromAddressAndName(address,name)
     .then(function(details){
-      console.log(details[0].result.opening_hours);
-      utils.parseHours(details[0].result.opening_hours);
       expect(details).to.be.an('array');
       var result = details[0].result;
       result.name.should.equal('Hack Reactor');
@@ -38,7 +36,29 @@ describe('Places Module', function() {
   });
 
   it('should properly parse a Google Places opening hours object', function(){
-    
+    var opening_hours = {
+      open_now: false,
+      periods: [ { close: {time: '2200', day: 1}, open: {time: '0930', day: 1} },
+                  { open: {time: '0002', day: 2} },
+                  { open: {time: '0100', day: 4}, close: {time: '0529', day: 4} } ],
+      weekday_text: [ 'Monday: 9:00 am – 8:30 pm',
+           'Tuesday: 9:00 am – 8:30 pm',
+           'Wednesday: 9:00 am – 8:30 pm',
+           'Thursday: Closed',
+           'Friday: 9:00 am – 8:30 pm',
+           'Saturday: 9:00 am ��� 8:30 pm',
+           'Sunday: 9:00 am – 8:30 pm' ] }; // opening hours test var
+
+    var parsedHours = places.parseHours(opening_hours);
+    expect(parsedHours).to.be.an('array');
+    expect(parsedHours).to.have.length(3);
+    parsedHours[1][1].should.equal('00:00:01');
+    parsedHours[1][0].should.equal(2);
+    parsedHours[2][2].should.equal('05:29:00');
+    parsedHours[0][0].should.equal(1);
+    parsedHours[0][1].should.equal('09:30:00');
+    parsedHours[0][2].should.equal('22:00:00');
+
   });
 
 });
