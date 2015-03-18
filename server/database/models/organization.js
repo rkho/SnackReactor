@@ -11,9 +11,8 @@ var Organization = db.Model.extend({
     return this.hasMany(User);
   },
 
-  // this is where I need the .through() method I think
   ratings: function(){
-    return this.hasMany(Rating);
+    return this.hasMany(Rating).through(User);
   }
   
 });

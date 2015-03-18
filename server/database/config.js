@@ -63,7 +63,6 @@ db.knex.schema.hasTable('ratings').then(function(exists) {
       rating.integer('rating', 1);
       rating.integer('user_id').references('id').inTable('users');
       rating.integer('rest_id').references('id').inTable('restaurants');
-      // below is where I need to use the .through() method -- 
       rating.integer('organization').references('id').inTable('organizations');
       rating.timestamps();
     }).then(function (table) {

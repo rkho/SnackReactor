@@ -9,15 +9,15 @@ var Rating = db.Model.extend({
   hasTimestamps: true,
 
   users: function(){
-    return this.belongsToMany(User);
+    return this.belongsToMany(User, 'user_id');
   },
   
   restaurants: function(){
-    return this.hasOne(Restaurant);
+    return this.belongsTo(Restaurant, 'restaurant_id');
   },
 
   organizations: function(){
-    return this.belongsTo(Organization);
+    return this.belongsTo(Organization).through(User);
   }
 
 });
