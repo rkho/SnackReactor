@@ -396,7 +396,13 @@ module.exports = function (grunt) {
                 login: process.env.AZURE_LOGIN,
                 token: process.env.AZURE_TOKEN
               }
-            }
+            },
+      github: {
+        options:{
+          remote: 'git@github.com:FearlessSoup/SnackReactor.git',
+          branch: 'production'
+        }
+      }
     },
 
     // Run some tasks in parallel to speed up the build process
