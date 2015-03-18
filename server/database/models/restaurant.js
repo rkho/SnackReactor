@@ -7,7 +7,7 @@ var Restaurant = db.Model.extend({
   hasTimestamps: true,
 
   ratings: function(){
-    this.hasMany(Rating);
+    return this.hasMany(Rating);
   }
 
 });

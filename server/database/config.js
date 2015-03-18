@@ -21,15 +21,14 @@ db.knex.schema.hasTable('restaurants').then(function(exists) {
       place.string('name');
       place.integer('price', 1);
       place.integer('health', 1);
-      place.json('google_api_data');
+      place.string('hours');
       place.string('address');
       place.float('location_lat');
       place.float('location_long');
       place.string('phone_number');
       place.string('place_id');
-      place.string('hours');
-      place.text('description');
       place.string('photo_url');
+      place.text('description');
       place.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
@@ -41,14 +40,13 @@ db.knex.schema.hasTable('users').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('users', function (user) {
       user.increments('id').primary();
-      user.string('organization').references('id').inTable('organizations');
+      user.string('org_id').references('id').inTable('organizations');
       user.string('email').unique();
       user.string('username').unique();
       user.string('password');
-      user.integer('admin_level', 1);
+      user.integer('is_admin', 1);
       user.string('access_token');
       user.string('refresh_token');
-      user.json('profile');
       user.string('auth_type');
       user.string('auth_id');
       user.timestamps();
@@ -61,9 +59,11 @@ db.knex.schema.hasTable('users').then(function(exists) {
 db.knex.schema.hasTable('ratings').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('ratings', function (rating) {
+      rating.increments('id').primary();
       rating.integer('rating', 1);
-      rating.integer('user').references('id').inTable('users');
-      rating.integer('restaurant').references('id').inTable('restaurants');
+      rating.integer('user_id').references('id').inTable('users');
+      rating.integer('rest_id').references('id').inTable('restaurants');
+      // below is where I need to use the .through() method -- 
       rating.integer('organization').references('id').inTable('organizations');
       rating.timestamps();
     }).then(function (table) {
@@ -78,7 +78,6 @@ db.knex.schema.hasTable('organizations').then(function(exists) {
       org.increments('id').primary();
       org.string('name');
       org.integer('zip_code', 5);
-      org.string('user').references('id').inTable('users');
       org.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
