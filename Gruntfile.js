@@ -392,9 +392,9 @@ module.exports = function (grunt) {
       azure: {
               options: {
                 remote: process.env.AZURE_REMOTE,
-                branch: 'master'
-                // login: process.env.AZURE_LOGIN,
-                // token: process.env.AZURE_TOKEN
+                branch: 'master',
+                login: process.env.AZURE_LOGIN,
+                token: process.env.AZURE_TOKEN
               }
             }
     },
