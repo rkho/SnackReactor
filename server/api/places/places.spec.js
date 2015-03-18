@@ -18,6 +18,8 @@ describe('Places Module', function() {
 
     places.getDetailsFromAddressAndName(address,name)
     .then(function(details){
+      console.log(details[0].result.opening_hours);
+      utils.parseHours(details[0].result.opening_hours);
       expect(details).to.be.an('array');
       var result = details[0].result;
       result.name.should.equal('Hack Reactor');
@@ -33,6 +35,10 @@ describe('Places Module', function() {
       expect(details.name).to.equal('Hack Reactor');
       done();
     });
+  });
+
+  it('should properly parse a Google Places opening hours object', function(){
+    
   });
 
 });
