@@ -248,7 +248,7 @@ module.exports = function (grunt) {
       js: ['<%= yeoman.dist %>/public/{,*/}*.js'],
       options: {
         assetsDirs: [
-          '<%= yeoman.dist %>/public',
+          '<%= yeoman.dist %>/public/**/',
           '<%= yeoman.dist %>/public/assets/images'
         ],
         // This is so we update image references in our ng-templates
@@ -388,7 +388,15 @@ module.exports = function (grunt) {
           remote: 'openshift',
           branch: 'master'
         }
-      }
+      },
+      azure: {
+              options: {
+                remote: 'https://snackreactor.scm.azurewebsites.net/snackreactor.git',
+                branch: 'master',
+                login: process.env.AZURE_LOGIN,
+                token: process.env.AZURE_TOKEN
+              }
+            }
     },
 
     // Run some tasks in parallel to speed up the build process
