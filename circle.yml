@@ -63,7 +63,7 @@ deployment:
   production:
     branch: master
     commands:
-      - ./azure_push.sh
+      - grunt build && grunt buildcontrol:azure
 ## Custom notifications
 notify:
   webhooks:
