@@ -1,11 +1,21 @@
 var db = require('../config');
 var bcrypt = require('bcrypt-nodejs');
-var Promise = require('bluebird')
+var Promise = require('bluebird');
+var Organization = require('./organization');
+var Rating = require('./rating');
 
 
 var User = db.Model.extend({
   tableName: 'users',
   hasTimestamps: true,
+
+  organizations: function(){
+    return this.belongsTo(Organization, 'organization_id');
+  },
+
+  ratings: function(){
+    return this.hasMany(Rating);
+  },
 
   initialize: function(){
     this.on('creating', this.hashPassword);
