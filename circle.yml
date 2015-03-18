@@ -25,6 +25,11 @@ machine:
   #  - git submodule sync
    # - git submodule update --init # use submodules
 
+general:
+  branches:
+    ignore:
+      - production # list of branches to ignore
+
 ## Customize dependencies
 dependencies:
   pre:

@@ -24,3 +24,39 @@ exports.getDetailsFromAddressAndName = function(address, name, distance) {
             return response.details;
           });
 };
+
+
+//takes Google Places' four digit time format and adjusts to MySQL time format
+var parseTime = function(time){
+  if (typeof time !== 'string') console.error('Invalid time format.');
+  else {
+    return time.substring(0,2) + ':' + time.substring(2,4) + ':00';
+  }
+}
+
+//accepts an opening_hours object from a Google Places details request, and returns an array of arrays.
+//Each subarray represents a period of time the location is open, in the following format:
+//period[0] is the day of the week, where 0 is Sunday and 6 is Saturday
+//period[1] is the time the period begins (the business opens)
+//period[2] is the time the period ends (the business closes)
+//times are formatted for a MySQL time column, i.e. 'HH:MM:SS'.
+
+module.exports.parseHours = function(opening_hours){
+  var periods = opening_hours.periods;
+  var result = [];
+  for (var i = 0; i < periods.length; i++){
+    //initialize variable for each period of opening
+    var period = [];
+    if(!periods[i].close){ //if a venue is always open on a day, there will be no close field
+      period[0] = periods[i].open.day;
+      period[1] = '00:00:01';
+      period[2] = '23:59:59';
+    } else {
+      period[0] = periods[i].open.day;
+      period[1] = parseTime(periods[i].open.time);
+      period[2] = parseTime(periods[i].close.time);
+    }
+    result.push(period);
+  }
+  return result;
+}
