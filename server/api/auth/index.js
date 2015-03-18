@@ -23,4 +23,10 @@ router.get('/github/callback',
     res.redirect('/');
 });
 
+router.post('/checkloggedin', function(req, res){
+  if (req.isAuthenticated()){
+    res.send(200);
+  } else res.send(401);
+})
+
 module.exports = router;
