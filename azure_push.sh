@@ -1,4 +1,4 @@
 #!/bin/bash
-git push https://$AZURE_LOGIN:$AZURE_PASSWORD@snackreactor.scm.azurewebsites.net/snackreactor.git master
+grunt build && grunt buildcontrol:azure
 
 echo "Finished Azure push successfully."
