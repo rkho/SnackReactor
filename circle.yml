@@ -67,6 +67,8 @@ deployment:
   production:
     branch: master
     commands:
+      - git config --global user.email 'bradley.portnoy@gmail.com'
+      - git config --global user.name 'Bradley Portnoy via Circle-CI'
       - grunt build && grunt buildcontrol:azure
 ## Custom notifications
 notify:
