@@ -22,9 +22,14 @@ db.knex.schema.hasTable('restaurants').then(function(exists) {
       place.integer('price', 1);
       place.integer('health', 1);
       place.json('google_api_data');
+      place.string('address');
+      place.float('location_lat');
+      place.float('location_long');
+      place.string('phone_number');
+      place.string('place_id');
       place.string('hours');
-      place.string('geocode');
       place.text('description');
+      place.string('photo_url');
       place.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
@@ -40,7 +45,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
       user.string('email').unique();
       user.string('username').unique();
       user.string('password');
-      user.integer('admin_level', 0);
+      user.integer('admin_level', 1);
       user.string('access_token');
       user.string('refresh_token');
       user.json('profile');
@@ -71,7 +76,7 @@ db.knex.schema.hasTable('organizations').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('organizations', function (org) {
       org.increments('id').primary();
-      org.string('name', 50);
+      org.string('name');
       org.integer('zip_code', 5);
       org.string('user').references('id').inTable('users');
       org.timestamps();
