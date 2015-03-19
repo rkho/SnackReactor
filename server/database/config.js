@@ -64,6 +64,7 @@ db.knex.schema.hasTable('ratings').then(function(exists) {
       rating.integer('user_id').references('id').inTable('users');
       rating.integer('rest_id').references('id').inTable('restaurants');
       rating.integer('organization').references('id').inTable('organizations');
+      rating.text('comments');
       rating.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
