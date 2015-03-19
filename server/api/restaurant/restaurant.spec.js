@@ -1,15 +1,16 @@
 'use strict';
 
-var should = require('should');
 var app = require('../../app');
-var request = require('supertest');
+var chai = require('chai');
+var expect = chai.expect;
+var should = chai.should();
 
-describe('GET /api/things', function() {
+describe('POST /api/restaurant/new', function() {
 
   it('should respond with JSON array', function(done) {
     request(app)
-      .get('/api/things')
-      .expect(200)
+      .get('/api/restaurants/new')
+      .expect(201)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err) return done(err);
@@ -17,4 +18,5 @@ describe('GET /api/things', function() {
         done();
       });
   });
+
 });

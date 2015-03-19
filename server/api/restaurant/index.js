@@ -5,6 +5,6 @@ var controller = require('./restaurant.controller');
 
 var router = express.Router();
 
-router.get('/', controller.restaurants);
+router.post('/new', controller.restaurants.create);
 
 module.exports = router;
