@@ -59,7 +59,6 @@ db.knex.schema.hasTable('users').then(function(exists) {
 db.knex.schema.hasTable('restaurants_users').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('ratings', function (rating) {
-      rating.increments('id').primary();
       rating.integer('rating', 1);
       rating.integer('user_id').references('id').inTable('users');
       rating.integer('rest_id').references('id').inTable('restaurants');
@@ -74,6 +73,23 @@ db.knex.schema.hasTable('restaurants_users').then(function(exists) {
 });
 
 db.knex.schema.hasTable('organizations').then(function(exists) {
+  if (!exists) {
+    db.knex.schema.createTable('organizations', function (org) {
+      org.increments('id').primary();
+      org.string('name');
+      org.string('address');
+      org.string('place_id');
+      org.string('github_id');
+      org.string('github_profile');
+      org.integer('domain');
+      org.timestamps();
+    }).then(function (table) {
+      console.log('Created Table', table);
+    });
+  }
+});
+
+db.knex.schema.hasTable('orgs_restaurants').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('organizations', function (org) {
       org.increments('id').primary();
