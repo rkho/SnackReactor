@@ -1,15 +1,18 @@
 var db = require('../config');
-var Rating = require('./rating');
+var joinRestaurantsUsers = require('./restaurant_user');
+var joinOrganizationsRestaurants = require('./organization_restaurant')
 
 
 var Restaurant = db.Model.extend({
   tableName: 'restaurants',
   hasTimestamps: true,
 
-// currently set to a hasMany relationship because there are many ratings for each restaurant
-// however, this could be a hasOne relationship -- depends on when we calculate the avg rating for the rest
   ratings: function(){
-    return this.hasMany(Rating);
+    return this.hasMany(joinRestaurantsUsers);
+  },
+
+  avgRating: function(){
+    return this.hasOne(joinOrganizationsUsers);
   }
 
 });
