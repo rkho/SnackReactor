@@ -1,14 +1,12 @@
-<!-- <div ng-include="'components/navbar/navbar.html'"></div>
- -->
 <div ng-controller="ResultsCtrl">
-<header class="hero-unit" id="banner">
-  <div>
-  <!--IGNORE BREAKS FOR NOW-->
-    <p class="lead">You should be redirected to log in to GitHub Here....</p>
-</header>
-    </div>
-    </div>
+<div class="overlay"></div>
 
 
-
-
+  <accordion close-others="oneAtATime">
+    <accordion-group heading="Read more about {{jerry.name}}">
+      <p>The body of the accordion group grows to fit the contents</p>
+        <button class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
+        <div ng-repeat="item in items">{{item}}</div>
+    </accordion-group>
+  </accordion>
+</div>

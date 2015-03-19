@@ -103,6 +103,27 @@ button{
 
 #search {
     margin-top: 5%;
+    cursor: pointer;
+    font-weight: lighter;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #FF2538;
+    box-sizing: border-box;
+    position: relative;
+    box-sizing: content-box ;
+    width: 3em;
+    height: 30px;
+    border-width: 0;
+    transition: all .3s linear;
+    margin-bottom: 10px;
+    outline: none;
+    color: #fff;
+    padding-left: 40px;
+    padding-top: 1px;
+    padding-bottom: 40px;
+    padding-right: 40px;
+    font-size: 50px;
+    border-radius: 5px;
 }
 .btn-github{
     padding-top: 20px;
@@ -132,14 +153,14 @@ button{
     padding-bottom: 10px
 }
 .fa-heart{
-    font-size: 150px;
+    font-size: 50px;
     color: #FF7F71;
-    margin-right: 20px;
+    margin-right:5px;
     transition: all .3s linear;
 }
 .fa-usd{
-    font-size: 160px;
-    margin-right: 30px;
+    font-size: 50px;
+    margin-right: 5px;
     color: #82F4AA;
     transition: all .3s linear;
 }
@@ -149,7 +170,4 @@ button{
 }
 .price {
     color: #00C716;
-
 }
-
-

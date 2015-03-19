@@ -134,17 +134,23 @@ app.controller('ModalCtrl', function ($scope, $modal, $log, CheckLoggedIn) {
   };
 
   $scope.search = function (){
-   CheckLoggedIn().then(function(result){
-    console.log(result);
-    if (!result.loggedin){
-      $scope.open();
-    } else if (result){
-      //conduct search
-        //redirect to result page
-    }
-   });
- }
+    console.log('made it');
+    $scope.open();
 
+
+
+
+    //Worry about the Authentication function later
+     // CheckLoggedIn().then(function(result){
+     //  console.log(result);
+     //  if (!result){
+     //    $scope.open();
+     //  } else if (result){
+     //    //conduct search
+     //      //redirect to result page
+     //  }
+     // });
+ }
 });
 app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
 
