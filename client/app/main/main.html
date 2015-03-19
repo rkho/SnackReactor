@@ -1,25 +1,60 @@
-<!-- <div ng-include="'components/navbar/navbar.html'"></div>
- -->    
-
- <div class="modal" id="signInModal"></div>
-
-
-
 <div ng-controller="MainCtrl" class="main">
-<!-- <a href="/results" class="btn modalOpener" data-target="signInModal" ng-click="show()">Sign in</a>
- -->    <div class="overlay"></div>
-    <div class="content">
-      <div class="headline">
-          <h1>Snack Reactor</h1>
-          <p class="subtitle">Find the best places to eat based on recommendations from your peers!</p>
-      </div>
-      <div class="options">
-        <button id="price"  ng-class="{'on':priceClicked, 'off':!priceClicked}" ng-click="priceClick()">price</button><br>
-        <button id="health" ng-class="{'on':healthClicked, 'off':!healthClicked}" ng-click="healthClick()">health</button><br>
-        <a href="/results" id="search" ng-style='searchStyle' ng-click="searchStyle={'background-color':'#FF9900'}">searchhere</a>
-
-<!--         <a href="/results" id="search" ng-click="search()">Search</a>
- -->    </div>
+<div class="overlay"></div>
+  <div class="content">
+    <div class="headline">
+      <h1>Snack Reactor</h1>
+      <p class="subtitle">Find the best places to eat based on recommendations from your peers!</p>
     </div>
+   <div class="options">
+     <i class="fa fa-heart" ng-class="{'health':is1healthClick}" ng-click="healthClick1()"></i>
+     <i class="fa fa-heart" ng-class="{'health':is2healthClick}" ng-click="healthClick2()"></i>
+     <i class="fa fa-heart" ng-class="{'health':is3healthClick}" ng-click="healthClick3()"></i>
+     <i class="fa fa-usd"   ng-class="{'price':is1priceClick}"  ng-click="priceClick1()"></i>
+     <i class="fa fa-usd"   ng-class="{'price':is2priceClick}"  ng-click="priceClick2()"></i>
+     <i class="fa fa-usd"   ng-class="{'price':is3priceClick}"  ng-click="priceClick3()"></i>
+ 
+
+   <div ng-controller="ModalCtrl">
+
+
+    <script type="text/ng-template" id="myModalContent.html">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Connect </h3>
+        </div>
+
+        <div class="modal-body">
+
+              <form method="post" ng-submit="login()" name="loginForm" class="ng-pristine ng-invalid ng-invalid-required">
+                <div class="form-group has-feedback">
+                  <input class="form-control input-lg ng-pristine ng-invalid ng-invalid-required ng-touched" type="text" name="email" ng-model="email" placeholder="Email" required="" autofocus="">
+                  <span class="ion-at form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback">
+                  <input class="form-control input-lg ng-pristine ng-invalid ng-invalid-required ng-touched" type="password" name="password" ng-model="password" placeholder="Password" required="">
+                  <span class="ion-key form-control-feedback"></span>
+                </div>
+
+                <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-sm btn-block btn-success" disabled="disabled">Log in</button>
+                <br>
+                <p class="text-center text-muted">
+                <small>Dont have an account yet? <a href="/signin">Sign up</a></small>
+                </p>
+              </form>
+
+            <div class="modal-footer">
+              <a href="/auth/github" class="search fa fa-github btn btn-block btn-social btn-github" ng-click="authenticate('github')">
+              Sign in with GitHub
+              </a>
+            </div>
+
+        </div>   
+    </script>
+    <button id="search" ng-click="search()">Search!</button>
+  </div>
 </div>
+</div>  
+
+
 
