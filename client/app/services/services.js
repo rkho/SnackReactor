@@ -41,8 +41,4 @@ angular.module('snackReactor.auth',[])
 
   return instance;
 
-}])
-
-.factory()
-
-;
+}]);
