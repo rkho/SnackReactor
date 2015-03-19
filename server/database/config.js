@@ -100,4 +100,17 @@ db.knex.schema.hasTable('orgs_restaurants').then(function(exists) {
   }
 });
 
+db.knex.schema.hasTable('sessions').then(function(exists) {
+  if (!exists) {
+    db.knex.schema.createTable('sessions', function (session) {
+      session.integer('id').primary();
+      session.string('sid').unique();
+      session.string('data');
+      session.timestamps();
+    }).then(function (table) {
+      console.log('Created Table', table);
+    });
+  }
+});
+
 module.exports = db;

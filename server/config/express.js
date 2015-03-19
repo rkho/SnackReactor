@@ -16,6 +16,7 @@ var path = require('path');
 var config = require('./environment');
 var session = require('express-session');
 var passport = require('./passport.config.js');
+var SessionModel = require('../database/models/session.js');
 
 
 module.exports = function(app) {
