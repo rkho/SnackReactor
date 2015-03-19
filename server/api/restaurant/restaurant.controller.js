@@ -16,7 +16,7 @@ exports.restaurants = {
     var price = req.body.price;
     var health = req.body.health;
     var description = req.body.description;
-    var organization_id = req.body.organization_id;
+    var organization_id = req.user.organization_id;
 
     // getDetails is a utility function created to interact with the Google Places API
     places.getDetails(place_id).then(function(details) {
