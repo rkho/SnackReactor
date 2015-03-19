@@ -134,11 +134,9 @@ app.controller('ModalCtrl', function ($scope, $modal, $log, CheckLoggedIn) {
   };
 
   $scope.search = function (){
-    console.log('made it');
-
    CheckLoggedIn().then(function(result){
     console.log(result);
-    if (!result){
+    if (!result.loggedin){
       $scope.open();
     } else if (result){
       //conduct search

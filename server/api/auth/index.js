@@ -24,10 +24,8 @@ router.get('/github/callback',
 });
 
 router.post('/checkloggedin', function(req, res){
-  if (req.isAuthenticated()){
-    res.send(200);
-  } else res.send(401);
-})
+  res.send(req.isAuthenticated() ? req.user : false);
+});
 
 router.get('/logout', function(req, res){
   req.session.destroy(function(err){
