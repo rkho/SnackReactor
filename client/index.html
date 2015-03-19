@@ -39,10 +39,16 @@
       ga('send', 'pageview');
     </script>
 
-      <script src="app/services/services.js"></script>
-      <script src="app/app.js"></script>
-      <script src="app/main/main.controller.js"></script>
-      <script src="app/restaurants/restaurants.controller.js"></script>
-      <script src="app/results/results.controller.js"></script>
+        <!-- build:js({.tmp,client}) app/app.js -->
+        <script src="app/app.js"></script>
+          <!-- injector:js -->
+          <script src="app/main/main.controller.js"></script>
+          <script src="app/restaurants/restaurants.controller.js"></script>
+          <script src="app/results/results.controller.js"></script>
+          <script src="app/services/ngAutocomplete.js"></script>
+          <script src="app/services/services.js"></script>
+          <script src="app/signin/signin.controller.js"></script>
+          <!-- endinjector -->
+        <!-- endbuild -->
 </body>
 </html>

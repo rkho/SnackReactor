@@ -18,7 +18,9 @@ var User = db.Model.extend({
   },
 
   initialize: function(){
-    this.on('creating', this.hashPassword);
+    this.on('creating', function(){
+      if (this.get('password') !== null) this.hashPassword; //only hash the password if we're using that for auth
+    });
   },
 
   comparePassword: function(attemptedPassword, callback) {

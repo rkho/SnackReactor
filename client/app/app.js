@@ -9,7 +9,7 @@ angular.module('snackReactorApp', [
   'angularModalService',
   'snackReactor.auth'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
  
     $urlRouterProvider
       .otherwise('/');
@@ -36,4 +36,21 @@ angular.module('snackReactorApp', [
     });
 
     $locationProvider.html5Mode(true);
+
+    $httpProvider.interceptors.push(function($q, $location){ 
+    return {
+      response: function(response) {
+       // do something on success
+       return response;
+       },
+      responseError: function(response) {
+        if (response.status === 401){
+          // $location.url('/login');
+          $scope.open();
+        }
+        return $q.reject(response);
+        }
+      }; 
+    });
+
   });

@@ -36,10 +36,9 @@ var findOrCreateUserOauth = function (accessToken, refreshToken, profile, done, 
             email: profile.email,
             username: null,
             password: null,
-            admin_level: 0,
+            is_admin: 0,
             access_token: accessToken,
             refresh_token: refreshToken,
-            profile: profile,
             auth_type: strategy,
             auth_id: profile.id
           })
