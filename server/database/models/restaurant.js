@@ -8,7 +8,7 @@ var Restaurant = db.Model.extend({
 
 // TODO: review relationships
   ratings: function(){
-    return this.hasMany(Rating);
+    return this.hasMany(joinRestaurantsUsers);
   }
 
 });
