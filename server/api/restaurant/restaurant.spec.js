@@ -5,7 +5,7 @@ var chai = require('chai');
 var expect = chai.expect;
 var should = chai.should();
 
-describe('POST /api/restaurant/new', function() {
+xdescribe('POST /api/restaurant/new', function() {
 
   it('should respond with JSON array', function(done) {
     request(app)

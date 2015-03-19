@@ -25,6 +25,14 @@ exports.getDetailsFromAddressAndName = function(address, name, distance) {
           });
 };
 
+exports.geocodeAddress = function(address){
+  return locations.geocodeAddressAsync({address: address})
+  .then(function(result,err){
+    if (err) console.error('Error fetching geocode: ' + err);
+    return [result.results.geometry.location.lat,result.results.geometry.location.lng];
+  });
+};
+
 
 //takes Google Places' four digit time format and adjusts to MySQL time format
 var parseTime = function(time){

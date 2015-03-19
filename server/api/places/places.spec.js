@@ -35,6 +35,15 @@ describe('Places Module', function() {
     });
   });
 
+  it('should return the correct geocode for an address', function(done){
+    places.geocodeAddress('1600 Amphitheatre Parkway, Mountain View, CA')
+    .then(function(result){
+      expect(result).to.be.an('array');
+      expect(result).to.equal([37.42291810,-122.08542120]);
+      done();
+    });
+  })
+
   it('should properly parse a Google Places opening hours object', function(){
     var opening_hours = {
       open_now: false,
