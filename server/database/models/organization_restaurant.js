@@ -8,11 +8,11 @@ var joinOrgsRestaurants = db.Model.extend({
   hasTimestamps: false,
 
   organizations: function(){
-    return this.belongsTo(Organization, 'org_id');
+    return this.belongsTo(Organization);
   },
 
   restaurants: function(){
-    return this.belongsTo(Restaurant, 'restaurant_id');
+    return this.belongsTo(Restaurant, 'place_id');
   }
   
 });

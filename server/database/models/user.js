@@ -10,7 +10,7 @@ var User = db.Model.extend({
   hasTimestamps: true,
 
   organizations: function(){
-    return this.belongsTo(Organization, 'organization_id');
+    return this.belongsTo(Organization);
   },
 
   ratings: function(){

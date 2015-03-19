@@ -11,9 +11,8 @@ var Restaurant = db.Model.extend({
     return this.hasMany(joinRestaurantsUsers);
   },
 
-// will this be hasOne or hasMany?
   avgRating: function(){
-    return this.hasMany(joinOrganizationsUsers);
+    return this.hasOne(joinOrganizationsUsers);
   }
 
 });

@@ -9,16 +9,17 @@ var Rating = db.Model.extend({
   hasTimestamps: true,
 
   users: function(){
-    return this.belongsTo(User, 'user_id');
+    return this.belongsTo(User);
   },
   
   restaurants: function(){
-    return this.belongsTo(Restaurant, 'restaurant_id');
-  },
-
-  organizations: function(){
-    return this.belongsTo(Organization).through(User);
+    return this.belongsTo(Restaurant);
   }
+
+  // not necessary?  added another join table
+  // organizations: function(){
+  //   return this.belongsTo(Organization).through(User);
+  // }
 
 });
 
