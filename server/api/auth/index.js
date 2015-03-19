@@ -23,4 +23,18 @@ router.get('/github/callback',
     res.redirect('/');
 });
 
+router.post('/checkloggedin', function(req, res){
+  if (req.isAuthenticated()){
+    res.send(200);
+  } else res.send(401);
+})
+
+router.get('/logout', function(req, res){
+  req.session.destroy(function(err){
+    if (err) console.error('Error destroying session: ' + err);
+    req.logout();
+    res.redirect('/');
+  });
+});
+
 module.exports = router;
