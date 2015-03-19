@@ -5,11 +5,10 @@ var User = require('./user');
 
 
 var Rating = db.Model.extend({
-  tableName: 'ratings',
+  tableName: 'restaurants_users',
   hasTimestamps: true,
 
-// same here -- currently set so that each rating belongs to many users, but this depends on when we calculate the average rating; seems like it would be easiest to recalculate the average every time a user rates a restaurant and then update the table with the new rating each time
-// (alternative = calculate the average from all ratings in the table each time we display a restaurant; would be  expensive / inefficient to do it this way)
+// TODO: review relationships
   users: function(){
     return this.belongsToMany(User, 'user_id');
   },
