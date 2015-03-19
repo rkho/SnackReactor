@@ -1,6 +1,7 @@
 <div ng-controller="MainCtrl" class="main">
 <div class="overlay"></div>
   <div class="content">
+  <a id="logout" href="/auth/logout" ng-hide="isLogged" target="_self">Logout</a>
     <div class="headline">
       <h1>Snack Reactor</h1>
       <p class="subtitle">Find the best places to eat based on recommendations from your peers!</p>
@@ -20,28 +21,11 @@
     <script type="text/ng-template" id="myModalContent.html">
 
         <div class="modal-header">
-            <h3 class="modal-title">Connect </h3>
+            <h3 class="modal-title">Welcome to Snack Reactor</h3>
         </div>
 
         <div class="modal-body">
-
-              <form method="post" ng-submit="login()" name="loginForm" class="ng-pristine ng-invalid ng-invalid-required">
-                <div class="form-group has-feedback">
-                  <input class="form-control input-lg ng-pristine ng-invalid ng-invalid-required ng-touched" type="text" name="email" ng-model="email" placeholder="Email" required="" autofocus="">
-                  <span class="ion-at form-control-feedback"></span>
-                </div>
-
-                <div class="form-group has-feedback">
-                  <input class="form-control input-lg ng-pristine ng-invalid ng-invalid-required ng-touched" type="password" name="password" ng-model="password" placeholder="Password" required="">
-                  <span class="ion-key form-control-feedback"></span>
-                </div>
-
-                <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-sm btn-block btn-success" disabled="disabled">Log in</button>
-                <br>
-                <p class="text-center text-muted">
-                <small>Dont have an account yet? <a href="/signin">Sign up</a></small>
-                </p>
-              </form>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
 
             <div class="modal-footer">
               <a href="/auth/github" target= "_self" class="search fa fa-github btn btn-block btn-social btn-github">
@@ -53,8 +37,28 @@
     </script>
     <button id="search" ng-click="search()">Search!</button>
   </div>
+
+
 </div>
 </div>  
 
+<!--<form method="post" ng-submit="login()" name="loginForm" class="ng-pristine ng-invalid ng-invalid-required">
+              //   <div class="form-group has-feedback">
+              //     <input class="form-control input-lg ng-pristine ng-invalid ng-invalid-required ng-touched" type="text" name="email" ng-model="email" placeholder="Email" required="" autofocus="">
+              //     <span class="ion-at form-control-feedback"></span>
+              //   </div>
+
+              //   <div class="form-group has-feedback">
+              //     <input class="form-control input-lg ng-pristine ng-invalid ng-invalid-required ng-touched" type="password" name="password" ng-model="password" placeholder="Password" required="">
+              //     <span class="ion-key form-control-feedback"></span>
+              //   </div>
+
+              //   <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-sm btn-block btn-success" disabled="disabled">Log in</button>
+              //   <br>
+              //   <p class="text-center text-muted">
+              //   <small>Dont have an account yet? <a href="/signin">Sign up</a></small>
+              //   </p>
+              // </form>
+-->
 
 

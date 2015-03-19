@@ -15,6 +15,15 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
   $scope.healthRank= 1;
   $scope.priceRank = 1;
 
+
+  $scope.logout = function (){
+    $scope.isLogged = !$scope.isLogged;
+
+  };
+
+  $scope.search = function (){
+    console.log("search function logged");
+  }
   //Pardon the naive logic, just wanted to get this done.
   $scope.healthClick1 = function (){
     if ($scope.is1healthClick && ($scope.is2healthClick || $scope.is3healthClick)){
@@ -121,8 +130,9 @@ app.controller('ModalCtrl', function ($scope, $modal, $log, CheckLoggedIn) {
     var modalInstance = $modal.open({
       templateUrl: 'myModalContent.html',
       controller: 'ModalInstanceCtrl',
-      size: size
-      ,resolve: {
+      size: size,
+      backdrop: 'static',
+      resolve: {
         items: function () {
           return $scope.items;
         }
@@ -133,26 +143,17 @@ app.controller('ModalCtrl', function ($scope, $modal, $log, CheckLoggedIn) {
     });
   };
 
-  $scope.search = function (){
-    console.log('made it');
+ CheckLoggedIn().then(function(result){
+
+  if (!result.data){
+    $scope.logout();
+    console.log($scope.isLogged)
     $scope.open();
+  }
+ });
 
-
-
-
-    //Worry about the Authentication function later
-     // CheckLoggedIn().then(function(result){
-     //  console.log(result);
-     //  if (!result){
-     //    $scope.open();
-     //  } else if (result){
-     //    //conduct search
-     //      //redirect to result page
-     //  }
-     // });
- }
 });
-app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, CheckLoggedIn) {
 
   $scope.login = function (){
     alert("logged in");

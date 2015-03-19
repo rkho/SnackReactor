@@ -153,13 +153,13 @@ button{
     padding-bottom: 10px
 }
 .fa-heart{
-    font-size: 50px;
+    font-size: 100px;
     color: #FF7F71;
     margin-right:5px;
     transition: all .3s linear;
 }
 .fa-usd{
-    font-size: 50px;
+    font-size: 100px;
     margin-right: 5px;
     color: #82F4AA;
     transition: all .3s linear;
@@ -171,3 +171,19 @@ button{
 .price {
     color: #00C716;
 }
+#logout{
+    float:right;
+}
+.modal-body{
+    margin: 50px;
+}
+.modal-footer{
+    margin-top: 30px;
+}
+.modal-title{
+    font-size: 50px;
+    font-weight: lighter;
+    margin-left: auto;
+}
+
+
