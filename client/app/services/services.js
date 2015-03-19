@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('snackReactor.auth', [] )
+angular.module('snackReactor.auth',[])
 
 .factory('CheckLoggedIn', ['$http', function($http){
   return function(){
-    return $http.post('/api/auth/checkloggedin')
+    return $http.post('auth/checkloggedin')
     .success(function(data, status, headers, config){
       return true;
     })

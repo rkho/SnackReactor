@@ -12,8 +12,8 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
   $scope.is1priceClick = false;
   $scope.is2priceClick = false;
   $scope.is3priceClick = false;
-  $scope.healthRank= 0;
-  $scope.priceRank = 0;
+  $scope.healthRank= 1;
+  $scope.priceRank = 1;
 
   //Pardon the naive logic, just wanted to get this done.
   $scope.healthClick1 = function (){
@@ -26,7 +26,7 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
     if ($scope.is1healthClick){
       $scope.healthRank=1;
     }else{
-      $scope.healthRank=0;
+      $scope.healthRank=1;
     }
   }
   $scope.healthClick2 = function (){
@@ -37,7 +37,7 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
     }
     if ($scope.is2healthClick && $scope.is1healthClick){
       $scope.is1healthClick = $scope.is2healthClick = false;
-      $scope.healthRank=0;
+      $scope.healthRank=1;
       return;
     }
     $scope.is1healthClick = true;
@@ -49,7 +49,7 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
       $scope.is1healthClick = false;
       $scope.is2healthClick = false;
       $scope.is3healthClick = false;
-      $scope.healthRank = 0;
+      $scope.healthRank = 1;
       console.log($scope.healthRank);
       return;
     }
@@ -71,7 +71,7 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
     if ($scope.is1priceClick){
       $scope.priceRank=1;
     }else{
-      $scope.priceRank=0;
+      $scope.priceRank=1;
     }
   }
   $scope.priceClick2 = function (){
@@ -82,7 +82,7 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
     }
     if ($scope.is2priceClick && $scope.is1priceClick){
       $scope.is1priceClick = $scope.is2priceClick = false;
-      $scope.priceRank=0;
+      $scope.priceRank=1;
       return;
     }
     $scope.is1priceClick = true;
@@ -94,7 +94,7 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
       $scope.is1priceClick = false;
       $scope.is2priceClick = false;
       $scope.is3priceClick = false;
-      $scope.priceRank = 0;
+      $scope.priceRank = 1;
       console.log($scope.priceRank);
       return;
     }
@@ -108,7 +108,7 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
   }
 });
 
-app.controller('ModalCtrl', function ($scope, $modal, $log) {
+app.controller('ModalCtrl', function ($scope, $modal, $log, CheckLoggedIn) {
   $scope.items = [];
 
   //Upon clicking the 'Search' button:
@@ -134,19 +134,21 @@ app.controller('ModalCtrl', function ($scope, $modal, $log) {
   };
 
   $scope.search = function (){
-    if (!$scope.isLogged){
+    console.log('made it');
+
+   CheckLoggedIn().then(function(result){
+    console.log(result);
+    if (!result){
       $scope.open();
+    } else if (result){
+      //conduct search
+        //redirect to result page
     }
-  }
-
-
-
+   });
+ }
 
 });
-app.controller('ModalInstanceCtrl', function ($scope, $auth, $modalInstance, items) {
-  $scope.authenticate = function(provider) {
-    $auth.authenticate(provider);
-  };
+app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
 
   $scope.login = function (){
     alert("logged in");

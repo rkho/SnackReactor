@@ -7,26 +7,10 @@ angular.module('snackReactorApp', [
   'ui.router',
   'ui.bootstrap',
   'angularModalService',
-  'satellizer'
+  'snackReactor.auth'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $authProvider) {
-    $authProvider.loginRedirect = '/';
-    $authProvider.logoutRedirect = '/';
-    
-    $authProvider.github({
-      clientId: 'f4051af23aa885800dbd'
-    });
-
-    $authProvider.github({
-      url: '/auth/github',
-      authorizationEndpoint: 'https://github.com/login/oauth/authorize',
-      redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host,
-      scope: [],
-      scopeDelimiter: ' ',
-      type: '2.0',
-      popupOptions: { width: 1020, height: 618 }
-    });
-
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+ 
     $urlRouterProvider
       .otherwise('/');
 
