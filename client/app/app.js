@@ -5,11 +5,14 @@ angular.module('snackReactorApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'angularModalService',
+  'snackReactor.auth'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+ 
     $urlRouterProvider
-      .otherwise('/signin');
+      .otherwise('/');
 
     $stateProvider
      .state('main', {
@@ -19,26 +22,18 @@ angular.module('snackReactorApp', [
     });
 
     $stateProvider
-    .state('signin', {
-      url: '/signin',
-      templateUrl: 'app/signin/signin.html',
-      controller: 'SigninCtrl'
-    });
-
-    $stateProvider
      .state('results', {
       url: '/results',
       templateUrl: 'app/results/results.html',
       controller: 'ResultsCtrl'
     });
-
+     
      $stateProvider
      .state('restaurants', {
       url: '/restaurants',
       templateUrl: 'app/restaurants/restaurants.html',
       controller: 'RestaurantsCtrl'
     });
-
 
     $locationProvider.html5Mode(true);
   });
