@@ -24,7 +24,7 @@ exports.restaurants = {
         name: details.name,
         price: price,
         health: health,
-        hours: 1, // update with Bradley's parse function
+        hours: places.parseHours(details.opening_hours), 
         address: details.formatted_address,
         location_lat: details.geometry.location.lat,
         location_long: details.geometry.location.lng,
