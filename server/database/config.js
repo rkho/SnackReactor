@@ -56,6 +56,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
   }
 });
 
+// note: ratings is pretty much a join table between restaurants_users
 db.knex.schema.hasTable('ratings').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('ratings', function (rating) {
@@ -65,6 +66,7 @@ db.knex.schema.hasTable('ratings').then(function(exists) {
       rating.integer('rest_id').references('id').inTable('restaurants');
       rating.integer('organization').references('id').inTable('organizations');
       rating.text('comments');
+      rating.integer('has_visited', 1);
       rating.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
