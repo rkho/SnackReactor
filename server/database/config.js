@@ -56,8 +56,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
   }
 });
 
-// note: ratings is pretty much a join table between restaurants_users
-db.knex.schema.hasTable('ratings').then(function(exists) {
+db.knex.schema.hasTable('restaurants_users').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('ratings', function (rating) {
       rating.increments('id').primary();
@@ -79,7 +78,11 @@ db.knex.schema.hasTable('organizations').then(function(exists) {
     db.knex.schema.createTable('organizations', function (org) {
       org.increments('id').primary();
       org.string('name');
-      org.integer('zip_code', 5);
+      org.string('address');
+      org.string('place_id');
+      org.string('github_id');
+      org.string('github_profile');
+      org.integer('domain');
       org.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
