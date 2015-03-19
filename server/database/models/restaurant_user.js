@@ -8,9 +8,8 @@ var Rating = db.Model.extend({
   tableName: 'restaurants_users',
   hasTimestamps: true,
 
-// TODO: review relationships
   users: function(){
-    return this.belongsToMany(User, 'user_id');
+    return this.belongsTo(User, 'user_id');
   },
   
   restaurants: function(){

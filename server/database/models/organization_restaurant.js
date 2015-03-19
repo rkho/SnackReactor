@@ -4,15 +4,15 @@ var Restaurant = require('./restaurant');
 
 
 var joinOrgsRestaurants = db.Model.extend({
-  tableName: 'orgs_restaurants',
+  tableName: 'organizations_restaurants',
   hasTimestamps: false,
 
   organizations: function(){
-    return this.hasMany(Organization);
+    return this.belongsTo(Organization, 'org_id');
   },
 
   restaurants: function(){
-    return this.hasMany(Restaurant);
+    return this.belongsTo(Restaurant, 'restaurant_id');
   }
   
 });

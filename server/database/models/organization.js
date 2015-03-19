@@ -1,6 +1,7 @@
 var db = require('../config');
 var User = require('./user');
-var joinRestaurantsUsers = require('./restaurant_user')
+var joinRestaurantsUsers = require('./restaurant_user');
+var joinOrganizationsRestaurants = require('./organization_restaurant');
 
 
 var Organization = db.Model.extend({
@@ -16,7 +17,7 @@ var Organization = db.Model.extend({
   },
 
   avgRatings: function(){
-    return this.hasMany()
+    return this.hasMany(joinOrganizationsRestaurants);
   }
   
 });

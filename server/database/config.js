@@ -16,20 +16,20 @@ var db = Bookshelf.initialize({
 
 db.knex.schema.hasTable('restaurants').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('restaurants', function (place) {
-      place.increments('id').primary();
-      place.string('name');
-      place.integer('price', 1);
-      place.integer('health', 1);
-      place.string('hours');
-      place.string('address');
-      place.float('location_lat');
-      place.float('location_long');
-      place.string('phone_number');
-      place.string('place_id');
-      place.string('photo_url');
-      place.text('description');
-      place.timestamps();
+    db.knex.schema.createTable('restaurants', function (restaurant) {
+      restaurant.increments('id').primary();
+      restaurant.string('name');
+      restaurant.integer('price', 1);
+      restaurant.integer('health', 1);
+      restaurant.string('hours');
+      restaurant.string('address');
+      restaurant.float('location_lat');
+      restaurant.float('location_long');
+      restaurant.string('phone_number');
+      restaurant.string('place_id');
+      restaurant.string('photo_url');
+      restaurant.text('description');
+      restaurant.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
     });
@@ -61,7 +61,7 @@ db.knex.schema.hasTable('restaurants_users').then(function(exists) {
     db.knex.schema.createTable('restaurants_users', function (rating) {
       rating.integer('rating', 1);
       rating.integer('user_id').references('id').inTable('users');
-      rating.integer('rest_id').references('id').inTable('restaurants');
+      rating.integer('restaurant_id').references('id').inTable('restaurants');
       rating.integer('has_visited', 1);
       rating.text('comments');
       rating.timestamps();
@@ -88,9 +88,9 @@ db.knex.schema.hasTable('organizations').then(function(exists) {
   }
 });
 
-db.knex.schema.hasTable('orgs_restaurants').then(function(exists) {
+db.knex.schema.hasTable('organizations_restaurants').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('orgs_restaurants', function (org) {
+    db.knex.schema.createTable('organizations_restaurants', function (org) {
       org.integer('avg_rating');
       org.integer('org_id').references('id').inTable('organizations');
       org.integer('rest_id').references('id').inTable('restaurants');
