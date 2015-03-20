@@ -29,6 +29,13 @@ angular.module('snackReactorApp', [
     });
 
 
+      $stateProvider
+      .state('select_org', {
+       url: '/select_org',
+       templateUrl: 'app/select_org/select_org.html',
+       controller: 'SelectOrgCtrl'
+     });
+
     $locationProvider.html5Mode(true);
 
     $httpProvider.interceptors.push(function($q, $location){ 
@@ -40,7 +47,7 @@ angular.module('snackReactorApp', [
       responseError: function(response) {
         if (response.status === 401){
           // $location.url('/login');
-          $scope.open();
+          // $scope.open();
         }
         return $q.reject(response);
         }
