@@ -81,6 +81,8 @@ db.knex.schema.hasTable('organizations').then(function(exists) {
       organization.string('place_id');
       organization.string('github_id');
       organization.json('github_profile');
+      organization.float('location_lat');
+      organization.float('location_long');
       organization.string('domain');
       organization.timestamps();
     }).then(function (table) {

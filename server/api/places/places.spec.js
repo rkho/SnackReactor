@@ -39,7 +39,9 @@ describe('Places Module', function() {
     places.geocodeAddress('1600 Amphitheatre Parkway, Mountain View, CA')
     .then(function(result){
       expect(result).to.be.an('array');
-      expect(result).to.equal([37.42291810,-122.08542120]);
+      console.log(typeof(result[0]));
+      expect(result[0]).to.equal(37.4224764);
+      expect(result[1]).to.equal(-122.0842499);
       done();
     });
   })

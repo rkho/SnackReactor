@@ -44,9 +44,9 @@ app.controller('2Ctrl', function ($scope, $modalInstance, items, OrgSelect, $loc
     });
   });
 
-  $scope.selectOrg = function(orgId, repeatScope){
+  $scope.selectOrg = function(orgId, orgLogin, repeatScope){
     repeatScope.org.submitting = true;
-    OrgSelect.setGithubOrg(orgId, $location)
+    OrgSelect.setGithubOrg(orgId, orgLogin, $location)
     .then(function(){
       repeatScope.org.submitting = false;
     });
