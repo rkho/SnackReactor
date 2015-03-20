@@ -3,7 +3,7 @@
 var app = angular.module('snackReactorApp');
 //refactor to services
 app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService,$location) {
-  $scope.awesomeThings = []; 
+
   $scope.isLogged = false;
   $scope.priceClick = false;
   $scope.is1healthClick = false;
@@ -14,6 +14,10 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
   $scope.is3priceClick = false;
   $scope.healthRank= 1;
   $scope.priceRank = 1;
+
+  //empty array that will store three random objects.
+  //used in our search function to generate results page.
+  $scope.places = [];
 
 
   $scope.logout = function (){
