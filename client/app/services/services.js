@@ -39,6 +39,17 @@ angular.module('snackReactor.auth',[])
     })
   }
 
+  instance.getGithubOrgInfo = function(login){
+    return $http({
+      URL: 'https://api.github.com/orgs/' + login,
+      method: GET,
+      
+    })
+  }
+
   return instance;
 
 }]);
+
+request.get('https://api.github.com/orgs/' + req.body.github_login)
+.query({access_token: req.user.access_token})
