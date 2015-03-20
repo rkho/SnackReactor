@@ -95,8 +95,25 @@ db.knex.schema.hasTable('organizations_restaurants').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('organizations_restaurants', function (org) {
       org.integer('avg_rating');
+      // added cumulativeRating + totalRating -- in correct table?
+      // org.integer('cumulativeRating');
+      // org.integer('totalRatings');
       org.integer('organization_id').references('id').inTable('organizations');
       org.integer('place_id').references('place_id').inTable('restaurants');
+    }).then(function (table) {
+      console.log('Created Table', table);
+    });
+  }
+});
+
+db.knex.schema.hasTable('hours').then(function(exists) {
+  if (!exists) {
+    db.knex.schema.createTable('hours', function (hour) {
+      hour.increments('id').primary();
+      hour.integer('restaurant_id').references('id').inTable('restaurants');
+      hour.string('day_of_week');
+      hour.string('time_open');
+      hour.string('time_close');
     }).then(function (table) {
       console.log('Created Table', table);
     });
