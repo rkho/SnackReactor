@@ -27,13 +27,7 @@ angular.module('snackReactorApp', [
       templateUrl: 'app/results/results.html',
       controller: 'ResultsCtrl'
     });
-     
-     $stateProvider
-     .state('restaurants', {
-      url: '/restaurants',
-      templateUrl: 'app/restaurants/restaurants.html',
-      controller: 'RestaurantsCtrl'
-    });
+
 
     $locationProvider.html5Mode(true);
 
