@@ -5,7 +5,7 @@ var authenticate = require('../../components/utils.js').authenticate;
 var Organization = require('../../database/models/organization.js');
 var User = require('../../database/models/user.js');
 
-router.get('/github/getorgs', authenticate, function(req,res){
+router.get('/getorgs/github', authenticate, function(req,res){
   request.get('https://api.github.com/user/orgs')
   .query({access_token: req.user.access_token})
   .end(function(err,gitres){
@@ -17,14 +17,14 @@ router.get('/github/getorgs', authenticate, function(req,res){
   });
 });
 
-router.post('/github/setorg', authenticate, function(req,res){
+router.post('/setorg/github', authenticate, function(req,res){
   var orgId = parseInt(req.body.orgId);
   Organization.forge()
   .where({github_id: orgId})
   .fetch() // find the organization with that github ID
   .then(function(organization){
     if (!organization){
-      res.send({create: true}); // if the organization isn't in our database, send the user to the creation flow
+      res.send({create: true, github_id: orgId}); // if the organization isn't in our database, send the user to the creation flow
     }
     else { // if the org exists, assign the org to the user
       User.forge()

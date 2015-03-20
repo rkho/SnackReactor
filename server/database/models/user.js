@@ -9,7 +9,7 @@ var User = db.Model.extend({
   tableName: 'users',
   hasTimestamps: true,
 
-  organizations: function(){
+  organization: function(){
     return this.belongsTo(Organization);
   },
 

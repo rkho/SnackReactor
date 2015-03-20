@@ -29,7 +29,8 @@ exports.geocodeAddress = function(address){
   return locations.geocodeAddressAsync({address: address})
   .then(function(result,err){
     if (err) console.error('Error fetching geocode: ' + err);
-    return [result.results.geometry.location.lat,result.results.geometry.location.lng];
+    console.log(result.results[0]);
+    return [result.results[0].geometry.location.lat,result.results[0].geometry.location.lng, result.results[0].place_id];
   });
 };
 
