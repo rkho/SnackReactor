@@ -2,7 +2,7 @@ var db = require('../config');
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 var Organization = require('./organization');
-var joinRestaurantsUsers = require('./restaurant_user');
+var Rating = require('./rating');
 
 
 var User = db.Model.extend({
@@ -14,7 +14,7 @@ var User = db.Model.extend({
   },
 
   ratings: function(){
-    return this.hasMany(joinRestaurantsUsers);
+    return this.hasMany(Rating);
   },
 
   initialize: function(){

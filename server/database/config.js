@@ -40,7 +40,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('users', function (user) {
       user.increments('id').primary();
-      user.integer('org_id').references('id').inTable('organizations');
+      user.integer('organization_id').references('id').inTable('organizations');
       user.string('email').unique();
       user.string('username').unique();
       user.string('password');
@@ -56,9 +56,10 @@ db.knex.schema.hasTable('users').then(function(exists) {
   }
 });
 
-db.knex.schema.hasTable('restaurants_users').then(function(exists) {
+db.knex.schema.hasTable('ratings').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('restaurants_users', function (rating) {
+    db.knex.schema.createTable('ratings', function (rating) {
+      rating.increments('id').primary();
       rating.integer('rating', 1);
       rating.integer('user_id').references('id').inTable('users');
       rating.integer('restaurant_id').references('id').inTable('restaurants');
@@ -73,15 +74,15 @@ db.knex.schema.hasTable('restaurants_users').then(function(exists) {
 
 db.knex.schema.hasTable('organizations').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('organizations', function (org) {
-      org.increments('id').primary();
-      org.string('name');
-      org.string('address');
-      org.string('place_id');
-      org.string('github_id');
-      org.json('github_profile');
-      org.string('domain');
-      org.timestamps();
+    db.knex.schema.createTable('organizations', function (organization) {
+      organization.increments('id').primary();
+      organization.string('name');
+      organization.string('address');
+      organization.string('place_id');
+      organization.string('github_id');
+      organization.json('github_profile');
+      organization.string('domain');
+      organization.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
     });
@@ -92,8 +93,8 @@ db.knex.schema.hasTable('organizations_restaurants').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('organizations_restaurants', function (org) {
       org.integer('avg_rating');
-      org.integer('org_id').references('id').inTable('organizations');
-      org.integer('rest_id').references('id').inTable('restaurants');
+      org.integer('organization_id').references('id').inTable('organizations');
+      org.integer('place_id').references('place_id').inTable('restaurants');
     }).then(function (table) {
       console.log('Created Table', table);
     });
