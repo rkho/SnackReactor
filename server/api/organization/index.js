@@ -8,6 +8,7 @@ var places = require('../places.js');
 
 
 router.post('/create/github', authenticate, function(req,res){
+  console.log('post create gitub');
   Organization.forge()
   .where({github_id: req.body.github_id}) // let's triple check it doesn't exist
   .fetch()
@@ -31,7 +32,16 @@ router.post('/create/github', authenticate, function(req,res){
                   location_lat: geometry[0],
                   location_long: geometry[1],
                   github_profile: gitres
-                }).save().then(assignUser); // assign the user
+                }).save()
+                  .then(function(newOrg){
+                  User.forge()
+                  .where({id: req.user.id})
+                  .fetch()
+                  .then(function(user){
+                    user.set('organization_id', newOrg.get('id'))
+                    .save();
+                  });
+                }); // assign the user
               }
           });
       }); // geometry request
@@ -54,12 +64,25 @@ router.post('/create/github', authenticate, function(req,res){
             github_profile: gitRes,
             location_lat: placeDetails.result.geometry.location.lat,
             loation_long: placeDetails.result.geometry.location.long
-          }).save().then(assignUser); // assign the user and send a response
-        });
-      }); // placedetails
-    } //else
+          }).save()
+            .then(function(newOrg){
+              User.forge()
+              .where({id: req.user.id})
+              .fetch()
+              .then(function(user){
+                user.set('organization_id', newOrg.get('id'))
+                .save()
+                .then(function(){
+                  res.status(201).send();
+                });
+              }); // assign the user and send a response
+            });
+      }); // gitRes
+    }); //placesetails
+  } // else
    else res.status(409).send('Error: organization with that Github ID already exists.');
-  });
-});
+  };
+  }); // org.forge
+});//router.post
 
 module.exports = router;
