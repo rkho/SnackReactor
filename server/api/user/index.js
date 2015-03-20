@@ -1,36 +1,9 @@
 var express = require('express');
-var passport = require('../../config/passport.config.js');
 var router = express.Router();
 var request = require('superagent');
 var authenticate = require('../../components/utils.js').authenticate;
 var Organization = require('../../database/models/organization.js');
 var User = require('../../database/models/user.js');
-
-router.get('/github',
-  passport.authenticate('github'),
-  function(req, res){
-    // The request will be redirected to Github for authentication, so this
-    // function will not be called.
-});
-
-router.get('/github/callback', 
-  passport.authenticate('github', { failureRedirect: '/' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-});
-
-router.post('/checkloggedin', function(req, res){
-  res.send(req.isAuthenticated() ? req.user : false);
-});
-
-router.get('/logout', function(req, res){
-  req.session.destroy(function(err){
-    if (err) console.error('Error destroying session: ' + err);
-    req.logout();
-    res.redirect('/');
-  });
-});
 
 router.get('/github/getorgs', authenticate, function(req,res){
   request.get('https://api.github.com/user/orgs')

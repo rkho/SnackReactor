@@ -19,7 +19,7 @@ angular.module('snackReactor.auth',[])
   var instance = {}
   
   instance.getGithubOrgs = function(){
-    return $http.get('/auth/github/getorgs')
+    return $http.get('/user/github/getorgs')
     .success(function(data, status, headers, config){
       return data.orgs;
     })
@@ -28,10 +28,10 @@ angular.module('snackReactor.auth',[])
     });
   };
 
-  instance.setGithubOrg = function(orgId){
-    return $http.post('/auth/github/setorg', {orgId: orgId})
+  instance.setGithubOrg = function(orgId, $location){
+    return $http.post('/user/github/setorg', {orgId: orgId})
     .success(function(data,status,headers,config){
-      if (data.create) $location.path('/create_org');
+      if (data.create) $location.path('/org/create');
       else $location.path('/');
     })
     .error(function(data,status,headers,config){

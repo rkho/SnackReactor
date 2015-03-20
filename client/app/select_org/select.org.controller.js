@@ -32,7 +32,7 @@ app.controller('SelectOrgCtrl', function ($scope, $modal, $log, CheckLoggedIn, M
   $scope.open('md');
 
 });
-app.controller('2Ctrl', function ($scope, $modalInstance, items, OrgSelect) {
+app.controller('2Ctrl', function ($scope, $modalInstance, items, OrgSelect, $location) {
 
   $scope.githubOrgs = [];
   
@@ -42,13 +42,11 @@ app.controller('2Ctrl', function ($scope, $modalInstance, items, OrgSelect) {
     $scope.githubOrgs.forEach(function(org){
       org.submitting = false;
     });
-    console.log($scope.githubOrgs);
   });
 
   $scope.selectOrg = function(orgId, repeatScope){
-    console.log(repeatScope);
     repeatScope.org.submitting = true;
-    OrgSelect.setGithubOrg(orgId)
+    OrgSelect.setGithubOrg(orgId, $location)
     .then(function(){
       repeatScope.org.submitting = false;
     });
