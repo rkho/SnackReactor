@@ -96,8 +96,8 @@ db.knex.schema.hasTable('organizations_restaurants').then(function(exists) {
     db.knex.schema.createTable('organizations_restaurants', function (org) {
       org.integer('avg_rating');
       // added cumulativeRating + totalRating -- in correct table?
-      // org.integer('cumulativeRating');
-      // org.integer('totalRatings');
+      org.integer('cumulativeRating');
+      org.integer('totalRatings');
       org.integer('organization_id').references('id').inTable('organizations');
       org.integer('place_id').references('place_id').inTable('restaurants');
     }).then(function (table) {
