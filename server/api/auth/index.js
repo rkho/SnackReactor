@@ -54,7 +54,8 @@ router.get('/github/getorgs', authenticate, function(req,res){
 router.post('/github/setorg', authenticate, function(req,res){
   var orgId = parseInt(req.body.orgId);
   Organization.forge()
-  .where({github_id: orgId}) // find the organization with that github ID
+  .where({github_id: orgId})
+  .fetch() // find the organization with that github ID
   .then(function(organization){
     if (!organization){
       res.send({create: true}); // if the organization isn't in our database, send the user to the creation flow
@@ -62,6 +63,7 @@ router.post('/github/setorg', authenticate, function(req,res){
     else { // if the org exists, assign the org to the user
       User.forge()
       .where({id: req.user.id})
+      .fetch()
       .then(function(user){
         user.set('organization_id', organization.get('id')) //set the user's organization id to the found org's ID
         .save()

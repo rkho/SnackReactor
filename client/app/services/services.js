@@ -28,8 +28,8 @@ angular.module('snackReactor.auth',[])
     });
   };
 
-  instance.selectGithubOrg = function(orgId){
-    $http.post('/auth/github/setorg', {orgId: orgId})
+  instance.setGithubOrg = function(orgId){
+    return $http.post('/auth/github/setorg', {orgId: orgId})
     .success(function(data,status,headers,config){
       if (data.create) $location.path('/create_org');
       else $location.path('/');

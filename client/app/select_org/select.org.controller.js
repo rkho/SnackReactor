@@ -32,16 +32,27 @@ app.controller('SelectOrgCtrl', function ($scope, $modal, $log, CheckLoggedIn, M
   $scope.open('md');
 
 });
-app.controller('2Ctrl', function ($scope, $modalInstance, items, GetGithubOrgs) {
+app.controller('2Ctrl', function ($scope, $modalInstance, items, OrgSelect) {
 
   $scope.githubOrgs = [];
-  $scope.submitting = false;
   
-  GetGithubOrgs().then(function(result){
+  OrgSelect.getGithubOrgs().then(function(result){
     // console.log(result);
     $scope.githubOrgs = result.data.orgs;
+    $scope.githubOrgs.forEach(function(org){
+      org.submitting = false;
+    });
     console.log($scope.githubOrgs);
   });
+
+  $scope.selectOrg = function(orgId, repeatScope){
+    console.log(repeatScope);
+    repeatScope.org.submitting = true;
+    OrgSelect.setGithubOrg(orgId)
+    .then(function(){
+      repeatScope.org.submitting = false;
+    });
+  };
  
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
