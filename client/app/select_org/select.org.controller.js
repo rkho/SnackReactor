@@ -3,7 +3,7 @@
 var app = angular.module('snackReactorApp');
 //refactor to services
 
-app.controller('SelectOrgCtrl', function ($scope, $modal, $log, CheckLoggedIn,ModalService) {
+app.controller('SelectOrgCtrl', function ($scope, $modal, $log, CheckLoggedIn, ModalService) {
   $scope.items = [];
 
   //Upon clicking the 'Search' button:
@@ -29,20 +29,20 @@ app.controller('SelectOrgCtrl', function ($scope, $modal, $log, CheckLoggedIn,Mo
     });
   };
 
-  $scope.open();
+  $scope.open('md');
 
 });
-app.controller('2Ctrl', function ($scope, $modalInstance, items, CheckLoggedIn) {
+app.controller('2Ctrl', function ($scope, $modalInstance, items, GetGithubOrgs) {
 
-  $scope.login = function (){
-    alert("logged in");
-  }
-
-  $scope.items = items;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
-
+  $scope.githubOrgs = [];
+  $scope.submitting = false;
+  
+  GetGithubOrgs().then(function(result){
+    // console.log(result);
+    $scope.githubOrgs = result.data.orgs;
+    console.log($scope.githubOrgs);
+  });
+ 
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
   };

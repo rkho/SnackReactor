@@ -15,16 +15,34 @@ angular.module('snackReactor.auth',[])
   };
 }])
 
-.factory('GetGithubOrgs', ['$http', function($http){
-  return function(){
-    return $http.get('/auth/getgithuborgs')
+.factory('OrgSelect', ['$http', function($http, $location){
+  var instance = {}
+  
+  instance.getGithubOrgs = function(){
+    return $http.get('/auth/github/getorgs')
     .success(function(data, status, headers, config){
-      console.log(data);
+      return data.orgs;
     })
     .error(function(data,status,headers,config){
       console.error('Error fetching Github organizations: ' + data);
     });
   };
+
+  instance.selectGithubOrg = function(orgId){
+    $http.post('/auth/github/setorg', {orgId: orgId})
+    .success(function(data,status,headers,config){
+      if (data.create) $location.path('/create_org');
+      else $location.path('/');
+    })
+    .error(function(data,status,headers,config){
+      console.error('Error posting org: ' + data);
+    })
+  }
+
+  return instance;
+
 }])
+
+.factory()
 
 ;

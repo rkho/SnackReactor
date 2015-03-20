@@ -177,12 +177,15 @@ button{
 #logout{
     float:right;
 }
+
 .modal-body{
     margin: 50px;
 }
+
 .modal-footer{
     margin-top: 30px;
 }
+
 .modal-title{
     font-size: 50px;
     font-weight: lighter;
@@ -198,4 +201,54 @@ button{
     display: inline-block;
 }
 
+.modal-title-md{
+    font-size: 25px;
+    font-weight: lighter;
+    margin-left: auto;
+}
+
+.modal-body-md{
+    margin: 50px;
+    margin-top: 10px;
+}
+
+
+.org-img{
+    max-width: 100%;
+    height: auto;
+    /*float: left;*/
+    width: 5em;
+    height: auto;
+    /*clear: both;*/
+    display: inline-block;
+    margin: 0.5em;
+}
+
+.org{
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-top: 1em;
+    /*color: black;*/
+}
+
+.blacktext{
+    color: black;
+}
+
+.org:hover{
+    background-color: #DFF0D8;
+}
+
+
+.org-name {
+    /*float: right;*/
+    margin-left: 1em;
+    display: inline-block;
+}
+
+.org-go{
+    float: right;
+    margin-top: .25em;
+    margin-right: .4em;
+}
 
