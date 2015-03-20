@@ -1,11 +1,10 @@
 var db = require('../config');
 var Restaurant = require('./restaurant');
-var Organization = require('./organization');
 var User = require('./user');
 
 
 var Rating = db.Model.extend({
-  tableName: 'restaurants_users',
+  tableName: 'ratings',
   hasTimestamps: true,
 
   users: function(){
@@ -15,11 +14,6 @@ var Rating = db.Model.extend({
   restaurants: function(){
     return this.belongsTo(Restaurant);
   }
-
-  // not necessary?  added another join table
-  // organizations: function(){
-  //   return this.belongsTo(Organization).through(User);
-  // }
 
 });
 
