@@ -16,6 +16,7 @@ var path = require('path');
 var config = require('./environment');
 var session = require('express-session');
 var passport = require('./passport.config.js');
+var BookshelfStore = require('connect-bookshelf')(session);
 var SessionModel = require('../database/models/session.js');
 
 
@@ -37,7 +38,7 @@ module.exports = function(app) {
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    // store: new BookshelfStore({model: SessionModel}), //disabled until DB setup
+    store: new BookshelfStore({model: SessionModel})
   }));
 
   app.use(passport.initialize());
