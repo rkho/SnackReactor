@@ -36,6 +36,13 @@ angular.module('snackReactorApp', [
      controller: 'SelectOrgCtrl'
    });
 
+    $stateProvider
+    .state('create_org', {
+      url: '/create_org',
+      templateUrl: 'app/create_org/create_org.html',
+      controller: 'CreateOrgCtrl'
+    });
+
     $locationProvider.html5Mode(true);
 
     $httpProvider.interceptors.push(function($q, $location){ 

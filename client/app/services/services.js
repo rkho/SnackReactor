@@ -40,16 +40,26 @@ angular.module('snackReactor.auth',[])
   }
 
   instance.getGithubOrgInfo = function(login){
-    return $http({
-      URL: 'https://api.github.com/orgs/' + login,
-      method: GET,
-      
+    $http.get('/user/token')
+    .success(function(data, status, headers, config){
+      var token = data.access_token;
+    return $http.get('https://api.github.com/orgs/' + login, {
+      headers: {
+        'Authorization': 'token ' + token
+      }
     })
-  }
+      .success(function(data,status,headers,config){
+        return data;
+      }).error(function(data,status,headers,config){
+        console.error('Error getting organization info from Github ' + data);
+      });
+    })
+    .error(function(data, status, headers, config){
+      console.error('Error getting Github authorization ' + data);
+    });
+    
+  };
 
   return instance;
 
 }]);
-
-request.get('https://api.github.com/orgs/' + req.body.github_login)
-.query({access_token: req.user.access_token})

@@ -29,7 +29,8 @@ app.controller('CreateOrgCtrl', function ($scope, $modal, $log, CheckLoggedIn, M
 
 app.controller('3Ctrl', function ($scope, $modalInstance, items, OrgSelect, $location) {
 
-  $scope.githubOrgs = [];
+  $scope.org = OrgSelect.getGithubOrgInfo('hackreactor');
+  console.log($scope.org);
   
   OrgSelect.getGithubOrgs().then(function(result){
     // console.log(result);

@@ -41,4 +41,10 @@ router.post('/setorg/github', authenticate, function(req,res){
   });
 })
 
+router.get('/token', authenticate, function(req,res){
+  console.log('req.user');
+  console.log(req.user);
+  res.send({access_token: req.user.access_token});
+});
+
 module.exports = router;
