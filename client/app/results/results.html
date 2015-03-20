@@ -1,5 +1,19 @@
-<div ng-controller="ResultsCtrl">
+<div ng-controller="ResultsCtrl" ng-init="checkLogged()">
 <div class="overlay"></div>
+
+
+
+
+<accordion class="accordion">
+  <accordion close-others="oneAtATime">
+    <accordion-group heading="Read more about {{jerry.name}}">
+      <p>The body of the accordion group grows to fit the contents</p>
+        <button class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
+        <div ng-repeat="item in items">{{item}}</div>
+    </accordion-group>
+  </accordion>
+</div>
+
 
 
   <accordion close-others="oneAtATime">
@@ -9,4 +23,11 @@
         <div ng-repeat="item in items">{{item}}</div>
     </accordion-group>
   </accordion>
+</accordion>
+
+
+
+
+
+
 </div>

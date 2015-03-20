@@ -2,7 +2,7 @@
 
 var app = angular.module('snackReactorApp');
 //refactor to services
-app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService) {
+app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService,$location) {
   $scope.awesomeThings = []; 
   $scope.isLogged = false;
   $scope.priceClick = false;
@@ -18,11 +18,13 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
 
   $scope.logout = function (){
     $scope.isLogged = !$scope.isLogged;
-
   };
 
-  $scope.search = function (){
-    console.log("search function logged");
+  $scope.search = function (view){
+    //search query
+
+    //reroute
+    $location.path(view);
   }
   //Pardon the naive logic, just wanted to get this done.
   $scope.healthClick1 = function (){
@@ -119,13 +121,6 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
 
 app.controller('ModalCtrl', function ($scope, $modal, $log, CheckLoggedIn) {
   $scope.items = [];
-
-  //Upon clicking the 'Search' button:
-    //Check the current session to see if user is logged in
-      //If not logged in, open the modal, and authenticate via GitHub button.
-        //redirect to results page
-      //If logged in, submit a post request with priceClicked & healthClicked values specified
-        //redirect to results page.
   $scope.open = function (size) {
     var modalInstance = $modal.open({
       templateUrl: 'myModalContent.html',
@@ -147,17 +142,15 @@ app.controller('ModalCtrl', function ($scope, $modal, $log, CheckLoggedIn) {
 
   if (!result.data){
     $scope.logout();
-    console.log($scope.isLogged)
+    //check current path
+      //if current path is not "/", redirect to "/"
+      //if current path is "/" continue to open the modal
     $scope.open();
   }
  });
 
 });
 app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, CheckLoggedIn) {
-
-  $scope.login = function (){
-    alert("logged in");
-  }
 
   $scope.items = items;
   $scope.selected = {

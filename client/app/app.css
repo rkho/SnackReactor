@@ -97,7 +97,7 @@ button{
     position: absolute;
     left: 0;
     right: 0;
-    top: 45%;
+    top: 50%;
     opacity: 0.9;
 }
 
@@ -124,6 +124,9 @@ button{
     padding-right: 40px;
     font-size: 50px;
     border-radius: 5px;
+}
+#search:hover{
+    background: #FF3B4C;
 }
 .btn-github{
     padding-top: 20px;
@@ -153,13 +156,13 @@ button{
     padding-bottom: 10px
 }
 .fa-heart{
-    font-size: 100px;
+    font-size: 120px;
     color: #FF7F71;
     margin-right:5px;
     transition: all .3s linear;
 }
 .fa-usd{
-    font-size: 100px;
+    font-size: 120px;
     margin-right: 5px;
     color: #82F4AA;
     transition: all .3s linear;
@@ -184,6 +187,15 @@ button{
     font-size: 50px;
     font-weight: lighter;
     margin-left: auto;
+}
+
+.r1{
+    width: 50%;
+}
+
+
+.box {
+    display: inline-block;
 }
 
 
