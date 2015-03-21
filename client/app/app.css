@@ -25,6 +25,7 @@
     font-weight: lighter;
     font-style: normal;
 }
+
 .overlay{
     position:fixed;
     height: 100%;
@@ -70,9 +71,6 @@ button{
 .off {
     background-color: #286DB4;
 }
-
-
-
 
 .content h1 {
     font-size: 120px;

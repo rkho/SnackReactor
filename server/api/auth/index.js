@@ -17,7 +17,10 @@ router.get('/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    if (req.user.get('new')){
+      req.user.set('new', false);
+      res.redirect('/select_org');
+    } else res.redirect('/');
 });
 
 router.post('/checkloggedin', function(req, res){
