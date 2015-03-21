@@ -125,6 +125,16 @@ button{
     font-size: 50px;
     border-radius: 5px;
 }
+
+#reshuffle {
+    margin-left: 6%;
+    width: 60px;
+    margin-top: 5%;
+    padding: 5px;
+    font-size: 20px;
+    width: 4em;
+
+}
 #search:hover{
     background: #FF3B4C;
 }
@@ -251,4 +261,77 @@ button{
     margin-top: .25em;
     margin-right: .4em;
 }
+
+.panel-title {
+    margin-top: -8px;
+    margin-bottom: -8px;
+}
+.panel-title:hover{
+    cursor: pointer;
+}
+
+.container {
+    display: inline-flex;
+    margin: 40px;
+    margin-top: -5%;
+}
+
+.a1{
+    width: 33%;
+    margin-left:0px;
+
+}
+.a2 {
+    width: 33%;
+}
+
+.a3 {
+    width: 33%;
+    margin-right: 0px;
+
+}
+
+.box {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+img{
+    height: 200px;
+    width: 300px;
+}
+
+#addRest{
+    font-weight: lighter;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #FF2538;
+  box-sizing: border-box;
+  position: relative;
+  box-sizing: content-box;
+  width: 8em;
+  height: 30px;
+  border-width: 0;
+  transition: all .3s linear;
+  margin-bottom: 10px;
+  outline: none;
+  color: #fff;
+  padding-left: 0px;
+  padding-top: 1px;
+  padding-bottom: 4px;
+  padding-right: 11px;
+  font-size: 21px;
+  border-radius: 5px;
+}   
+
+.resultsOptions {
+    margin-left: 40%;
+}
+
+#restAdd{
+    margin-left: 25%;
+    width:50%;
+}
+
+
 
