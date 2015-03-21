@@ -1,72 +1,75 @@
 <div ng-controller="ResultsCtrl" ng-init="checkLogged()">
       <div class="overlay"></div>
-      
-      </div>
-       <div ng-controller="AddModal">
-          <div class = "resultsOptions">
-            <button id="reshuffle" ng-click="">Reshuffle!</button><br>
-            <button id="addRest" ng-click="open('md')">Add Restaurant</button>
-          </div>
-          <script type="text/ng-template" id="restaurant.html">
+      <div class="container">
+           <div ng-controller="AddModal" class="row">
+              <div class="col-xs-12">
+                <div class="resultsOptions">
+                  <button id="reshuffle" ng-click="">Reshuffle!</button><br>
+                  <button id="addRest" ng-click="open('md')">Add Restaurant</button>
+                </div>
+                <script type="text/ng-template" id="restaurant.html">
 
-          <form method="post" ng-submit="test(restaurant)" name="addRestaurantForm" class="ng-pristine ng-invalid ng-invalid-required">
-            
-            <div class="form-group has-feedback">
-              <input class="form-control input-lg ng-pristine ng-invalid ng-invalid-required ng-touched" type="text" name="email" ng-model="restaurant" placeholder="Add a restaurant..." required="" autofocus="">
-              <span class="ion-at form-control-feedback"></span>
+                  <form method="post" ng-submit="test(restaurant)" name="addRestaurantForm" class="ng-pristine ng-invalid ng-invalid-required">
+                    
+                    <div class="form-group has-feedback">
+                      <input class="form-control input-lg ng-pristine ng-invalid ng-invalid-required ng-touched" type="text" name="email" ng-model="restaurant" placeholder="Add a restaurant..." required="" autofocus="">
+                      <span class="ion-at form-control-feedback"></span>
+                    </div>
+
+                    <button type="submit" ng-disabled="loginForm.$invalid" class="btn  btn-block btn-success" id="restAdd" disabled="disabled">Submit</button>
+
+                    <br>
+
+                  </form>
+                </script>
+              </div>
             </div>
 
-          <button type="submit" ng-disabled="loginForm.$invalid" class="btn  btn-block btn-success" id="restAdd" disabled="disabled">Submit</button>
+      
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-4">
+            <div class="a1 box">
+            <div class="box-header" style="background-image:url('http://noehill.com/sf/landmarks/vanness/alhambra_theater_thumb.jpg')"></div>
+              <accordion close-others="oneAtATime">
+                <accordion-group heading="Read more...">
+                  <p>{{jerry.address}}</p>
+                  <p>Rating: {{jerry.rating}}</p>
+                  <p>About this place: {{jerry.text}}</p>
+                </accordion-group>
+              </accordion>
+            </div>
+          </div>
 
-          <br>
+          <div class="col-xs-12 col-sm-12 col-md-4">
+            <div class="a2 box">
+              <div class="box-header" style="background-image:url('http://upload.wikimedia.org/wikipedia/commons/4/44/Noeteca_Restaurant,_Dolores_St.,_San_Francisco,_CA.jpg')"></div>
+              <accordion close-others="oneAtATime">
+                <accordion-group heading="Read more...">
+                  <p>{{jerry.address}}</p>
+                  <p>Rating: {{jerry.rating}}</p>
+                  <p>About this place: {{jerry.text}}</p>
+                </accordion-group>
+              </accordion>
+            </div>
+          </div>
 
-        </form>
-          </script>
-      </div>
+          <div class="col-xs-12 col-sm-12 col-md-4">  
+            <div class="a3 box">
+            <div class="box-header" style="background-image:url('http://upload.wikimedia.org/wikipedia/commons/4/44/Noeteca_Restaurant,_Dolores_St.,_San_Francisco,_CA.jpg')"></div>
+              <accordion close-others="oneAtATime">
+                <accordion-group heading="Read more...">
+                  <p>{{jerry.address}}</p>
+                  <p>Rating: {{jerry.rating}}</p>
+                  <p>About this place: {{jerry.text}}</p>
+                </accordion-group>
+              </accordion>
+            </div>
+          </div> 
+        </div>
+      </div>  
     </div>
-
-       <div class="container">
-
-        <div class="a1 box">
-        <div>
-          <img src="http://noehill.com/sf/landmarks/vanness/alhambra_theater_thumb.jpg"/>
-        </div>
-          <accordion close-others="oneAtATime">
-            <accordion-group heading="Read more...">
-              <p>{{jerry.address}}</p>
-              <p>Rating: {{jerry.rating}}</p>
-              <p>About this place: {{jerry.text}}</p>
-            </accordion-group>
-          </accordion>
-        </div>
-
-        <div class="a1 box">
-        <div>
-          <img src="http://noehill.com/sf/landmarks/vanness/alhambra_theater_thumb.jpg"/>
-        </div>
-          <accordion close-others="oneAtATime">
-            <accordion-group heading="Read more...">
-              <p>{{jerry.address}}</p>
-              <p>Rating: {{jerry.rating}}</p>
-              <p>About this place: {{jerry.text}}</p>
-            </accordion-group>
-          </accordion>
-        </div>
-
-        <div class="a1 box">
-        <div>
-          <img src="http://noehill.com/sf/landmarks/vanness/alhambra_theater_thumb.jpg"/>
-        </div>
-          <accordion close-others="oneAtATime">
-            <accordion-group heading="Read more...">
-              <p>{{jerry.address}}</p>
-              <p>Rating: {{jerry.rating}}</p>
-              <p>About this place: {{jerry.text}}</p>
-            </accordion-group>
-          </accordion>
-        </div>
-      </div> 
 </div>
+
 
 
 
