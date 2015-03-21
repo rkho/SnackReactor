@@ -217,7 +217,7 @@ button{
 .box {
     display: inline-block;
     background-color: rgba(256,256,256,.2);
-    min-height: 200px;
+    min-height: 150px;
     border-radius: 25px;
 }
 
