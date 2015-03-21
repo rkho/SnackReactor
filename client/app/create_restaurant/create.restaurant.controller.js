@@ -29,33 +29,10 @@ app.controller('CreateRestCtrl', function ($scope, $modal, $log, CheckLoggedIn, 
 
 app.controller('4Ctrl', function ($scope, $modalInstance, items, OrgSelect, $location) {
 
+  $scope.hearts=[{num: 0, clicked:false, descrition: 'Junk food!'}, {num:1, clicked: false}, {num:2, clicked: false}];
+
   var search = $location.search();
   $scope.submitting = false;
-
-  OrgSelect.getAccessToken()
-  .then(function(response){
-    OrgSelect.getGithubOrgInfo(search.github_login, response.data.access_token)
-    .then(function(orgInfo){
-      for (var key in orgInfo.data){
-        $scope.createOrg[key] = orgInfo.data[key];
-      }
-    });
-  });
-
-  $scope.submitOrg = function(){
-    $scope.submitting = true;
-    OrgSelect.createOrg($scope.createOrg.id, $scope.createOrg.address, $scope.createOrg.name, $scope.createOrg.login, $scope.createOrg.placeId)
-    .success(function(data, status, headers, config){
-      console.log('success');
-      $scope.submitting = false;
-      $location.path('/');
-      $location.search({github_login: null, github_id: null});
-      window.location.reload();//ideally we'll figure out how to close that fucking modal
-    })
-    .error(function(data, status, headers, config){
-      $scope.submitting = false;
-    });
-  };
  
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
