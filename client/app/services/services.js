@@ -71,7 +71,6 @@ angular.module('snackReactor.auth',[])
 
   instance.createOrg = function(github_id, address, name, github_login, placeId){
     placeId = placeId || null;
-    console.log('create');
     return $http.post('/org/create/github', {
       github_id: github_id,
       address: address,

@@ -20,7 +20,6 @@ passport.deserializeUser(function(id, done) {
 
 
 var findOrCreateUserOauth = function (accessToken, refreshToken, profile, done, strategy){
-  console.log(profile.id);
   User.forge()
   .where({auth_type: strategy, auth_id: profile.id})
   .fetch()
@@ -44,6 +43,7 @@ var findOrCreateUserOauth = function (accessToken, refreshToken, profile, done, 
           })
           .save()
           .then(function(user){
+            user.set('new', true);
             return done(null,user);
           })
         });

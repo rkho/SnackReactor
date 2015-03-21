@@ -30,26 +30,31 @@ app.controller('CreateOrgCtrl', function ($scope, $modal, $log, CheckLoggedIn, M
 app.controller('3Ctrl', function ($scope, $modalInstance, items, OrgSelect, $location) {
 
   var search = $location.search();
+  $scope.submitting = false;
 
   OrgSelect.getAccessToken()
   .then(function(response){
     OrgSelect.getGithubOrgInfo(search.github_login, response.data.access_token)
     .then(function(orgInfo){
-      console.log(orgInfo.data);
       for (var key in orgInfo.data){
         $scope.createOrg[key] = orgInfo.data[key];
       }
     });
   });
 
-  $scope.testFunc = function(){
-    console.log('test');
-  };
-
-  console.log(OrgSelect);
-
   $scope.submitOrg = function(){
-    OrgSelect.createOrg($scope.createOrg.id, $scope.createOrg.address, $scope.createOrg.name, $scope.createOrg.login, $scope.createOrg.placeId);
+    $scope.submitting = true;
+    OrgSelect.createOrg($scope.createOrg.id, $scope.createOrg.address, $scope.createOrg.name, $scope.createOrg.login, $scope.createOrg.placeId)
+    .success(function(data, status, headers, config){
+      console.log('success');
+      $scope.submitting = false;
+      $location.path('/');
+      $location.search({github_login: null, github_id: null});
+      window.location.reload();//ideally we'll figure out how to close that fucking modal
+    })
+    .error(function(data, status, headers, config){
+      $scope.submitting = false;
+    });
   };
  
   $scope.ok = function () {

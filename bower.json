@@ -16,7 +16,7 @@
     "angular-ui-router": "~0.2.10",
     "angular-modal-service": "~0.6.5",
     "bootstrap-social": "~4.8.0",
-    "angular-material": "~0.8.3"
+    "angular-material": "~0.8.3",
     "angular-google-places-autocomplete": "~0.2.5"
   },
   "devDependencies": {

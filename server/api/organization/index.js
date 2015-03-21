@@ -40,6 +40,7 @@ router.post('/create/github', authenticate, function(req,res){
                   .then(function(user){
                     user.set('organization_id', newOrg.get('id'))
                     .save();
+                    res.status(201).send();
                   });
                 }); // assign the user
               }

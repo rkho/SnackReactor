@@ -16,7 +16,8 @@
                     <label for="address">Address</label>
                     <input type="address" for="address" class="form-control" id="address" placeholder="Address" ng-model="createOrg.address" required>
                 </div>
-                <button type="submit" class="btn btn-primary pull-right" ng-click="submitOrg()">Create</button>
+                <i class="fa fa-circle-o-notch fa-spin fa-2x" ng-show="submitting"></i>
+                <button type="submit" class="btn btn-primary pull-right" ng-click="submitOrg()" ng-disabled="createOrg.$invalid">Create</button>
             </form>
           </div>
         </div>   
