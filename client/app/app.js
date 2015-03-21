@@ -7,7 +7,8 @@ angular.module('snackReactorApp', [
   'ui.router',
   'ui.bootstrap',
   'angularModalService',
-  'snackReactor.auth'
+  'snackReactor.auth',
+  'google.places'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
  
@@ -37,8 +38,8 @@ angular.module('snackReactorApp', [
    });
 
     $stateProvider
-    .state('create_org', {
-      url: '/create_org',
+    .state('/org/create', {
+      url: '/org/create',
       templateUrl: 'app/create_org/create_org.html',
       controller: 'CreateOrgCtrl'
     });

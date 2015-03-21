@@ -222,7 +222,6 @@ button{
     margin-top: 10px;
 }
 
-
 .org-img{
     max-width: 100%;
     height: auto;
@@ -333,5 +332,10 @@ img{
     width:50%;
 }
 
+.sr-form{
+    margin-top: 1em;
+}
 
-
+.modal-create{
+    padding-bottom: 1em;
+}

@@ -2,16 +2,21 @@
     <script type="text/ng-template" id="3.html">
 
         <div class="modal-header">
-            <h5 class="modal-title-md">Please select an organization.</h5>
+            <h5 class="modal-title-md">Create Organization</h5>
         </div>
-        <div class="modal-body-md">
+        <div class="modal-body-md modal-create">
         <span class="h5">It looks like your organization isn't on SnackReactor yet. Tell us a little more so you can join!</span>
           <div>
-            <form name="createOrg" id="createOrg">
-                <div class="form-group sr-form">
-                    <label for="inputName">Organiation Name</label>
-                    <input type="email" class="form-control" id="inputName" placeholder="Email">
+            <form name="createOrg" id="createOrg" ng-model="orgForm" class="sr-form">
+                <div class="form-group">
+                    <label for="name">Organiation Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name" ng-model="createOrg.name" required>
                 </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="address" for="address" class="form-control" id="address" placeholder="Address" ng-model="createOrg.address" required>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right" ng-click="submitOrg()">Create</button>
             </form>
           </div>
         </div>   
