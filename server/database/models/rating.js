@@ -19,7 +19,7 @@ var Rating = db.Model.extend({
 
   // initialize: function(){
   //   this.on('creating', function(){
-  //     this.calculateAverage();
+  //     this.calculateAverage(newRating);
   //   }
   // },
 
