@@ -154,6 +154,7 @@ app.controller('ModalCtrl', function ($scope, $modal, $log, CheckLoggedIn) {
  });
 
 });
+
 app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, CheckLoggedIn) {
 
   $scope.items = items;
