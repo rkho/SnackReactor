@@ -4,7 +4,7 @@ var request = require('superagent');
 var authenticate = require('../../components/utils.js').authenticate;
 var Organization = require('../../database/models/organization.js');
 var User = require('../../database/models/user.js');
-var places = require('../places.js');
+var places = require('../places/places.js');
 
 
 router.post('/create/github', authenticate, function(req,res){
@@ -80,8 +80,8 @@ router.post('/create/github', authenticate, function(req,res){
       }); // gitRes
     }); //placesetails
   } // else
+  }//if no org
    else res.status(409).send('Error: organization with that Github ID already exists.');
-  };
   }); // org.forge
 });//router.post
 

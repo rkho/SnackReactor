@@ -29,23 +29,27 @@ app.controller('CreateOrgCtrl', function ($scope, $modal, $log, CheckLoggedIn, M
 
 app.controller('3Ctrl', function ($scope, $modalInstance, items, OrgSelect, $location) {
 
-  $scope.org = OrgSelect.getGithubOrgInfo('hackreactor');
-  console.log($scope.org);
-  
-  OrgSelect.getGithubOrgs().then(function(result){
-    // console.log(result);
-    $scope.githubOrgs = result.data.orgs;
-    $scope.githubOrgs.forEach(function(org){
-      org.submitting = false;
+  var search = $location.search();
+
+  OrgSelect.getAccessToken()
+  .then(function(response){
+    OrgSelect.getGithubOrgInfo(search.github_login, response.data.access_token)
+    .then(function(orgInfo){
+      console.log(orgInfo.data);
+      for (var key in orgInfo.data){
+        $scope.createOrg[key] = orgInfo.data[key];
+      }
     });
   });
 
-  $scope.selectOrg = function(orgId, repeatScope){
-    repeatScope.org.submitting = true;
-    OrgSelect.setGithubOrg(orgId, $location)
-    .then(function(){
-      repeatScope.org.submitting = false;
-    });
+  $scope.testFunc = function(){
+    console.log('test');
+  };
+
+  console.log(OrgSelect);
+
+  $scope.submitOrg = function(){
+    OrgSelect.createOrg($scope.createOrg.id, $scope.createOrg.address, $scope.createOrg.name, $scope.createOrg.login, $scope.createOrg.placeId);
   };
  
   $scope.ok = function () {
