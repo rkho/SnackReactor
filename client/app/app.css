@@ -173,7 +173,12 @@ button{
     padding-bottom: 10px
 }
 .fa-heart{
-    font-size: 120px;
+    color: #FF7F71;
+    margin-right:5px;
+    transition: all .3s linear;
+}
+
+.fa-heart-o{
     color: #FF7F71;
     margin-right:5px;
     transition: all .3s linear;
@@ -337,3 +342,20 @@ button{
     padding-bottom: 1em;
 }
 
+.gi-2x{font-size: 2em;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}
+
+.heart-rating{
+    color: #FF7F71;
+}
+
+.dollar-off{
+    color: black;
+    font-size: 2em;
+}
+
+.dollar-on{
+    font-size: 2em;
+}

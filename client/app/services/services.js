@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('snackReactor.auth',[])
+angular.module('snackReactor-services',[])
 
 .factory('CheckLoggedIn', ['$http', function($http){
   return function(){
@@ -107,5 +107,20 @@ angular.module('snackReactor.auth',[])
   }
 
   return instance;
+
+}])
+
+.factory('CreateRestaurant', ['$http', function($http){
+    
+    return function(name, address, health, price, description){
+      console.log(name);
+      return $http.post('/api/restaurants/new', {
+        name: name,
+        address: address,
+        health: health,
+        price: price,
+        description: description
+      });
+    }
 
 }]);

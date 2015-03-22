@@ -11,7 +11,7 @@ app.controller('CreateRestCtrl', function ($scope, $modal, $log, CheckLoggedIn, 
       templateUrl: '4.html',
       controller: '4Ctrl',
       size: size,
-      backdrop: 'static',
+      // backdrop: 'static',
       resolve: {
         items: function () {
           return $scope.items;
@@ -27,35 +27,37 @@ app.controller('CreateRestCtrl', function ($scope, $modal, $log, CheckLoggedIn, 
 
 });
 
-app.controller('4Ctrl', function ($scope, $modalInstance, items, OrgSelect, $location) {
+app.controller('4Ctrl', function ($scope, $modalInstance, items, OrgSelect, $location, CreateRestaurant) {
 
-  var search = $location.search();
+  $scope.heartText = '';
   $scope.submitting = false;
 
-  OrgSelect.getAccessToken()
-  .then(function(response){
-    OrgSelect.getGithubOrgInfo(search.github_login, response.data.access_token)
-    .then(function(orgInfo){
-      for (var key in orgInfo.data){
-        $scope.createOrg[key] = orgInfo.data[key];
-      }
-    });
-  });
-
-  $scope.submitOrg = function(){
-    $scope.submitting = true;
-    OrgSelect.createOrg($scope.createOrg.id, $scope.createOrg.address, $scope.createOrg.name, $scope.createOrg.login, $scope.createOrg.placeId)
-    .success(function(data, status, headers, config){
-      console.log('success');
-      $scope.submitting = false;
-      $location.path('/');
-      $location.search({github_login: null, github_id: null});
-      window.location.reload();//ideally we'll figure out how to close that fucking modal
-    })
-    .error(function(data, status, headers, config){
-      $scope.submitting = false;
-    });
+  $scope.hoverHeart = function(value) {
+    var heartText = {
+      1: 'Junk food!',
+      2: 'Any food will do.',
+      3: 'Something healthy, please!',
+      4: ''
+    };
+    $scope.heartText = heartText[value];
   };
+
+  $scope.priceText = '';
+
+  $scope.hoverPrice = function(value) {
+    var priceText = {
+      1: '$7 & Under',
+      2: '$8 - $15',
+      3: '$15 ++',
+      4: ''
+    };
+    $scope.priceText = priceText[value];
+  };
+
+
+  $scope.isCollapsed = false;
+
+  var search = $location.search();
  
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
@@ -63,5 +65,25 @@ app.controller('4Ctrl', function ($scope, $modalInstance, items, OrgSelect, $loc
 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
+  };
+
+  $scope.successMessage = '';
+  $scope.failureMessage = '';
+
+  $scope.submitRestaurant = function(){
+    $scope.submitting = true;
+    $scope.successMessage = '';
+    $scope.failureMessage = '';
+    console.log();
+    CreateRestaurant($scope.createRest.name, $scope.createRest.address, $scope.createRest.healthRating, $scope.createRest.priceRating, $scope.createRest.description)
+    .success(function(data, status, headers, config){
+      $scope.submitting = false;
+      $scope.successMessage = 'Restaurant created successfully, thanks!';
+    })
+    .error(function(data,status,headers,config){
+      $scope.submitting = false;
+      $scope.failureMessage = 'Error creating restaurant. Are you sure you have the correct address?';
+      console.error('Error creating restaurant: ' + data);
+    });
   };
 });
