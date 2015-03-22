@@ -1,3 +1,8 @@
+general:
+  branches:
+    only:
+      - master
+
 ## Customize the test machine
 machine:
 
@@ -25,10 +30,6 @@ machine:
   #  - git submodule sync
    # - git submodule update --init # use submodules
 
-general:
-  branches:
-    ignore:
-      - production # list of branches to ignore
 
 ## Customize dependencies
 dependencies:
