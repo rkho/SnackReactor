@@ -2,7 +2,7 @@
 
 var app = angular.module('snackReactorApp');
 //refactor to services
-app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService,$location,SearchRestaurants) {
+app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService,$location, SearchRestaurants, SharedData) {
 
   $scope.isLogged = false;
   $scope.priceClick = false;
@@ -25,33 +25,44 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
   };
 
   $scope.search = function (view){
-    console.log(SearchRestaurants);
 
-    //sort by healthRank,priceRank. need to query the db for that to have any meaning now.
+    //save data in case we need to search again
 
-    //search query
-  //   SearchRestaurants.results = [{
-  //   name: "Jingo McJangerson",
-  //   address: "Happy Gilmore",
-  //   message: "You're a tomato"
-  //   url: "http://ww1.prweb.com/prfiles/2011/02/09/8979837/romantic%20French%20restaurant%20San%20Francisco.jpg"
-  // },
-  // {
-  //   name: "Bingo McBangerson",
-  //   address: "23 Shroots Lane",
-  //   message: "I ate the potato"
-  //   url: "http://www.inside-guide-to-san-francisco-tourism.com/image-files/sushi-restaurants-in-san-francisco-isobune-3.jpg"
-  // },
-  // {
-  //   name: "Jill Dubb",
-  //   address: "Happy Gilmore",
-  //   message: "Something something tornado"
-  //   url: "http://www.wanderplanet.com/wp-content/uploads/2011/02/sf_the_fairmont_san_francisco.jpg"
-  // }];
- 
+    SharedData.set('health', $scope.healthRank);
+    SharedData.set('price', $scope.priceRank);
 
-    //reroute
-    $location.path(view);
+    var dummyData = [{
+    name: "Jingo McJangerson",
+    address: "Happy Gilmore",
+    message: "You're a tomato",
+    url: "http://ww1.prweb.com/prfiles/2011/02/09/8979837/romantic%20French%20restaurant%20San%20Francisco.jpg"
+  },
+  {
+    name: "Bingo McBangerson",
+    address: "23 Shroots Lane",
+    message: "I ate the potato",
+    url: "http://www.inside-guide-to-san-francisco-tourism.com/image-files/sushi-restaurants-in-san-francisco-isobune-3.jpg"
+  },
+  {
+    name: "Jill Dubb",
+    address: "Happy Gilmore",
+    message: "Something something tornado",
+    url: "http://www.wanderplanet.com/wp-content/uploads/2011/02/sf_the_fairmont_san_francisco.jpg"
+  }];
+
+    SearchRestaurants($scope.healthRank,$scope.priceRank)
+    .success(function(data, status, headers, config){
+      console.log(data);
+      SharedData.set('results', data);
+      SharedData.set('results', dummyData);
+      $location.path(view);
+    })
+    .error(function(data,status, headers, config){
+      SharedData.set('results', dummyData); // to test while the server function is broken
+      $location.path(view); //to test while the server function is broken
+      console.error(data);
+    }); 
+
   }
   //Pardon the naive logic, just wanted to get this done.
   $scope.healthClick1 = function (){

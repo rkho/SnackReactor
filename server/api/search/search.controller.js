@@ -8,6 +8,7 @@
 var _ = require('lodash');
 var places = require('../places/places');
 var Restaurant = require('../../database/models/restaurant');
+var moment = require('moment');
 
 exports.search = {
   // Issues a search to the DB
@@ -17,15 +18,19 @@ exports.search = {
     // var organization_id = req.user.organization_id;
 
     new Restaurant()
-      .query({where: {price: price, health: health}}) // add organization_id here
-      .query('orderByRaw', 'random()')
-      .query('limit', '3')
-      .fetchAll().then(function(model) {
-        if (model) {
-          res.send(200, model);
+      .query(function(qb){
+        qb.where('health', health).andWhere('price', '>=', price).orderByRaw('random()').limit(3);// add organization_id here
+      }) 
+      .fetchAll().then(function(models) {
+        if (models.size()) {
+          var results = [];
+          models.forEach(function(model){
+            results.push(model.toJSON());
+          });
+          res.send(200, results);
         } else {
-          res.redirect(400, '/');
-          console.log('An error has occured.');
+          res.send(400, 'Error: No results returned from search.');
+          console.error('No results returned from search.');
         }
       });
   }

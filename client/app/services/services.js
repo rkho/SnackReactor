@@ -15,31 +15,29 @@ angular.module('snackReactor-services',[])
   };
 }])
 
-.factory('SearchRestaurants', ['$http', function($http, $location){
-  var fns = {};
+.factory('SearchRestaurants', ['$http', '$location', function($http, $location){
+  
+  return function(health,price){
+    return $http.get('/api/search', {health: health, price: price});
+  };
 
-  fns.price=1;
-  fns.health=1;
-
-  fns.results = [{
-    name: "Bob's Burgers",
-    address: "1324 Place Drive",
-    message: "I'm a potato",
-    url: 'http://noehill.com/sf/landmarks/vanness/alhambra_theater_thumb.jpg'
-  }, {
-    name: "Chillin Con Carne",
-    address: "1423 Valencia Escape",
-    message: "There once was a man in Peru",
-    url: 'http://upload.wikimedia.org/wikipedia/commons/4/44/Noeteca_Restaurant,_Dolores_St.,_San_Francisco,_CA.jpg'
-  }, {
-    name: "Desert Blues Café",
-    address: "3331 Wakin Bakin Palace",
-    message: "I had a mouse in his shoe",
-    url: 'http://blog.pcbc.com/wp-content/uploads/2014/03/waterfront.jpg'
-  }];
-
-  return fns;
 }])
+
+.factory('SharedData', function(){ // a little function to share data between states
+
+  var storage = {};
+
+  var set = function(key,value){
+    storage[key] = value;
+  };
+
+  var get = function(key){
+    return storage[key];
+  };
+
+  return {set: set, get: get};
+
+})
 
 .factory('OrgSelect', ['$http', function($http, $location){
   var instance = {}
