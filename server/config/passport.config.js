@@ -57,7 +57,7 @@ var findOrCreateUserOauth = function (accessToken, refreshToken, profile, done, 
 passport.use(new GithubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: "http://127.0.0.1:9000/auth/github/callback",
+    callbackURL: process.env.DOMAIN + "/auth/github/callback",
     scope: 'read:org,user:email'
   },
   function(accessToken, refreshToken, profile, done) {
