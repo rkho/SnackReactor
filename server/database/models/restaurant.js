@@ -13,7 +13,7 @@ var Restaurant = db.Model.extend({
   },
 
   organizations: function(){
-    return this.belongsToMany(Organization, 'organizations_restaurants', 'place_id', 'organization_id');
+    return this.belongsToMany(Organization);
   },
 
   hours: function(){

@@ -11,7 +11,7 @@ app.controller('CreateRestCtrl', function ($scope, $modal, $log, CheckLoggedIn, 
       templateUrl: '4.html',
       controller: '4Ctrl',
       size: size,
-      backdrop: 'static',
+      // backdrop: 'static',
       resolve: {
         items: function () {
           return $scope.items;
@@ -27,7 +27,7 @@ app.controller('CreateRestCtrl', function ($scope, $modal, $log, CheckLoggedIn, 
 
 });
 
-app.controller('4Ctrl', function ($scope, $modalInstance, items, OrgSelect, $location) {
+app.controller('4Ctrl', function ($scope, $modalInstance, items, OrgSelect, $location, CreateRestaurant) {
 
   $scope.heartText = '';
   $scope.submitting = false;
@@ -65,5 +65,25 @@ app.controller('4Ctrl', function ($scope, $modalInstance, items, OrgSelect, $loc
 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
+  };
+
+  $scope.successMessage = '';
+  $scope.failureMessage = '';
+
+  $scope.submitRestaurant = function(){
+    $scope.submitting = true;
+    $scope.successMessage = '';
+    $scope.failureMessage = '';
+    console.log();
+    CreateRestaurant($scope.createRest.name, $scope.createRest.address, $scope.createRest.healthRating, $scope.createRest.priceRating, $scope.createRest.description)
+    .success(function(data, status, headers, config){
+      $scope.submitting = false;
+      $scope.successMessage = 'Restaurant created successfully, thanks!';
+    })
+    .error(function(data,status,headers,config){
+      $scope.submitting = false;
+      $scope.failureMessage = 'Error creating restaurant. Are you sure you have the correct address?';
+      console.error('Error creating restaurant: ' + data);
+    });
   };
 });

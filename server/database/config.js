@@ -21,7 +21,7 @@ db.knex.schema.hasTable('restaurants').then(function(exists) {
       restaurant.string('name');
       restaurant.integer('price', 1);
       restaurant.integer('health', 1);
-      restaurant.string('hours');
+      restaurant.string('hours').references('id').inTable('hours');
       restaurant.string('address');
       restaurant.float('location_lat');
       restaurant.float('location_long');
@@ -99,7 +99,7 @@ db.knex.schema.hasTable('organizations_restaurants').then(function(exists) {
       org.integer('cumulativeRating');
       org.integer('totalRatings');
       org.integer('organization_id').references('id').inTable('organizations');
-      org.integer('place_id').references('place_id').inTable('restaurants');
+      org.integer('id').references('id').inTable('restaurants');
     }).then(function (table) {
       console.log('Created Table', table);
     });
@@ -110,10 +110,10 @@ db.knex.schema.hasTable('hours').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('hours', function (hour) {
       hour.increments('id').primary();
-      hour.integer('restaurant_id').references('id').inTable('restaurants');
-      hour.string('day_of_week');
-      hour.string('time_open');
-      hour.string('time_close');
+      hour.integer('restaurant_id').references('id').inTable('restaurants').index();
+      hour.integer('day');
+      hour.time('open');
+      hour.time('close');
     }).then(function (table) {
       console.log('Created Table', table);
     });

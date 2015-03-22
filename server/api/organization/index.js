@@ -8,7 +8,6 @@ var places = require('../places/places.js');
 
 
 router.post('/create/github', authenticate, function(req,res){
-  console.log('post create gitub');
   Organization.forge()
   .where({github_id: req.body.github_id}) // let's triple check it doesn't exist
   .fetch()

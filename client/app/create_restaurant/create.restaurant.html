@@ -37,6 +37,8 @@
                 <div>
                     <i class="fa fa-circle-o-notch fa-spin fa-2x" ng-show="submitting"></i>
                     <button type="submit" class="btn btn-primary pull-right" ng-click="submitRestaurant()" ng-disabled="createRest.$invalid">Create</button>
+                    <span class="label label-success">{{successMessage}}</span>
+                    <span class="label label-danger">{{failureMessage}}</span>
                 </div>
             </form>
             </div>
