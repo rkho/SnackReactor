@@ -1,9 +1,6 @@
 var app = angular.module('snackReactorApp')
 
-app.controller('ResultsCtrl', function ($scope,CheckLoggedIn, $location) {
-
-
-
+app.controller('ResultsCtrl', function ($scope,CheckLoggedIn, $location, SearchRestaurants,$state) {
 
   //have to run checked in on each controller
   $scope.checkLogged = function () {
@@ -21,10 +18,37 @@ app.controller('ResultsCtrl', function ($scope,CheckLoggedIn, $location) {
     isFirstDisabled: false
   };
   //---------
-  $scope.jerry = {restaurant:"Bob's Burgers",
-                  rating: 5,
-                  address: '1742 Mark Street',
-                  text: 'This is the place to go to eat some stuff with some people.' }
+
+  $scope.reshuffle = function () {
+
+    //ideally, this should just call another request to the server 
+    console.log(SearchRestaurants);
+
+    SearchRestaurants.results = [{
+    name: "Jingo McJangerson",
+    address: "Happy Gilmore",
+    message: "You're a tomato",
+    url: "http://ww1.prweb.com/prfiles/2011/02/09/8979837/romantic%20French%20restaurant%20San%20Francisco.jpg"
+  },
+  {
+    name: "Bingo McBangerson",
+    address: "23 Shroots Lane",
+    message: "I ate the potato",
+    url: "http://www.inside-guide-to-san-francisco-tourism.com/image-files/sushi-restaurants-in-san-francisco-isobune-3.jpg"
+  },
+  {
+    name: "Jill Dubb",
+    address: "Happy Gilmore",
+    message: "Something something tornado",
+    url: "http://www.wanderplanet.com/wp-content/uploads/2011/02/sf_the_fairmont_san_francisco.jpg"
+  }];
+
+  $state.reload();
+
+  }
+
+  $scope.restaurants = SearchRestaurants.results;
+
 
 
 

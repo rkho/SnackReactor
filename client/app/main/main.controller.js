@@ -2,7 +2,7 @@
 
 var app = angular.module('snackReactorApp');
 //refactor to services
-app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService,$location) {
+app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService,$location,SearchRestaurants) {
 
   $scope.isLogged = false;
   $scope.priceClick = false;
@@ -12,8 +12,8 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
   $scope.is1priceClick = false;
   $scope.is2priceClick = false;
   $scope.is3priceClick = false;
-  $scope.healthRank= 1;
-  $scope.priceRank = 1;
+  $scope.healthRank=1;
+  $scope.priceRank=1;
 
   //empty array that will store three random objects.
   //used in our search function to generate results page.
@@ -25,7 +25,30 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
   };
 
   $scope.search = function (view){
+    console.log(SearchRestaurants);
+
+    //sort by healthRank,priceRank. need to query the db for that to have any meaning now.
+
     //search query
+  //   SearchRestaurants.results = [{
+  //   name: "Jingo McJangerson",
+  //   address: "Happy Gilmore",
+  //   message: "You're a tomato"
+  //   url: "http://ww1.prweb.com/prfiles/2011/02/09/8979837/romantic%20French%20restaurant%20San%20Francisco.jpg"
+  // },
+  // {
+  //   name: "Bingo McBangerson",
+  //   address: "23 Shroots Lane",
+  //   message: "I ate the potato"
+  //   url: "http://www.inside-guide-to-san-francisco-tourism.com/image-files/sushi-restaurants-in-san-francisco-isobune-3.jpg"
+  // },
+  // {
+  //   name: "Jill Dubb",
+  //   address: "Happy Gilmore",
+  //   message: "Something something tornado"
+  //   url: "http://www.wanderplanet.com/wp-content/uploads/2011/02/sf_the_fairmont_san_francisco.jpg"
+  // }];
+ 
 
     //reroute
     $location.path(view);
@@ -39,27 +62,28 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
     }
     $scope.is1healthClick = !$scope.is1healthClick;
     if ($scope.is1healthClick){
-      $scope.healthRank=1;
+      SearchRestaurants.health = $scope.healthRank=1;
+
     }else{
-      $scope.healthRank=1;
+      SearchRestaurants.health = $scope.healthRank=1;
     }
   }
   $scope.healthClick2 = function (){
-    $scope.healthRank=2;
+    SearchRestaurants.health = $scope.healthRank=2;
     if ($scope.is3healthClick){
       $scope.is3healthClick = false;
       return;
     }
     if ($scope.is2healthClick && $scope.is1healthClick){
       $scope.is1healthClick = $scope.is2healthClick = false;
-      $scope.healthRank=1;
+      SearchRestaurants.health = $scope.healthRank=1;
       return;
     }
     $scope.is1healthClick = true;
     $scope.is2healthClick = true;
   }
   $scope.healthClick3 = function (){
-    $scope.healthRank=3;
+    SearchRestaurants.health = $scope.healthRank=3;
     if ($scope.is1healthClick && $scope.is2healthClick && $scope.is3healthClick){
       $scope.is1healthClick = false;
       $scope.is2healthClick = false;
@@ -84,13 +108,13 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
     }
     $scope.is1priceClick = !$scope.is1priceClick;
     if ($scope.is1priceClick){
-      $scope.priceRank=1;
+      SearchRestaurants.price= $scope.priceRank=1;
     }else{
-      $scope.priceRank=1;
+      SearchRestaurants.price= $scope.priceRank=1;
     }
   }
   $scope.priceClick2 = function (){
-    $scope.priceRank=2;
+    SearchRestaurants.price= $scope.priceRank=2;
     if ($scope.is3priceClick){
       $scope.is3priceClick = false;
       return;
@@ -104,7 +128,7 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
     $scope.is2priceClick = true;
   }
   $scope.priceClick3 = function (){
-    $scope.priceRank=3;
+    SearchRestaurants.price= $scope.priceRank=3;
     if ($scope.is1priceClick && $scope.is2priceClick && $scope.is3priceClick){
       $scope.is1priceClick = false;
       $scope.is2priceClick = false;
@@ -146,9 +170,6 @@ app.controller('ModalCtrl', function ($scope, $modal, $log, CheckLoggedIn) {
 
   if (!result.data){
     $scope.logout();
-    //check current path
-      //if current path is not "/", redirect to "/"
-      //if current path is "/" continue to open the modal
     $scope.open();
   }
  });
