@@ -1,0 +1,25 @@
+<div ng-controller="CreateRestCtrl" class="main">
+    <script type="text/ng-template" id="4.html">
+
+        <div class="modal-header">
+            <h5 class="modal-title-md">Create Restaurant</h5>
+        </div>
+        <div class="modal-body-md modal-create">
+        <span class="h5">It looks like your organization isn't on SnackReactor yet. Tell us a little more so you can join!</span>
+          <div>
+            <form name="createOrg" id="createOrg" ng-model="orgForm" class="sr-form">
+                <div class="form-group">
+                    <label for="name">Organiation Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name" ng-model="createOrg.name" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="address" for="address" class="form-control" id="address" placeholder="Address" ng-model="createOrg.address" required>
+                </div>
+                <i class="fa fa-circle-o-notch fa-spin fa-2x" ng-show="submitting"></i>
+                <button type="submit" class="btn btn-primary pull-right" ng-click="submitOrg()" ng-disabled="createOrg.$invalid">Create</button>
+            </form>
+          </div>
+        </div>   
+    </script>
+<div>

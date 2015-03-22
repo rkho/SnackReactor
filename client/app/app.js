@@ -44,6 +44,13 @@ angular.module('snackReactorApp', [
       controller: 'CreateOrgCtrl'
     });
 
+    $stateProvider
+    .state('/restaurant/create', {
+      url: '/restaurant/create',
+      templateUrl: 'app/create_restaurant/create.restaurant.html',
+      controller: 'CreateRestCtrl'
+    });
+
     $locationProvider.html5Mode(true);
 
     $httpProvider.interceptors.push(function($q, $location){ 
