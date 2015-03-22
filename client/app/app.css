@@ -58,8 +58,8 @@ button{
     box-sizing: border-box;
     position: relative;
     box-sizing: content-box ;
-    width: 3em;
-    height: 30px;
+    /*width: 3em;*/
+    /*height: 30px;*/
     border-width: 0;
     transition: all .3s linear;
     margin-bottom: 10px;
@@ -72,6 +72,12 @@ button{
     font-size: 50px;
     border-radius: 5px;
 }
+
+.nav-button{
+    align: right;
+    display: inline-block;
+}
+
 .on {
     background-color:#2ECC71;
 }
@@ -132,13 +138,13 @@ button{
 }
 
 #reshuffle {
-    width: 60px;
+    /*width: 60px;*/
     margin-top: 5%;
-    padding: 5px;
+    padding: 10px;
     font-size: 20px;
-    width: 4em;
-    display: block;
-    width: 110px;
+    /*width: 4em;*/
+    /*display: block;*/
+    /*width: 110px;*/
     margin: auto;
 
 }
@@ -310,18 +316,18 @@ button{
   box-sizing: border-box;
   position: relative;
   box-sizing: content-box;
-  width: 8em;
-  height: 30px;
+  /*width: 8em;*/
+  /*height: 30px;*/
   border-width: 0;
   transition: all .3s linear;
   margin-bottom: 10px;
   outline: none;
   color: #fff;
-  padding:1px 11px 4px 0;
+  padding: 10px;
   font-size: 21px;
   border-radius: 5px;
-  display: block;
-  width: 110px;
+  /*display: block;*/
+  /*width: 110px;*/
   margin: auto;
 }   
 
