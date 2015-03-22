@@ -26,6 +26,13 @@
     font-style: normal;
 }
 
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 .overlay{
     position:fixed;
     height: 100%;
@@ -125,12 +132,14 @@ button{
 }
 
 #reshuffle {
-    margin-left: 6%;
     width: 60px;
     margin-top: 5%;
     padding: 5px;
     font-size: 20px;
     width: 4em;
+    display: block;
+    width: 110px;
+    margin: auto;
 
 }
 #search:hover{
@@ -207,6 +216,9 @@ button{
 
 .box {
     display: inline-block;
+    background-color: rgba(256,256,256,.2);
+    min-height: 150px;
+    border-radius: 25px;
 }
 
 .modal-title-md{
@@ -214,7 +226,10 @@ button{
     font-weight: lighter;
     margin-left: auto;
 }
+.panel-body {
+    background-color: rgba(0,0,0,.1);
 
+}
 .modal-body-md{
     margin: 50px;
     margin-top: 10px;
@@ -267,39 +282,23 @@ button{
     cursor: pointer;
 }
 
-.container {
-    display: inline-flex;
-    margin: 40px;
-    margin-top: -5%;
-}
-
-.a1{
-    width: 33%;
-    margin-left:0px;
-
-}
-.a2 {
-    width: 33%;
-}
-
-.a3 {
-    width: 33%;
-    margin-right: 0px;
-
-}
-
 .box {
-    margin-left: 25px;
-    margin-right: 25px;
+    width:100%;
+}
+.box .box-header{
+    height: 250px;
+    width: 100%;
+    max-width:250px;
+    margin:auto;
+    border-radius:50%;
+    background-size: cover;
+    border:5px solid #fff;
+    opacity: 3px;
 }
 
-img{
-    height: 200px;
-    width: 300px;
-}
 
 #addRest{
-    font-weight: lighter;
+  font-weight: lighter;
   -webkit-appearance: none;
   appearance: none;
   background: #FF2538;
@@ -313,16 +312,16 @@ img{
   margin-bottom: 10px;
   outline: none;
   color: #fff;
-  padding-left: 0px;
-  padding-top: 1px;
-  padding-bottom: 4px;
-  padding-right: 11px;
+  padding:1px 11px 4px 0;
   font-size: 21px;
   border-radius: 5px;
+  display: block;
+  width: 110px;
+  margin: auto;
 }   
 
 .resultsOptions {
-    margin-left: 40%;
+    width: 100%;
 }
 
 #restAdd{
@@ -337,3 +336,4 @@ img{
 .modal-create{
     padding-bottom: 1em;
 }
+
