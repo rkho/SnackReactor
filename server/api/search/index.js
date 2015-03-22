@@ -5,6 +5,6 @@ var controller = require('./search.controller');
 
 var router = express.Router();
 
-router.post('/', controller.search.query);
+router.get('/', controller.search.query);
 
 module.exports = router;
