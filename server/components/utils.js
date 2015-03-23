@@ -7,14 +7,16 @@ exports.authenticate = function(req, res, next){
 };
 
 exports.calculateAvgRating = function(restaurantId, orgId){
+  console.log('rest, org ' + restaurantId + ' ' + orgId);
   Rating.forge()
   .query(function(qb){
     qb.where({restaurant_id: restaurantId, organization_id: orgId})
     .avg('rating');
-  })
-  .then(function(avgRating){
-    console.log('Calculate average: ' + avgRating);
+  }).fetch()
+  .then(function(rating){
+    var avgRating = rating.get('avg("rating")');
     OrganizationRestaurant.forge({restaurant_id: restaurantId, organization_id: orgId})
+    .fetch()
     .then(function(orgRest){
       if (orgRest){
         orgRest.set('avg_rating', avgRating);

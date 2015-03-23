@@ -23,6 +23,7 @@ exports.restaurants = {
     var organization_id = req.user.organization_id;
     var name = req.body.name;
     var address = req.body.address;
+    var userRating = req.body.rating;
 
     // getDetails is a utility function created to interact with the Google Places API
     places.getDetailsFromAddressAndName(address,name).then(function(details) {
@@ -39,10 +40,12 @@ exports.restaurants = {
         location_long: details[0].result.geometry.location.lng,
         phone_number: details[0].result.formatted_phone_number,
         place_id: details[0].result.place_id,
-        photo_url: details[0].result.photos[0].photo_reference,
+        // photo_url: details[0].result.photos[0].photo_reference, // need to protect against no photo
         description: description,
         // organization_id: organization_id
       };
+
+      if (details[0].result.photos) newRestaurant.photo_url = details[0].result.photos[0].photo_reference;
 
       var hours = places.parseHours(details[0].result.opening_hours); //parse the opening hours object
 
@@ -56,8 +59,16 @@ exports.restaurants = {
             hours.forEach(function(period){
               new Hour({restaurant_id: model.get('id'), day: period[0], open: period[1], close: period[2]}).save();
             });
+            new Rating({
+              restaurant_id: restaurant.get('id'),
+              user_id: req.user.id,
+              organization_id: req.user.organization_id,
+              rating: req.body.rating
+            }).save()
+            .then(function(){
+              utils.calculateAvgRating(restaurant.get('id'), req.user.organization_id); // calculate the first avg
+            });
             res.send(201, model);
-            utils.calculateAvgRating(req.body.id, req.user.organization_id); // calculate the first avg
           });
         }
       });
