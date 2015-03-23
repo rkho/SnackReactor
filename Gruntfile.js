@@ -17,7 +17,8 @@ module.exports = function (grunt) {
     cdnify: 'grunt-google-cdn',
     protractor: 'grunt-protractor-runner',
     injector: 'grunt-asset-injector',
-    buildcontrol: 'grunt-build-control'
+    buildcontrol: 'grunt-build-control',
+    rename: 'grunt-contrib-rename'
   });
 
   // Time how long tasks take. Can help when optimizing build times
@@ -357,7 +358,8 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>',
           src: [
             'package.json',
-            'server/**/*'
+            'server/**/*',
+            'gitignore-dist'
           ]
         }]
       },
@@ -366,6 +368,13 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.client %>',
         dest: '.tmp/',
         src: ['{app,components}/**/*.css']
+      }
+    },
+
+    rename: {
+      dist: {
+        dot: true,
+        files: [{src: '<%= yeoman.dist %>/gitignore-dist', dest: '<%= yeoman.dist %>/.gitignore'}]
       }
     },
 
@@ -621,6 +630,7 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
+    'rename:dist',
     'cdnify',
     'cssmin',
     'uglify',
