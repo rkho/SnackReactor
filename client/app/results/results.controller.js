@@ -10,11 +10,7 @@ app.controller('ResultsCtrl', function ($scope,CheckLoggedIn, $location, SearchR
       }
     });
   };
-  debugger;
   $scope.restaurants = SharedData.get('results'); // get the results from the data store.
-
-
-
 
   $scope.oneAtATime = true;
   
@@ -34,7 +30,7 @@ app.controller('ResultsCtrl', function ($scope,CheckLoggedIn, $location, SearchR
 
   // $state.reload(); //is this necessary?
 
-  }
+  };
 
 });
 
