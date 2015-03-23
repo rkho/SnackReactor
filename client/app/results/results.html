@@ -14,9 +14,9 @@
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-4">
             <div class="a1 box">
-            <div class="box-header" ng-style= "{'background-image': 'url(' + restaurants[0].url + ')'}"></div>
+            <div class="box-header" ng-style= "{'background-image': 'url(' + restaurants[0].photo_url + ')'}"></div>
               <accordion close-others="oneAtATime">
-                <accordion-group heading="{{restaurants[2].name}}">
+                <accordion-group heading="{{restaurants[0].name}}">
                   <p>{{restaurants[0].name}}</p>
                   <p>{{restaurants[0].address}}</p>
                   <p>About this place: {{restaurants[0].description}}</p>
@@ -27,7 +27,7 @@
 
           <div class="col-xs-12 col-sm-12 col-md-4">
             <div class="a2 box">
-              <div class="box-header" ng-style= "{'background-image': 'url(' + restaurants[1].url + ')'}"></div>
+              <div class="box-header" ng-style= "{'background-image': 'url(' + restaurants[1].photo_url + ')'}"></div>
               <accordion close-others="oneAtATime">
                 <accordion-group heading="{{restaurants[1].name}}">
                   <p>{{restaurants[1].name}}</p>
@@ -40,7 +40,7 @@
 
           <div class="col-xs-12 col-sm-12 col-md-4">  
             <div class="a3 box">
-            <div class="box-header" ng-style= "{'background-image': 'url(' + restaurants[2].url + ')'}"></div>
+            <div class="box-header" ng-style= "{'background-image': 'url(' + restaurants[2].photo_url + ')'}"></div>
               <accordion close-others="oneAtATime">
                 <accordion-group heading="{{restaurants[2].name}}">
                   <p>{{restaurants[2].name}}</p>

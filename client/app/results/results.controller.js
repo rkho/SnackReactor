@@ -10,11 +10,7 @@ app.controller('ResultsCtrl', function ($scope,CheckLoggedIn, $location, SearchR
       }
     });
   };
-
   $scope.restaurants = SharedData.get('results'); // get the results from the data store.
-
-
-
 
   $scope.oneAtATime = true;
   
@@ -32,28 +28,9 @@ app.controller('ResultsCtrl', function ($scope,CheckLoggedIn, $location, SearchR
       $scope.restaurants = data;
     });
 
-  //   SearchRestaurants.results = [{
-  //   name: "Jingo McJangerson",
-  //   address: "Happy Gilmore",
-  //   message: "You're a tomato",
-  //   url: "http://ww1.prweb.com/prfiles/2011/02/09/8979837/romantic%20French%20restaurant%20San%20Francisco.jpg"
-  // },
-  // {
-  //   name: "Bingo McBangerson",
-  //   address: "23 Shroots Lane",
-  //   message: "I ate the potato",
-  //   url: "http://www.inside-guide-to-san-francisco-tourism.com/image-files/sushi-restaurants-in-san-francisco-isobune-3.jpg"
-  // },
-  // {
-  //   name: "Jill Dubb",
-  //   address: "Happy Gilmore",
-  //   message: "Something something tornado",
-  //   url: "http://www.wanderplanet.com/wp-content/uploads/2011/02/sf_the_fairmont_san_francisco.jpg"
-  // }];
-
   // $state.reload(); //is this necessary?
 
-  }
+  };
 
 });
 
