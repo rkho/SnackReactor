@@ -359,7 +359,7 @@ module.exports = function (grunt) {
           src: [
             'package.json',
             'server/**/*',
-            'gitignore'
+            'gitignore-dist'
           ]
         }]
       },
@@ -374,7 +374,7 @@ module.exports = function (grunt) {
     rename: {
       dist: {
         dot: true,
-        files: [{src: 'gitignore', dest: '.gitignore'}]
+        files: [{src: '<%= yeoman.dist %>/gitignore-dist', dest: '<%= yeoman.dist %>/.gitignore'}]
       }
     },
 
