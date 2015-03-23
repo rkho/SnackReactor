@@ -29,8 +29,10 @@ app.controller('CreateRestCtrl', function ($scope, $modal, $log, CheckLoggedIn, 
 
 app.controller('4Ctrl', function ($scope, $window, $modalInstance, items, OrgSelect, $location, CreateRestaurant) {
 
-  $scope.heartText = '';
   $scope.submitting = false;
+  $scope.heartText = '';
+  $scope.priceText = '';
+  $scope.ratingText = '';
 
   $scope.hoverHeart = function(value) {
     var heartText = {
@@ -42,7 +44,6 @@ app.controller('4Ctrl', function ($scope, $window, $modalInstance, items, OrgSel
     $scope.heartText = heartText[value];
   };
 
-  $scope.priceText = '';
 
   $scope.hoverPrice = function(value) {
     var priceText = {
@@ -53,6 +54,18 @@ app.controller('4Ctrl', function ($scope, $window, $modalInstance, items, OrgSel
     };
     $scope.priceText = priceText[value];
   };
+
+  $scope.hoverRating = function(rating) {
+    var ratingText = {
+      1: 'NO!',
+      2: 'You can do better.',
+      3: 'Firmly average.',
+      4: 'Pretty good!',
+      5: 'Totally delicious :)',
+      6: ''
+    };
+    $scope.ratingText = ratingText[rating];
+  }
 
 
   $scope.isCollapsed = false;
@@ -75,7 +88,7 @@ app.controller('4Ctrl', function ($scope, $window, $modalInstance, items, OrgSel
     $scope.successMessage = '';
     $scope.failureMessage = '';
     console.log();
-    CreateRestaurant($scope.createRest.name, $scope.createRest.address, $scope.createRest.healthRating, $scope.createRest.priceRating, $scope.createRest.description)
+    CreateRestaurant($scope.createRest.name, $scope.createRest.address, $scope.createRest.healthRating, $scope.createRest.priceRating, $scope.createRest.description, $scope.createRest.rating)
     .success(function(data, status, headers, config){
       $scope.submitting = false;
       $scope.successMessage = 'Restaurant created successfully, thanks!';

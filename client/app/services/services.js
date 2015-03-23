@@ -110,15 +110,22 @@ angular.module('snackReactor-services',[])
 
 .factory('CreateRestaurant', ['$http', function($http){
     
-    return function(name, address, health, price, description){
-      console.log(name);
+    return function(name, address, health, price, description, rating){
       return $http.post('/api/restaurants/new', {
         name: name,
         address: address,
         health: health,
         price: price,
-        description: description
+        description: description,
+        rating: rating
       });
     }
+
+}])
+
+.factory('SendRating', ['$http', function($http){
+  return function(id, rating){
+    return $http.post('/api/restaurants/rating', {id: id, rating: rating});
+  };
 
 }]);

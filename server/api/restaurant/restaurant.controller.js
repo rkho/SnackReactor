@@ -9,6 +9,8 @@ var _ = require('lodash');
 var places = require('../places/places');
 var Restaurant = require('../../database/models/restaurant');
 var Hour = require('../../database/models/hour');
+var Rating = require('../../database/models/rating');
+var utils = require('../../components/utils.js');
 
 
 exports.restaurants = {
@@ -55,9 +57,37 @@ exports.restaurants = {
               new Hour({restaurant_id: model.get('id'), day: period[0], open: period[1], close: period[2]}).save();
             });
             res.send(201, model);
+            utils.calculateAvgRating(req.body.id, req.user.organization_id); // calculate the first avg
           });
         }
       });
     });
-  }
+  }, //create
+
+  rating: function(req,res){
+
+    new Rating({restaurant_id: req.body.id, user_id: req.user.id, organization_id: req.user.organization_id})
+    .fetch()
+    .then(function(rating){
+      if (rating){
+        rating.set('rating', req.body.rating)
+        .save().then(function(){
+          res.send(201, 'Rating created: ' + req.body.rating);
+          utils.calculateAvgRating(req.body.id, req.user.organization_id); // recalculate the average after a rating
+        });
+      } else {
+        new Rating({
+          restaurant_id: req.body.id,
+          user_id: req.user.id,
+          rating: req.body.rating,
+          organization_id: req.user.organization_id
+        }).save()
+        .then(function(){
+          res.send(201, 'Rating created: ' + req.body.rating);
+          utils.calculateAvgRating(req.body.id, req.user.organization_id); // recalculate the average after a rating
+        });
+      }
+    });
+  } //rating
+
 };

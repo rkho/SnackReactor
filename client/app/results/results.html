@@ -20,6 +20,7 @@
                   <p>{{restaurants[0].name}}</p>
                   <p>{{restaurants[0].address}}</p>
                   <p>About this place: {{restaurants[0].description}}</p>
+                  <p>Rate this restaurant: <rating required ng-model="rating" max="5" id="rating" state-on="'fa fa-star fa-2x star-rating'" state-off="'fa fa-star-o fa-2x star-rating'" class="pull-right" class="rating" on-hover="hoverRating(value)" on-leave="hoverRating(6)"></p>
                 </accordion-group>
               </accordion>
             </div>

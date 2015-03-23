@@ -1,19 +1,24 @@
 var db = require('../config');
 var Restaurant = require('./restaurant');
 var User = require('./user');
+var Organization = require('./organization');
 
 
 var Rating = db.Model.extend({
   tableName: 'ratings',
   hasTimestamps: true,
 
-  users: function(){
+  user: function(){
     return this.belongsTo(User);
   },
   
-  restaurants: function(){
+  restaurant: function(){
     return this.belongsTo(Restaurant);
   },
+
+  organization: function(){
+    return this.belongsTo(Organization);
+  }
 
   // initalize and calculateAverage functions in case want to add ability to average ratings
 
@@ -23,7 +28,7 @@ var Rating = db.Model.extend({
   //   }
   // },
 
-  // calculateAverage: function(newRating){
+  // calculateAverage: function(){
 
   //   // 'this' should refer to the Orgs / Rests join table, but need to refer to a model
 
