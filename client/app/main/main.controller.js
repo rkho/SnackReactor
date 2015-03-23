@@ -53,13 +53,16 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
     SearchRestaurants($scope.healthRank,$scope.priceRank)
     .success(function(data, status, headers, config){
       console.log(data);
+      console.log(dummyData);
       SharedData.set('results', data);
-      SharedData.set('results', dummyData);
+      // SharedData.set('results', dummyData);
       $location.path(view);
     })
     .error(function(data,status, headers, config){
-      SharedData.set('results', dummyData); // to test while the server function is broken
-      $location.path(view); //to test while the server function is broken
+      // SharedData.set('results', dummyData); // to test while the server function is broken
+      // $location.path(view); //to test while the server function is broken
+
+      //we should put a stateful error message here
       console.error(data);
     }); 
 

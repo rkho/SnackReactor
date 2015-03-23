@@ -16,12 +16,12 @@ exports.search = {
     var price = req.body.price;
     var health = req.body.health;
     // var organization_id = req.user.organization_id;
-
     new Restaurant()
       .query(function(qb){
         qb.where('health', health).andWhere('price', '>=', price).orderByRaw('random()').limit(3);// add organization_id here
       }) 
       .fetchAll().then(function(models) {
+        console.log(models);
         if (models.size()) {
           var results = [];
           models.forEach(function(model){
