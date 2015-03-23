@@ -178,6 +178,12 @@ button{
     padding: 0px;
     padding-bottom: 10px
 }
+.btn-done {
+    margin-left: 10px;
+}
+.action-btns {
+    margin-top: 20px;
+}
 .fa-heart{
     color: #FF7F71;
     margin-right:5px;
