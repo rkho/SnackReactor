@@ -27,7 +27,7 @@ app.controller('CreateRestCtrl', function ($scope, $modal, $log, CheckLoggedIn, 
 
 });
 
-app.controller('4Ctrl', function ($scope, $modalInstance, items, OrgSelect, $location, CreateRestaurant) {
+app.controller('4Ctrl', function ($scope, $window, $modalInstance, items, OrgSelect, $location, CreateRestaurant) {
 
   $scope.heartText = '';
   $scope.submitting = false;
@@ -79,11 +79,16 @@ app.controller('4Ctrl', function ($scope, $modalInstance, items, OrgSelect, $loc
     .success(function(data, status, headers, config){
       $scope.submitting = false;
       $scope.successMessage = 'Restaurant created successfully, thanks!';
+      $window.location.reload();
     })
     .error(function(data,status,headers,config){
       $scope.submitting = false;
       $scope.failureMessage = 'Error creating restaurant. Are you sure you have the correct address?';
       console.error('Error creating restaurant: ' + data);
     });
+  };
+
+  $scope.doneButton = function() {
+    $window.location.href = '/';
   };
 });
