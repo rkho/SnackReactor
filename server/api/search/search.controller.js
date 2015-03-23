@@ -15,6 +15,7 @@ exports.search = {
   query: function(req, res) {
     var price = req.body.price;
     var health = req.body.health;
+    var day = moment().day();
     // var organization_id = req.user.organization_id;
     new Restaurant()
       .query(function(qb){
@@ -29,6 +30,7 @@ exports.search = {
             model.set('photo_url',
               'https://maps.googleapis.com/maps/api/place/photo?maxwidth=1600&photoreference=' + model.get('photo_url') + '&key=AIzaSyDUYAAHTfuH1FhBacOWtF01FZGjF7Sd3mc');
             //and push the result into the results array
+            console.log(model.hours());
             results.push(model.toJSON());
           });
           res.send(200, results);
