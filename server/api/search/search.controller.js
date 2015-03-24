@@ -19,7 +19,7 @@ exports.search = {
     var userTimeZone = req.body.timeZone;
     console.log('usertime');
     console.log(userTime);
-    userTime = moment.tz(userTime);
+    userTime = moment(userTime).tz(userTimeZone);
     console.log('usertime');
     console.log(userTime);
     // console.log(moment.parseZone(userTime));
