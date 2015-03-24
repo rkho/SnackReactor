@@ -18,7 +18,8 @@ angular.module('snackReactor-services',[])
 .factory('SearchRestaurants', ['$http', '$location', function($http, $location){
   
   return function(health,price){
-    var localTime = moment().local();
+    var localTime = moment.tz();
+    console.log(localTime);
     return $http.post('/api/search', {health: health, price: price, time: localTime});
   };
 
