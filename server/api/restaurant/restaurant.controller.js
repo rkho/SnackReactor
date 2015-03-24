@@ -11,6 +11,8 @@ var Restaurant = require('../../database/models/restaurant');
 var Hour = require('../../database/models/hour');
 var Rating = require('../../database/models/rating');
 var utils = require('../../components/utils.js');
+var OrgRest = require('../../database/models/organization_restaurant.js');
+
 
 
 exports.restaurants = {
@@ -99,6 +101,20 @@ exports.restaurants = {
         });
       }
     });
-  } //rating
+  }, //rating
+
+  getRating: function(req,res){
+    new OrgRest({restaurant_id: req.body.id, organization_id: req.user.organization_id})
+    .fetch()
+    .then(function(orgRest){
+      console.log(orgRest);
+      if (orgRest){
+        console.log('if');
+        res.send(200, {avgRating: orgRest.get('avg_rating')});
+      } else {
+        res.send(400, 'Error, no rating found');
+      }
+    });
+  }
 
 };

@@ -17,6 +17,7 @@ exports.search = {
     var health = req.body.health;
     var day = moment().day();
     var time = moment().format('HH:mm:ss');
+    console.log( health + ' ' + price);
     // var organization_id = req.user.organization_id;
     new Restaurant()
       .query(function(qb){

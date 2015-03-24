@@ -123,8 +123,16 @@ angular.module('snackReactor-services',[])
 
 }])
 
+.factory('GetRating', ['$http', function($http){
+  return function(id){
+    return $http.post('/api/restaurants/getrating', {id: id});
+  };
+}])
+
 .factory('SendRating', ['$http', function($http){
   return function(id, rating){
+    id = parseInt(id);
+    rating = parseInt(rating);
     return $http.post('/api/restaurants/rating', {id: id, rating: rating});
   };
 
