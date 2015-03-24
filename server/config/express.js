@@ -51,13 +51,13 @@ module.exports = function(app) {
   //   app.use(morgan('dev'));
   // }
   app.use(express.static(path.join(config.root, 'client')));
-  app.set('appPath', 'client');
+  app.set('appPath', '../client');
 
   if ('development' === env || 'test' === env) {
     app.use(require('connect-livereload')());
     app.use(express.static(path.join(config.root, '.tmp')));
  
-    app.use(morgan('dev'));
-    app.use(errorHandler()); // Error handler - has to be last
+    //app.use(morgan('dev'));
+    //app.use(errorHandler()); // Error handler - has to be last
   }
 };
