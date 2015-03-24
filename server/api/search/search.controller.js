@@ -15,9 +15,9 @@ exports.search = {
   query: function(req, res) {
     var price = req.body.price;
     var health = req.body.health;
-    var day = moment().day();
-    var time = moment().format('HH:mm:ss');
-    console.log( health + ' ' + price);
+    var userTime = req.body.time; // grab the time from the user, since Google Places operates on local time
+    var day = moment(userTime).day();
+    var time = moment(userTime).format('HH:mm:ss');
     // var organization_id = req.user.organization_id;
     new Restaurant()
       .query(function(qb){
