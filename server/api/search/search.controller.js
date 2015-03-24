@@ -15,18 +15,10 @@ exports.search = {
   query: function(req, res) {
     var price = req.body.price;
     var health = req.body.health;
-    var userTime = req.body.time;
     var userTimeZone = req.body.timeZone;
-    console.log('usertime');
-    console.log(userTime);
-    userTime = moment(userTime).tz(userTimeZone);
-    console.log('usertime');
-    console.log(userTime);
-    // console.log(moment.parseZone(userTime));
+    var userTime = moment(req.body.time).tz(userTimeZone); // set the time back to the user's local time
     var day = userTime.day();
     var time = userTime.format('HH:mm:ss');
-    console.log('time');
-    console.log(time);
     // var organization_id = req.user.organization_id;
     new Restaurant()
       .query(function(qb){
