@@ -15,7 +15,9 @@ exports.search = {
   query: function(req, res) {
     var price = req.body.price;
     var health = req.body.health;
-    var userTime = req.body.time; // grab the time from the user, since Google Places operates on local time
+    var userTime = req.body.time;
+    var utcOffset - req.body.utcOffset;
+    userTime.utcOffset(utcOffset); // grab the time from the user, since Google Places operates on local time
     console.log('usertime');
     console.log(userTime);
     var day = moment(userTime).day();
