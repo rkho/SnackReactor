@@ -11,7 +11,7 @@ var db = Bookshelf.initialize({
     // database: 'snackreactordb',
     charset: 'utf8',
     filename: path.join(__dirname, './snackreactordb.sqlite')
-  }
+  }, debug: true
 });
 
 db.knex.schema.hasTable('restaurants').then(function(exists) {
@@ -63,9 +63,8 @@ db.knex.schema.hasTable('ratings').then(function(exists) {
       rating.integer('rating', 1);
       rating.integer('user_id').references('id').inTable('users');
       rating.integer('restaurant_id').references('id').inTable('restaurants');
-      rating.integer('organization_id').references('id').inTable('organizations');
       rating.integer('has_visited', 1);
-      rating.text('comment');
+      rating.text('comments');
       rating.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
@@ -95,12 +94,12 @@ db.knex.schema.hasTable('organizations').then(function(exists) {
 db.knex.schema.hasTable('organizations_restaurants').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('organizations_restaurants', function (org) {
-      org.increments('id').primary();
-      org.integer('organization_id').references('id').inTable('organizations').index();
-      org.integer('restaurant_id').references('id').inTable('restaurants').index();
-      org.float('avg_rating');
-      org.text('description');
-      org.timestamps();
+      org.integer('avg_rating');
+      // added cumulativeRating + totalRating -- in correct table?
+      org.integer('cumulativeRating');
+      org.integer('totalRatings');
+      org.integer('organization_id').references('id').inTable('organizations');
+      org.integer('id').references('id').inTable('restaurants');
     }).then(function (table) {
       console.log('Created Table', table);
     });

@@ -16,5 +16,11 @@ module.exports = {
   GITHUB_CLIENT_SECRET: 'fc1ca04c89f36e7d19eec646361ca4ef236e4111',
   AZURE_TOKEN: 'udsW4tu9pbvJrpry',
   AZURE_LOGIN: 'bportnoy',
-  AZURE_REMOTE: 'https://snackreactor.scm.azurewebsites.net/snackreactor.git'
+  AZURE_REMOTE: 'https://snackreactor.scm.azurewebsites.net/snackreactor.git',
+  DB_PASSWORD: 'b2a41fdc',
+  DB_USER: 'bc1fe98c77ad56',
+  DB_HOST: 'us-cdbr-azure-west-a.cloudapp.net',
+  DB_NAME: 'snackreactor',
+  DB_PORT: 1433,
+  DB_CONNECTION: 'Database=snackreactor;Data Source=us-cdbr-azure-west-a.cloudapp.net;User Id=bc1fe98c77ad56;Password=b2a41fdc'
 };
