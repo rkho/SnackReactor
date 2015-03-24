@@ -18,7 +18,11 @@ angular.module('snackReactor-services',[])
 .factory('SearchRestaurants', ['$http', '$location', function($http, $location){
   
   return function(health,price){
-    return $http.post('/api/search', {health: health, price: price, time: new Date()});
+    var tz = jstz.determine().name();
+    var localTime = moment.tz(tz);
+    // var utcOffset = localTime.utcOffset();
+    return $http.post('/api/search', 
+      {health: health, price: price, time: localTime, timeZone: tz});
   };
 
 }])

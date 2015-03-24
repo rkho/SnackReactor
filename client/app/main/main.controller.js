@@ -45,7 +45,7 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
     .error(function(data,status, headers, config){
       $scope.searching = false;
       $scope.noResults = true;
-      console.error(data);
+      console.log(data);
     }); 
 
   }
