@@ -36,7 +36,9 @@
 
         </div>   
     </script>
-    <button id="search" ng-click="search('results')">Search!</button>
+    <button id="search" ng-click="search('results')">Search!</button><br>
+    <span class='label label-default' ng-show="searching">Searching...</span>
+    <span class="label label-danger" ng-show="noResults">Your search didn't return any results. Perhaps nothing's open?</span>
   </div>
 
 
