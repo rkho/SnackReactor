@@ -18,11 +18,12 @@ angular.module('snackReactor-services',[])
 .factory('SearchRestaurants', ['$http', '$location', function($http, $location){
   
   return function(health,price){
-    var localTime = moment();
-    var utcOffset = localTime.utcOffset();
+    var localTime = moment.tz();
+    console.log(moment());
+    // var utcOffset = localTime.utcOffset();
     console.log(localTime);
     return $http.post('/api/search', 
-      {health: health, price: price, time: localTime, utcOffset: utcOffset});
+      {health: health, price: price, time: localTime});
   };
 
 }])
