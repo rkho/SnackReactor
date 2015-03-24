@@ -59,7 +59,8 @@ angular.module('snackReactor-services',[])
         $location.path('/org/create').search({github_id: orgId, github_login: orgLogin}); //send them to the create flow, preserving github org name
       }
       else {
-        $location.path('/').reload();
+        $location.path('/');
+        window.location.reload();
       }
     })
     .error(function(data,status,headers,config){
