@@ -1,6 +1,6 @@
 var app = angular.module('snackReactorApp')
 
-app.controller('ResultsCtrl', function ($scope,CheckLoggedIn, $location, SearchRestaurants, $state, SharedData) {
+app.controller('ResultsCtrl', function ($scope,CheckLoggedIn, $location, SearchRestaurants, $state, SharedData, SendRating, GetRating) {
 
   //have to run checked in on each controller
   $scope.checkLogged = function () {
@@ -12,6 +12,16 @@ app.controller('ResultsCtrl', function ($scope,CheckLoggedIn, $location, SearchR
   };
   $scope.restaurants = SharedData.get('results'); // get the results from the data store.
 
+  $scope.restaurants.forEach(function(restaurant){
+    GetRating(restaurant.id)
+    .success(function(data,status,headers,config){
+      restaurant.avgRating = data.avgRating;
+    })
+    .error(function(data,status,headers,config){
+      console.error('Error: ' + data);
+    })
+  });
+
   $scope.oneAtATime = true;
   
   $scope.status = {
@@ -19,6 +29,10 @@ app.controller('ResultsCtrl', function ($scope,CheckLoggedIn, $location, SearchR
     isFirstDisabled: false
   };
   //---------
+
+  $scope.sendRating = function(id, rating){
+    SendRating(id, rating);
+  };
 
   $scope.reshuffle = function () {
 

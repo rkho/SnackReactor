@@ -1,4 +1,4 @@
-<div ng-controller="ResultsCtrl" ng-init="checkLogged()">
+<div ng-controller="ResultsCtrl">
       <div class="overlay"></div>
       <div class="container">
            <div ng-controller="AddModal" class="row">
@@ -12,19 +12,31 @@
 
       
         <div class="row">
+        <!--begin ng-repeat-->
+        <div ng-repeat="restaurant in restaurants">
           <div class="col-xs-12 col-sm-12 col-md-4">
-            <div class="a1 box">
-            <div class="box-header" ng-style= "{'background-image': 'url(' + restaurants[0].photo_url + ')'}"></div>
+            <div class="box">
+            <div class="box-header" ng-style= "{'background-image': 'url(' + restaurant.photo_url + ')'}"></div>
               <accordion close-others="oneAtATime">
-                <accordion-group heading="{{restaurants[0].name}}">
-                  <p>{{restaurants[0].name}}</p>
-                  <p>{{restaurants[0].address}}</p>
-                  <p>About this place: {{restaurants[0].description}}</p>
+                <accordion-group heading="{{restaurant.name}}">
+                  <p>{{restaurant.name}}</p>
+                  <p>Your colleagues' rating: <rating ng-model="restaurant.avgRating" max="5" id="rating" state-on="'fa fa-star star-rating fa-2x'" state-off="'fa fa-star-o star-rating fa-2x'" class="pull-right" class="rating" readonly="true"></p>
+                  <p>{{restaurant.address}}</p>
+                  <p>About this place: {{restaurant.description}}</p>
+                  <p>Rate this restaurant: <rating ng-model="restaurant.userRating" max="5" id="rating" state-on="'fa fa-star star-rating fa-2x'" state-off="'fa fa-star-o star-rating fa-2x'" class="pull-right" class="rating" on-hover="hoverRating(value)" on-leave="hoverRating(6); sendRating(restaurant.id, restaurant.userRating);"></p>
                 </accordion-group>
               </accordion>
             </div>
-          </div>
+           </div>   
+          </div> 
+          <!--end ng-repeat-->       
+        </div>
+      </div>  
+    </div>
 
+
+        <!--end repeat-->
+<!-- 
           <div class="col-xs-12 col-sm-12 col-md-4">
             <div class="a2 box">
               <div class="box-header" ng-style= "{'background-image': 'url(' + restaurants[1].photo_url + ')'}"></div>
@@ -50,10 +62,8 @@
               </accordion>
             </div>
           </div> 
-        </div>
-      </div>  
-    </div>
-</div>
+ -->
+
 
 
 
