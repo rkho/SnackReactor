@@ -14,6 +14,8 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
   $scope.is3priceClick = false;
   $scope.healthRank=1;
   $scope.priceRank=1;
+  $scope.searching = false;
+  $scope.noResults = false;
 
   //empty array that will store three random objects.
   //used in our search function to generate results page.
@@ -25,44 +27,24 @@ app.controller('MainCtrl', function ($scope, $http, $log,$document, ModalService
   };
 
   $scope.search = function (view){
+    $scope.noResults = false;
+    $scope.searching = true;
 
     //save data in case we need to search again
 
     SharedData.set('health', $scope.healthRank);
     SharedData.set('price', $scope.priceRank);
 
-    var dummyData = [{
-    name: "Jingo McJangerson",
-    address: "Happy Gilmore",
-    message: "You're a tomato",
-    url: "http://ww1.prweb.com/prfiles/2011/02/09/8979837/romantic%20French%20restaurant%20San%20Francisco.jpg"
-  },
-  {
-    name: "Bingo McBangerson",
-    address: "23 Shroots Lane",
-    message: "I ate the potato",
-    url: "http://www.inside-guide-to-san-francisco-tourism.com/image-files/sushi-restaurants-in-san-francisco-isobune-3.jpg"
-  },
-  {
-    name: "Jill Dubb",
-    address: "Happy Gilmore",
-    message: "Something something tornado",
-    url: "http://www.wanderplanet.com/wp-content/uploads/2011/02/sf_the_fairmont_san_francisco.jpg"
-  }];
-
     SearchRestaurants($scope.healthRank,$scope.priceRank)
     .success(function(data, status, headers, config){
-      console.log(data);
-      console.log(dummyData);
+      $scope.searching = false;
       SharedData.set('results', data);
       // SharedData.set('results', dummyData);
       $location.path(view);
     })
     .error(function(data,status, headers, config){
-      // SharedData.set('results', dummyData); // to test while the server function is broken
-      // $location.path(view); //to test while the server function is broken
-
-      //we should put a stateful error message here
+      $scope.searching = false;
+      $scope.noResults = true;
       console.error(data);
     }); 
 
