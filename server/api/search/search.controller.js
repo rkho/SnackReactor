@@ -16,11 +16,10 @@ exports.search = {
     var price = req.body.price;
     var health = req.body.health;
     var userTime = req.body.time;
-    // var utcOffset = req.body.utcOffset;
-    // userTime.utcOffset(utcOffset); // grab the time from the user, since Google Places operates on local time
+    var userTimeZone = req.body.timeZone;
     console.log('usertime');
     console.log(userTime);
-    userTime = moment(userTime);
+    userTime = moment.tz(userTime);
     console.log('usertime');
     console.log(userTime);
     // console.log(moment.parseZone(userTime));

@@ -20,7 +20,7 @@ angular.module('snackReactor-services',[])
   return function(health,price){
     var tz = jstz.determine().name();
     console.log(tz);
-    var localTime = moment();
+    var localTime = moment.tz(tz);
     // var utcOffset = localTime.utcOffset();
     console.log(localTime);
     return $http.post('/api/search', 
