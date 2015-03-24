@@ -19,7 +19,7 @@ exports.search = {
     // var utcOffset = req.body.utcOffset;
     // userTime.utcOffset(utcOffset); // grab the time from the user, since Google Places operates on local time
     console.log('usertime');
-    console.log(userTime);
+    console.log(userTime.parseZone());
     var day = moment(userTime).day();
     var time = moment(userTime).format('HH:mm:ss');
     console.log('time');
