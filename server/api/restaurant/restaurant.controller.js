@@ -18,6 +18,7 @@ var OrgRest = require('../../database/models/organization_restaurant.js');
 exports.restaurants = {
   // Create restuarant
   create: function(req, res) {
+    console.log(1)
     // var place_id = req.body.place_id; // should reenable if we get the autocomplete working on the front
     var price = req.body.price;
     var health = req.body.health;
@@ -26,9 +27,10 @@ exports.restaurants = {
     var name = req.body.name;
     var address = req.body.address;
     var userRating = req.body.rating;
-
+    console.log("Create!")
     // getDetails is a utility function created to interact with the Google Places API
     places.getDetailsFromAddressAndName(address,name).then(function(details) {
+      console.log(details)
       if (!details.length) {
         res.send(400, 'Failed to fetch restaurant details.');
         return;
