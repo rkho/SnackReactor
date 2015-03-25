@@ -178,8 +178,8 @@ button{
     padding: 0px;
     padding-bottom: 10px
 }
-.btn-done {
-    margin-left: 10px;
+.btn-cancel {
+    margin-right: 10px;
 }
 .action-btns {
     margin-top: 20px;
@@ -209,7 +209,9 @@ button{
     color: #00C716;
 }
 #logout{
-    float:right;
+    float:left;
+    margin-left: 5%;
+    color: #fff;
 }
 
 .modal-body{
@@ -375,4 +377,10 @@ button{
 
 .star-rating{
     color: #F4C712;
+}
+
+.venue {
+  float: right;
+  margin-right: 5%;
+  color: #fff;
 }
