@@ -26,8 +26,10 @@ exports.getDetailsFromAddressAndName = function(address, name, distance) {
 };
 
 exports.geocodeAddress = function(address){
+  console.log(address, process.env.GOOGLE_PLACES_API_KEY)
   return locations.geocodeAddressAsync({address: address})
   .then(function(result,err){
+    console.log(result);
     if (err) console.error('Error fetching geocode: ' + err);
     console.log(result.results[0]);
     return [result.results[0].geometry.location.lat,result.results[0].geometry.location.lng, result.results[0].place_id];
