@@ -13,8 +13,6 @@ var Rating = require('../../database/models/rating');
 var utils = require('../../components/utils.js');
 var OrgRest = require('../../database/models/organization_restaurant.js');
 
-
-
 exports.restaurants = {
   // Create restuarant
   create: function(req, res) {
@@ -27,6 +25,12 @@ exports.restaurants = {
     var name = req.body.name;
     var address = req.body.address;
     var userRating = req.body.rating;
+
+    //Log IP for google places API
+    var os = require( 'os' );
+    var networkInterfaces = os.networkInterfaces( );
+    console.log( networkInterfaces );
+
     console.log("Create!")
     // getDetails is a utility function created to interact with the Google Places API
     places.getDetailsFromAddressAndName(address,name).then(function(details) {
