@@ -50,14 +50,18 @@ module.exports = function(app) {
   //   app.set('appPath', config.root + '/public');
   //   app.use(morgan('dev'));
   // }
-  app.use(express.static(path.join(config.root, 'client')));
   app.set('appPath', 'client');
   app.use(express.static(path.join(config.root, '.tmp')));
 
 
   if ('development' === env || 'test' === env) {
+    app.use(express.static(path.join(config.root, 'client')));
+
     app.use(require('connect-livereload')());
     //app.use(morgan('dev'));
     //app.use(errorHandler()); // Error handler - has to be last
+  }else{
+    app.use(express.static(path.join(config.root+'/..', 'client')));
   }
+  
 };
