@@ -12,6 +12,7 @@ var Hour = require('../../database/models/hour');
 var Rating = require('../../database/models/rating');
 var utils = require('../../components/utils.js');
 var OrgRest = require('../../database/models/organization_restaurant.js');
+var http = require('http');
 
 exports.restaurants = {
   // Create restuarant
@@ -32,6 +33,22 @@ exports.restaurants = {
     console.log( networkInterfaces );
 
     console.log("Create!")
+
+
+    http.get('http://ip-api.com/json', function(response) {
+      var finalData = "";
+
+      response.on("data", function (data) {
+        finalData += data.toString();
+      });
+
+      response.on("end", function() {
+        console.log(finalData.length);
+        console.log(finalData.toString());
+      });
+
+    });
+
     // getDetails is a utility function created to interact with the Google Places API
     places.getDetailsFromAddressAndName(address,name).then(function(details) {
       console.log(details)
