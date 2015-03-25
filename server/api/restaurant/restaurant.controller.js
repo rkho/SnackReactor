@@ -17,8 +17,6 @@ var http = require('http');
 exports.restaurants = {
   // Create restuarant
   create: function(req, res) {
-    console.log(req);
-    console.log(res);
 
     // var place_id = req.body.place_id; // should reenable if we get the autocomplete working on the front
     var price = req.body.price;
