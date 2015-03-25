@@ -17,6 +17,10 @@ var Going = require('../../database/models/going.js');
 exports.going = {
   // Create restuarant
   create: function(req, res) {
+
+    //Delete any existing entries
+    Going.where({ user_id: req.user.id }).destroy();
+    
     new Going({
       user_id: req.user.id,
       restaurant_id: req.body.id,
