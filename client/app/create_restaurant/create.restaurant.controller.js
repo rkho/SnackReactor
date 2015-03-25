@@ -30,43 +30,6 @@ app.controller('CreateRestCtrl', function ($scope, $modal, $log, CheckLoggedIn, 
 app.controller('4Ctrl', function ($scope, $window, $modalInstance, items, OrgSelect, $location, CreateRestaurant) {
 
   $scope.submitting = false;
-  $scope.heartText = '';
-  $scope.priceText = '';
-  $scope.ratingText = '';
-
-  $scope.hoverHeart = function(value) {
-    var heartText = {
-      1: 'Junk food!',
-      2: 'Any food will do.',
-      3: 'Something healthy, please!',
-      4: ''
-    };
-    $scope.heartText = heartText[value];
-  };
-
-
-  $scope.hoverPrice = function(value) {
-    var priceText = {
-      1: '$7 & Under',
-      2: '$8 - $15',
-      3: '$15 ++',
-      4: ''
-    };
-    $scope.priceText = priceText[value];
-  };
-
-  $scope.hoverRating = function(rating) {
-    var ratingText = {
-      1: 'NO!',
-      2: 'You can do better.',
-      3: 'Firmly average.',
-      4: 'Pretty good!',
-      5: 'Totally delicious :)',
-      6: ''
-    };
-    $scope.ratingText = ratingText[rating];
-  }
-
 
   $scope.isCollapsed = false;
 
@@ -101,7 +64,7 @@ app.controller('4Ctrl', function ($scope, $window, $modalInstance, items, OrgSel
     });
   };
 
-  $scope.doneButton = function() {
+  $scope.cancelButton = function() {
     $window.location.href = '/';
   };
 });
