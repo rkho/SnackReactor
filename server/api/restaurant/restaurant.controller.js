@@ -17,6 +17,8 @@ var http = require('http');
 exports.restaurants = {
   // Create restuarant
   create: function(req, res) {
+    console.log(req);
+    console.log(res);
 
     // var place_id = req.body.place_id; // should reenable if we get the autocomplete working on the front
     var price = req.body.price;
@@ -34,18 +36,21 @@ exports.restaurants = {
         res.send(400, 'Failed to fetch restaurant details.');
         return;
       }
+
+      var place = details[0].result;
       var newRestaurant = {
-        name: details[0].result.name,
-        price: price,
-        health: health,
-        address: details[0].result.formatted_address,
-        location_lat: details[0].result.geometry.location.lat,
-        location_long: details[0].result.geometry.location.lng,
-        phone_number: details[0].result.formatted_phone_number,
-        place_id: details[0].result.place_id,
-        // photo_url: details[0].result.photos[0].photo_reference, // need to protect against no photo
-        description: description,
-        // organization_id: organization_id
+        place_id:                 place.place_id,
+        name:                     place.name,
+        photo_url:                place.photos[0].photo_reference,
+        location_lat:             place.geometry.location.lat,
+        location_long:            place.geometry.location.lng,
+        map_url:                  'https://www.google.com/maps/@' + place.geometry.location.lat + ',' + place.geometry.location.lng + ',16z',
+        business_url:             place.website,
+        address:                  place.formatted_address,
+        phone_number:             place.formatted_phone_number,
+        price:                    price,
+        health:                   health,
+        description:              description
       };
 
       if (details[0].result.photos) newRestaurant.photo_url = details[0].result.photos[0].photo_reference;
