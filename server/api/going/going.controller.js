@@ -17,15 +17,12 @@ var Going = require('../../database/models/going.js');
 exports.going = {
   // Create restuarant
   create: function(req, res) {
-		new Going({
-		  user_id: req.user.id,
-		  restaurant_id: req.body.id,
-		}).save()
-		.then(function(){
-		  res.send(201, 'Created');
-		});
+    new Going({
+      user_id: req.user.id,
+      restaurant_id: req.body.id,
+    }).save()
+    .then(function(){
+      res.send(201, 'Created');
+    });
   } //create
-
- 
-
 };
