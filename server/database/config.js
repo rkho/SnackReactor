@@ -73,6 +73,20 @@ db.knex.schema.hasTable('ratings').then(function(exists) {
   }
 });
 
+db.knex.schema.hasTable('going').then(function(exists) {
+  if (!exists) {
+    db.knex.schema.createTable('going', function (going) {
+      going.increments('id').primary();
+      going.integer('user_id').references('id').inTable('users');
+      going.integer('restaurant_id').references('id').inTable('restaurants');
+      going.timestamps();
+    }).then(function (table) {
+      console.log('Created Table', table);
+    });
+  }
+});
+
+
 db.knex.schema.hasTable('organizations').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('organizations', function (organization) {
