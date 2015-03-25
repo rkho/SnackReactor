@@ -17,7 +17,7 @@ var http = require('http');
 exports.restaurants = {
   // Create restuarant
   create: function(req, res) {
-    console.log(1)
+
     // var place_id = req.body.place_id; // should reenable if we get the autocomplete working on the front
     var price = req.body.price;
     var health = req.body.health;
@@ -27,31 +27,9 @@ exports.restaurants = {
     var address = req.body.address;
     var userRating = req.body.rating;
 
-    //Log IP for google places API
-    var os = require( 'os' );
-    var networkInterfaces = os.networkInterfaces( );
-    console.log( networkInterfaces );
-
-    console.log("Create!")
-
-
-    http.get('http://ip-api.com/json', function(response) {
-      var finalData = "";
-
-      response.on("data", function (data) {
-        finalData += data.toString();
-      });
-
-      response.on("end", function() {
-        console.log(finalData.length);
-        console.log(finalData.toString());
-      });
-
-    });
-
     // getDetails is a utility function created to interact with the Google Places API
     places.getDetailsFromAddressAndName(address,name).then(function(details) {
-      console.log(details)
+
       if (!details.length) {
         res.send(400, 'Failed to fetch restaurant details.');
         return;
