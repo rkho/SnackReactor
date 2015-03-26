@@ -5,5 +5,6 @@ public
 client/bower_components
 dist
 /server/config/local.env.js
+/server/config/local.env.js.sample
 .DS_Store
 server/database/*.sqlite

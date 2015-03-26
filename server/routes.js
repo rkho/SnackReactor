@@ -20,6 +20,12 @@ module.exports = function(app) {
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
    .get(errors[404]);
 
+   // This will get the venue data and return it to the home page to populate today's popular places.
+   app.route('/getVenueData')
+     .get(function(req, res){
+       res.sendfile(app.get('appPath') + '/data/venues.js');
+     });
+
   // All other routes should redirect to the index.html
   app.route('/*')
     .get(function(req, res) {
