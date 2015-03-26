@@ -45,8 +45,8 @@ angular.module('snackReactorApp', [
     });
 
     $stateProvider
-    .state('/restaurant/create', {
-      url: '/restaurant/create',
+    .state('/create', {
+      url: '/create',
       templateUrl: 'app/create_restaurant/create.restaurant.html',
       controller: 'CreateRestCtrl'
     });
