@@ -3,58 +3,45 @@
 var app = angular.module('snackReactorApp');
 //refactor to services
 
-app.controller('CreateRestCtrl', function ($scope, $modal, $log, CheckLoggedIn, ModalService) {
-  // $scope.items = [];
+// app.controller('CreateRestCtrl', function ($scope, $modal, $log, CheckLoggedIn, ModalService) {
+//   // $scope.items = [];
 
-  $scope.open = function (size) {
-    var modalInstance = $modal.open({
-      templateUrl: '4.html',
-      controller: '4Ctrl',
-      size: size,
-      // backdrop: 'static',
-      resolve: {
-        items: function () {
-          return $scope.items;
-        }
-      }
-    });
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    });
-  };
+//   $scope.open = function (size) {
+//     var modalInstance = $modal.open({
+//       templateUrl: '4.html',
+//       controller: '4Ctrl',
+//       size: size,
+//       // backdrop: 'static',
+//       resolve: {
+//         items: function () {
+//           return $scope.items;
+//         }
+//       }
+//     });
+//     modalInstance.result.then(function (selectedItem) {
+//       $scope.selected = selectedItem;
+//     });
+//   };
 
-  $scope.open('md');
+//   $scope.open('md');
 
-});
+// });
 
-app.controller('4Ctrl', function ($scope, $window, $http, $modalInstance, items, OrgSelect, $location, CreateRestaurant) {
+app.controller('CreateRestCtrl', function ($scope, $window, $http, OrgSelect, $location, CreateRestaurant) {
 
   $scope.submitting = false;
 
   $scope.isCollapsed = false;
 
   var search = $location.search();
-  
-  $scope.getLocation = function(val) {
-    var reference = {
-      // 'location': LatLngBounds(sw?:37.783724, ne?:-122.408978),
-      'radius': 1609,
-      'name': val,
-      'openNow': true,
-      'types': ['bakery', 'cafe', 'food', 'restaurant'],
-    }
-    service.nearbySearch(reference, function(results, status){
-      console.log(results);
-    });
-   };
 
-  $scope.ok = function () {
-    $modalInstance.close($scope.selected.item);
-  };
+  // $scope.ok = function () {
+  //   $modalInstance.close($scope.selected.item);
+  // };
 
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+  // $scope.cancel = function () {
+  //   $modalInstance.dismiss('cancel');
+  // };
 
   $scope.successMessage = '';
   $scope.failureMessage = '';
