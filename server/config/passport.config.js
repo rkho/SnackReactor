@@ -26,27 +26,42 @@ var findOrCreateUserOauth = function (accessToken, refreshToken, profile, done, 
   .then(function(user){
     if (!user){ //if the user doesn't exist, create it
       if (strategy === 'github'){ // grab their github org
-        request.get('https://api.github.com/user/orgs')
+
+        //Grab their github name & profile pic
+        request.get('https://api.github.com/user')
         .query({access_token: accessToken})
         .end(function(err,res){
-          // console.log(res.body); // this is the list of organizations
-          // console.log(profile);
-          User.forge({
-            email: profile.email,
-            username: null,
-            password: null,
-            is_admin: 0,
-            access_token: accessToken,
-            refresh_token: refreshToken,
-            auth_type: strategy,
-            auth_id: profile.id
-          })
-          .save()
-          .then(function(user){
-            user.set('new', true);
-            return done(null,user);
-          })
-        });
+
+          var name = res.body.name;
+          var avatar = res.body.avatar_url;
+          
+          request.get('https://api.github.com/user/orgs')
+          .query({access_token: accessToken})
+          .end(function(err,res){
+            // console.log(res.body); // this is the list of organizations
+            // console.log(profile);
+            User.forge({
+              email: profile.email,
+              username: null,
+              password: null,
+              name: name,
+              avatar: avatar,
+              is_admin: 0,
+              access_token: accessToken,
+              refresh_token: refreshToken,
+              auth_type: strategy,
+              auth_id: profile.id
+            })
+            .save()
+            .then(function(user){
+              user.set('new', true);
+              return done(null,user);
+            })
+          });
+
+        })
+
+        
       }
     } else { //if the user already existed, just return it
       return done(null,user);
