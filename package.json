@@ -28,6 +28,7 @@
     "passport": "^0.2.1",
     "passport-github": "^0.1.5",
     "passport-local": "^1.0.0",
+    "request": "^2.54.0",
     "serve-favicon": "~2.0.1",
     "sqlite3": "^3.0.5",
     "superagent": "^1.1.0"

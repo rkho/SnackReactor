@@ -34,24 +34,20 @@ app.controller('4Ctrl', function ($scope, $window, $http, $modalInstance, items,
   $scope.isCollapsed = false;
 
   var search = $location.search();
-
+  
   $scope.getLocation = function(val) {
-     return $http.get('/searchGooglePlacesApi', {
-       params: {
-         output: "json",
-         location: "37.783724,-122.408978",
-         radius: 1609,
-         rankby: "distance",
-         key: "AIzaSyDfnKsw4UOeCXV4thV6rHHv2hK5NtNhQI",
-         sensor: false
-       }
-     }).then(function(response){
-       return response.data.results.map(function(item){
-         return item.formatted_address;
-       });
-     });
+    var reference = {
+      // 'location': LatLngBounds(sw?:37.783724, ne?:-122.408978),
+      'radius': 1609,
+      'name': val,
+      'openNow': true,
+      'types': ['bakery', 'cafe', 'food', 'restaurant'],
+    }
+    service.nearbySearch(reference, function(results, status){
+      console.log(results);
+    });
    };
- 
+
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
   };
