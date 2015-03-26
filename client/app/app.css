@@ -86,17 +86,22 @@ button{
 }
 
 .content h1 {
+    margin: auto;
     font-size: 120px;
     letter-spacing: -9px;
     font-weight: 200;
+    border-bottom: 1px solid #fff;
+    width: 60%;
 }
 
-.headline{
+.headline {
     position: absolute;
     left: 0;
     right: 0;
     margin: auto;
     top: 10%;
+}
+
 }
 .subtitle{
     position: relative;
@@ -383,4 +388,23 @@ button{
   float: right;
   margin-right: 5%;
   color: #fff;
+}
+
+.badge {
+  margin: 0 ;
+  padding: 3%;
+  font-weight: lighter;
+  background: #FF2538;
+  position: relative;
+  color: #fff;
+  font-size: 2em;
+}
+
+.popular {
+    margin-bottom: 10%;
+}
+
+.popularImg {
+  height: 300px;
+  margin: auto;
 }
