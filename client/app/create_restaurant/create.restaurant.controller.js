@@ -27,13 +27,30 @@ app.controller('CreateRestCtrl', function ($scope, $modal, $log, CheckLoggedIn, 
 
 });
 
-app.controller('4Ctrl', function ($scope, $window, $modalInstance, items, OrgSelect, $location, CreateRestaurant) {
+app.controller('4Ctrl', function ($scope, $window, $http, $modalInstance, items, OrgSelect, $location, CreateRestaurant) {
 
   $scope.submitting = false;
 
   $scope.isCollapsed = false;
 
   var search = $location.search();
+
+  $scope.getLocation = function(val) {
+     return $http.get('/searchGooglePlacesApi', {
+       params: {
+         output: "json",
+         location: "37.783724,-122.408978",
+         radius: 1609,
+         rankby: "distance",
+         key: "AIzaSyDfnKsw4UOeCXV4thV6rHHv2hK5NtNhQI",
+         sensor: false
+       }
+     }).then(function(response){
+       return response.data.results.map(function(item){
+         return item.formatted_address;
+       });
+     });
+   };
  
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);

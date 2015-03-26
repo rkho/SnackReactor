@@ -2,18 +2,14 @@
     <script type="text/ng-template" id="4.html">
 
         <div class="modal-header">
-            <h5 class="modal-title-md">Add a Venue</h5>
+            <h5 class="modal-title-md">Add a Place</h5>
         </div>
         <div class="modal-body-md modal-create">
-        <span class="h5">Use this form to add a new venue! Your colleagues can meet you there.</span>
+        <span class="h5">Use this form to create a new place for today! Your colleagues can meet you there.</span>
           <div>
-            <form name="createRest" id="createRest" ng-model="restForm" class="sr-form">
-                <div class="form-group">
-                    <!--Label is left blank, used input placeholder instead
-                    <label for="name"></label>
-                    -->
-                    <input type="text" class="form-control" id="name" placeholder="Chipotle, WestField Mall, San Francisco, CA" ng-model="createRest.name" autofocus=true required>
-                </div>
+          
+                <input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
+                    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
 
                 <div>
                     <i class="fa fa-circle-o-notch fa-spin fa-2x" ng-show="submitting"></i>
@@ -27,6 +23,6 @@
             </form>
             </div>
           </div>
-        </div>   
+        </div>
     </script>
 <div>
