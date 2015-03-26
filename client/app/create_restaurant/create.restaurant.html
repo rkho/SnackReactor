@@ -9,10 +9,10 @@
           <div>
             <form name="createRest" id="createRest" ng-model="restForm" class="sr-form">
                 <div class="form-group">
-                    <!--Label is left blank, used input placeholder instead
-                    <label for="name"></label>
-                    -->
-                    <input type="text" class="form-control" id="name" placeholder="Chipotle, WestField Mall, San Francisco, CA" ng-model="createRest.name" autofocus=true required>
+                    <label for="name">Venue</label>
+                    <input type="text" class="form-control" id="name" placeholder="Chipotle" ng-model="createRest.name" autofocus=true required>
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="Westfield San Francisco Centre, 865 Market St C10, San Francisco, CA 94103" ng-model="createRest.address" autofocus=true required>
                 </div>
 
                 <div>
