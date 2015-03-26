@@ -28,6 +28,8 @@ db.knex.schema.hasTable('restaurants').then(function(exists) {
       restaurant.string('phone_number');
       restaurant.string('place_id');
       restaurant.string('photo_url');
+      restaurant.string('business_url');
+      restaurant.string('map_url');
       restaurant.text('description');
       restaurant.timestamps();
     }).then(function (table) {
