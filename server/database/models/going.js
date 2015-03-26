@@ -7,12 +7,12 @@ var Going = db.Model.extend({
   tableName: 'going',
   hasTimestamps: true,
 
-  users: function(){
+  user: function(){
     return this.hasOne(User);
   },
 
-  restaurants: function(){
-    return this.hasMany(Restaurant);
+  restaurant: function(){
+    return this.hasOne(Restaurant);
   }
   
 });
