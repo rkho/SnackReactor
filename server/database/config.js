@@ -28,6 +28,8 @@ db.knex.schema.hasTable('restaurants').then(function(exists) {
       restaurant.string('phone_number');
       restaurant.string('place_id');
       restaurant.string('photo_url');
+      restaurant.string('business_url');
+      restaurant.string('map_url');
       restaurant.text('description');
       restaurant.timestamps();
     }).then(function (table) {
@@ -44,6 +46,8 @@ db.knex.schema.hasTable('users').then(function(exists) {
       user.string('email').unique();
       user.string('username').unique();
       user.string('password');
+      user.string('name');
+      user.string('avatar');
       user.integer('is_admin', 1);
       user.string('access_token');
       user.string('refresh_token');
@@ -72,6 +76,20 @@ db.knex.schema.hasTable('ratings').then(function(exists) {
     });
   }
 });
+
+db.knex.schema.hasTable('going').then(function(exists) {
+  if (!exists) {
+    db.knex.schema.createTable('going', function (going) {
+      going.increments('id').primary();
+      going.integer('user_id').references('id').inTable('users');
+      going.integer('restaurant_id').references('id').inTable('restaurants');
+      going.timestamps();
+    }).then(function (table) {
+      console.log('Created Table', table);
+    });
+  }
+});
+
 
 db.knex.schema.hasTable('organizations').then(function(exists) {
   if (!exists) {
