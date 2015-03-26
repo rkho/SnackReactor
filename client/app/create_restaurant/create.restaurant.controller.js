@@ -34,7 +34,6 @@ app.controller('4Ctrl', function ($scope, $window, $modalInstance, items, OrgSel
   $scope.isCollapsed = false;
 
   var search = $location.search();
- 
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
   };
