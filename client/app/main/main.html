@@ -2,7 +2,7 @@
 <div class="overlay"></div>
   <div class="content">
   <a id="logout" href="/auth/logout" ng-hide="isLogged" target="_self"><i class="fa fa-minus-circle fa-4x"></i></a>
-  <a href="/restaurant/create" target="_self" class="venue"><i class="fa fa-plus-square fa-4x"></i></a>
+  <a href="/create" target="_self" class="venue"><i class="fa fa-plus-square fa-4x"></i></a>
     <div class="headline">
       <h1>SnackPlant</h1>
       <p class="subtitle">never eat alone</p>
@@ -17,7 +17,7 @@
                      <a href="#/going" ng-click="">
                          <img class="img-responsive popularImg" src="{{data[0].imageUrl}}" alt="">
                      </a>
-                     <h3 class="badge">
+                     <h3 class="btn btn-danger">
                        +{{ data[0].count }} people going
                      </h3>
                  </div>
@@ -25,7 +25,7 @@
                      <a href="#/going" ng-click="">
                          <img class="img-responsive popularImg" src="{{ data[1].imageUrl }}" alt="">
                      </a>
-                     <h3 class="badge">
+                     <h3 class="btn btn-danger">
                       +{{ data[1].count }} people going
                      </h3>
                  </div>
@@ -33,7 +33,7 @@
                      <a href="#/going" ng-click="">
                          <img class="img-responsive popularImg" src="{{ data[2].imageUrl }}" alt="">
                      </a>
-                     <h3 class="badge">
+                     <h3 class="btn btn-danger">
                       +{{ data[2].count }} people going
                      </h3>
                  </div>
