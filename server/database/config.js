@@ -46,6 +46,8 @@ db.knex.schema.hasTable('users').then(function(exists) {
       user.string('email').unique();
       user.string('username').unique();
       user.string('password');
+      user.string('name');
+      user.string('avatar');
       user.integer('is_admin', 1);
       user.string('access_token');
       user.string('refresh_token');
