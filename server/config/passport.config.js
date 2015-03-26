@@ -31,7 +31,7 @@ var findOrCreateUserOauth = function (accessToken, refreshToken, profile, done, 
         request.get('https://api.github.com/user')
         .query({access_token: accessToken})
         .end(function(err,res){
-
+ 
           var name = res.body.name;
           var avatar = res.body.avatar_url;
           
