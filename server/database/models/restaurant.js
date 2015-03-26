@@ -2,7 +2,7 @@ var db = require('../config');
 var Rating = require('./rating');
 var Organization = require('./organization');
 var Hour = require('./hour');
-
+var Going = require('./going');
 
 var Restaurant = db.Model.extend({
   tableName: 'restaurants',
@@ -10,6 +10,10 @@ var Restaurant = db.Model.extend({
 
   ratings: function(){
     return this.hasMany(Rating);
+  },
+
+  going: function(){
+    return this.hasMany(Going);
   },
 
   organizations: function(){

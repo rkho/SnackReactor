@@ -28,5 +28,14 @@ exports.going = {
     .then(function(){
       res.send(201, 'Created');
     });
-  } //create
+  },
+
+  list: function(req, res){
+    var results = [];
+    Restaurant.fetchAll({
+      withRelated: ['going']
+    }).then(function(restaurants){
+      res.json(restaurants.toJSON());
+    });
+  }
 };
