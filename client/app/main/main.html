@@ -14,7 +14,9 @@
                 are just defaulting to true to dummy data purposes -->
                  <div data-ng-repeat="place in data | orderBy: '-goingCount'" class="col-md-4 portfolio-item popular" ng-show="true">
                      <a href="#/going" ng-click="">
+                      <div class='img-wrapper'>
                          <img class="img-responsive popularImg" src="{{place.photo_url}}" alt="">
+                      </div>
                      </a>
                      <h3 class="btn btn-danger">
                        {{ place.going.length }} people going
