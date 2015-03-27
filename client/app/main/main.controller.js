@@ -55,7 +55,7 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
 
      // assigned curated restuarant list with new images to $scope.data
      $scope.data = list;
-     console.log(list)
+
     });
   
   }
