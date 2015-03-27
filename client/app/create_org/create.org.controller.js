@@ -1,7 +1,6 @@
 'use strict';
 
 var app = angular.module('snackReactorApp');
-//refactor to services
 
 app.controller('CreateOrgCtrl', function ($scope, $modal, $log, CheckLoggedIn, ModalService) {
   $scope.items = [];
@@ -50,7 +49,7 @@ app.controller('3Ctrl', function ($scope, $modalInstance, items, OrgSelect, $loc
       $scope.submitting = false;
       $location.path('/');
       $location.search({github_login: null, github_id: null});
-      window.location.reload();//ideally we'll figure out how to close that fucking modal
+      window.location.reload();
     })
     .error(function(data, status, headers, config){
       $scope.submitting = false;
