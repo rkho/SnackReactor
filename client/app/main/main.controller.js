@@ -21,24 +21,27 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
   //used in our search function to generate results page.
   $scope.places = [];
 
-  $scope.data = [
-   {"name": "Chipotle",
-    "imageUrl": "http://upload.wikimedia.org/wikipedia/en/thumb/3/3b/Chipotle_Mexican_Grill_logo.svg/1024px-Chipotle_Mexican_Grill_logo.svg.png",
-    "count": 12},
-   {"name": "In-N-Out",
-    "imageUrl": "http://upload.wikimedia.org/wikipedia/en/thumb/f/f2/InNOut.svg/1280px-InNOut.svg.png"  ,
-    "count": 5},
-   {"name": "California Pizza Kitchen",
-    "imageUrl": "http://upload.wikimedia.org/wikipedia/en/thumb/7/73/California_Pizza_Kitchen.svg/1277px-California_Pizza_Kitchen.svg.png",
-    "count": 3}
-  ];
 
-  // sends a request to obtain the dummy venue data from the data/data.js file commented out because I 
-  // made the data the array directly
-  // $http.get('getVenueData').then(function(res){
-  //   // assign that data to $scope.data
-  //   $scope.data = JSON.parse(res.data); 
-  // });
+  // $scope.data = [
+  //  {"name": "Chipotle",
+  //   "imageUrl": "http://upload.wikimedia.org/wikipedia/en/thumb/3/3b/Chipotle_Mexican_Grill_logo.svg/1024px-Chipotle_Mexican_Grill_logo.svg.png",
+  //   "count": 12},
+  //  {"name": "In-N-Out",
+  //   "imageUrl": "http://upload.wikimedia.org/wikipedia/en/thumb/f/f2/InNOut.svg/1280px-InNOut.svg.png"  ,
+  //   "count": 5},
+  //  {"name": "California Pizza Kitchen",
+  //   "imageUrl": "http://upload.wikimedia.org/wikipedia/en/thumb/7/73/California_Pizza_Kitchen.svg/1277px-California_Pizza_Kitchen.svg.png",
+  //   "count": 3}
+  // ];
+
+
+  // query the sqlite db for restaurant data
+  $http.get('/api/going').then(function(res){
+    // assign that data to $scope.data
+    $scope.data = res.data; 
+
+    //TODO: implement logic so only top three resto's are asssigned to data
+  });
 
   $scope.logout = function (){
     $scope.isLogged = !$scope.isLogged;
