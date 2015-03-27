@@ -37,17 +37,17 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
   $scope.refresh = function(){
     $http.get('/api/going').then(function(res){
       // assign that data to $scope.data
-      $scope.data = res.data; 
+      $scope.data = res.data;
 
       //TODO: implement logic so only top three resto's are asssigned to data
     });
-  
+
   }
 
   $scope.refresh();
 
   // query the sqlite db for restaurant data
-  
+
   $scope.logout = function (){
     $scope.isLogged = !$scope.isLogged;
   };
@@ -78,7 +78,7 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
       $scope.searching = false;
       $scope.noResults = true;
       console.log(data);
-    }); 
+    });
 
   }
 
