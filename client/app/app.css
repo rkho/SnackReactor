@@ -1,10 +1,38 @@
  body {
-
-    /*background: url("../assets/images/") no-repeat center center fixed;*/
+    background-color: #A10900;
+    background: url("../assets/images/tomato.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.overlay{
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position:fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(161,9,0,.95);
+    z-index:-1;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 740px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1024px;
+  }
 }
 
 @font-face {
@@ -34,14 +62,6 @@ html {
   box-sizing: inherit;
 }
 
-.overlay{
-    position:fixed;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0,0,0,.6);
-    z-index:-1;
-}
-
 .content {
     border-bottom: none;
     margin-top: 0px;
@@ -50,6 +70,24 @@ html {
     text-align: center;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1)
 }
+
+.content h1 {
+    color: #fff;
+    margin: auto;
+    font-size: 3.5em;
+    letter-spacing: -1px;
+    font-weight: lighter;
+    padding-bottom: 10px;
+    width: 60%;
+}
+.modal-title{
+    color: #DD0C00;
+    text-align: center;
+    font-size: 3.5em;
+    font-weight: lighter;
+    margin: auto;
+}
+
 button{
     cursor: pointer;
     font-weight: lighter;
@@ -86,15 +124,6 @@ button{
     background-color: #286DB4;
 }
 
-.content h1 {
-    margin: auto;
-    font-size: 120px;
-    letter-spacing: -9px;
-    font-weight: 200;
-    border-bottom: 1px solid #fff;
-    width: 60%;
-}
-
 .headline {
     position: absolute;
     left: 0;
@@ -107,15 +136,24 @@ button{
 .subtitle{
     position: relative;
     top: 30%;
-    font-size: 30px;
-    font-weight: lighter;
+    font-size: 48px;
+    font-weight: normal;
+    padding-top: 20px;
+}
+p.subtitle  {
+    position: relative;
+    top: 30%;
+    font-size: 1.4em;
+    font-weight: normal;
+    padding-top: -12px;
+    letter-spacing: 1px;
 }
 .options {
     position: absolute;
     left: 0;
     right: 0;
-    top: 50%;
-    opacity: 0.9;
+    top: 30%;
+    /*opacity: 0.9;*/
 }
 
 #search {
@@ -166,8 +204,8 @@ button{
     text-align: center;
 }
 .btn {
-    font-size: 25px;
-    letter-spacing: -1px
+    font-size: 1.4em;
+    border-radius: 2px;
 }
 .fa {
     background-size: 2em;
@@ -189,6 +227,12 @@ button{
 }
 .action-btns {
     margin-top: 20px;
+}
+.fa-github{
+    background-color: #CF0B00;
+}
+.fa-github:hover{
+    background-color: #BF0B00;
 }
 .fa-heart{
     color: #FF7F71;
@@ -221,14 +265,17 @@ button{
 }
 
 .modal-body{
-    margin: 50px;
+    margin: 30px;
+    margin-bottom: 16px;
+    font-size: 1.35em;
 }
 
 .modal-footer{
-    margin-top: 30px;
+    padding:24px;
 }
 
 .modal-title{
+    text-align: center;
     font-size: 50px;
     font-weight: lighter;
     margin-left: auto;
@@ -386,9 +433,13 @@ button{
 }
 
 .venue {
+  text-decoration: none;
   float: right;
   margin-right: 5%;
   color: #fff;
+}
+.venue:hover {
+ color: #fff;
 }
 
 .badge {
@@ -406,7 +457,17 @@ button{
 }
 
 .popularImg {
-  height: 300px;
-  margin: auto;
+  height: 260px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.img-wrapper {
+    overflow: hidden;
+    width: 260px;
+    height:260px;
+    border: solid 5px white;
+    border-radius: 50% 50%;
+    margin: auto;
 }
 
