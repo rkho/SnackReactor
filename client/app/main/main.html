@@ -13,7 +13,7 @@
              <div class="row">
                 <!-- ng-show="true" is a placeholder for a fn that finds the most popular venues we
                 are just defaulting to true to dummy data purposes -->
-                 <div data-ng-repeat="place in data" class="col-md-4 portfolio-item popular" ng-show="true">
+                 <div data-ng-repeat="place in data | orderBy: '-goingCount'" class="col-md-4 portfolio-item popular" ng-show="true">
                      <a href="#/going" ng-click="">
                          <img class="img-responsive popularImg" src="{{place.photo_url}}" alt="">
                      </a>

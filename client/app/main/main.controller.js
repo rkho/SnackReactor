@@ -38,8 +38,11 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
       // assign that data to var list
       var list = res.data;
 
-     // iterate over restaurants to replace default images
-     for(var i = 0; i < list.length; i++) {
+      // iterate over restaurants to replace default images
+      for(var i = 0; i < list.length; i++) {
+      //Keep track of count
+      list[i].goingCount = list[i].going.length; 
+
       // replace images with curated images if they exist
       if(images[list[i].name]) {
         list[i].photo_url = images[list[i].name];
@@ -49,9 +52,10 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
         list[i].photo_url = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=' + photoKey + '&key=AIzaSyDUYAAHTfuH1FhBacOWtF01FZGjF7Sd3mc';
       }
      }
+
      // assigned curated restuarant list with new images to $scope.data
      $scope.data = list;
-     console.log($scope.data);
+
     });
   
   }
