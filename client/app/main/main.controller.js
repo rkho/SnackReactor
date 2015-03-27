@@ -34,18 +34,29 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
   //   "count": 3}
   // ];
 
+  $scope.refresh = function(){
+    $http.get('/api/going').then(function(res){
+      // assign that data to $scope.data
+      $scope.data = res.data; 
+
+      //TODO: implement logic so only top three resto's are asssigned to data
+    });
+  
+  }
+
+  $scope.refresh();
 
   // query the sqlite db for restaurant data
-  $http.get('/api/going').then(function(res){
-    // assign that data to $scope.data
-    $scope.data = res.data; 
-
-    //TODO: implement logic so only top three resto's are asssigned to data
-  });
-
+  
   $scope.logout = function (){
     $scope.isLogged = !$scope.isLogged;
   };
+
+  $scope.going = function(place){
+    $http.post('/api/going/create', {id: place.id}).then(function(res){
+      $scope.refresh();
+    });
+  }
 
   $scope.search = function (view){
     $scope.noResults = false;
