@@ -15,7 +15,7 @@ exports.getDetails = function(placeID) {
 exports.getDetailsFromAddressAndName = function(address, name, distance) {
   distance = distance || 1600;
   return locations.searchByAddressAsync(
-          {address: address, name: name, radius: 1600, rankby: 'prominence', maxResults: 3})
+          {address: address, name: name, maxResults: 1})
           // {address: address, name: name})
           .then(function(response){
             for (var i = 0; i < response.errors.length; i++){
