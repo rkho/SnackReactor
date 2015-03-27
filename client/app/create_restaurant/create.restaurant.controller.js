@@ -26,7 +26,8 @@ app.controller('CreateRestCtrl', function ($scope, $window, $http, $location, Cr
       .success(function(data, status, headers, config){
         console.log('Hooray!');
       });
-  }
+    $window.location.href = '/';
+  };
 
   // $scope.submitRestaurant = function(){
   //   $scope.submitting = true;
