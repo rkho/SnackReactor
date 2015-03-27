@@ -15,7 +15,7 @@
                 are just defaulting to true to dummy data purposes -->
                  <div data-ng-repeat="place in data" class="col-md-4 portfolio-item popular" ng-show="true">
                      <a href="#/going" ng-click="">
-                         <img class="img-responsive popularImg" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference={{place.imageUrl}}&key=AIzaSyDUYAAHTfuH1FhBacOWtF01FZGjF7Sd3mc" alt="">
+                         <img class="img-responsive popularImg" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference={{place.photo_url}}&key=AIzaSyDUYAAHTfuH1FhBacOWtF01FZGjF7Sd3mc" alt="">
                      </a>
                      <h3 class="btn btn-danger">
                        {{ place.count }} people going
