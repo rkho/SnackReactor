@@ -39,7 +39,7 @@ exports.restaurants = {
       var newRestaurant = {
         place_id:                 place.place_id,
         name:                     place.name,
-        photo_url:                'https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=' + place.photos[0].photo_reference + '&key=AIzaSyDUYAAHTfuH1FhBacOWtF01FZGjF7Sd3mc',
+        photo_url:                place.photos[0].photo_reference,
         location_lat:             place.geometry.location.lat,
         location_long:            place.geometry.location.lng,
         map_url:                  'https://www.google.com/maps/@' + place.geometry.location.lat + ',' + place.geometry.location.lng + ',16z',
