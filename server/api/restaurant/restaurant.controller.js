@@ -31,7 +31,7 @@ exports.restaurants = {
     places.getDetailsFromAddressAndName(address,name).then(function(details) {
 
       console.log(address, name);
-      
+
       if (!details.length) {
         res.send(400, 'Failed to fetch restaurant details.');
         return;
@@ -58,11 +58,8 @@ exports.restaurants = {
 
       var hours = places.parseHours(details[0].result.opening_hours); //parse the opening hours object
      
-      console.log("Checking: "+place.name, place.formatted_address)
-
       Restaurant.where({name: place.name, address: place.formatted_address }).fetchAll().then(function(found) {
-       console.log(found)
-
+      
         if (found.length) {
           res.status(409).send('Restaurant already exists.');
           console.log('Restaurant has already been added.');
