@@ -264,6 +264,10 @@ p.subtitle  {
     color: #fff;
 }
 
+#logout:hover {
+    color: #d9534f;
+}
+
 .modal-body{
     margin: 30px;
     margin-bottom: 16px;
@@ -440,6 +444,10 @@ p.subtitle  {
 }
 .venue:hover {
  color: #fff;
+}
+
+.venue:hover {
+    color: #d9534f;
 }
 
 .badge {

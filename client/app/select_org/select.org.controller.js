@@ -37,7 +37,6 @@ app.controller('2Ctrl', function ($scope, $modalInstance, items, OrgSelect, $loc
   $scope.githubOrgs = [];
   
   OrgSelect.getGithubOrgs().then(function(result){
-    // console.log(result);
     $scope.githubOrgs = result.data.orgs;
     $scope.githubOrgs.forEach(function(org){
       org.submitting = false;
