@@ -30,12 +30,15 @@ exports.restaurants = {
     // getDetails is a utility function created to interact with the Google Places API
     places.getDetailsFromAddressAndName(address,name).then(function(details) {
 
+      console.log(address, name);
+      
       if (!details.length) {
         res.send(400, 'Failed to fetch restaurant details.');
         return;
       }
 
       var place = details[0].result;
+      //console.log(place)
       var newRestaurant = {
         place_id:                 place.place_id,
         name:                     place.name,
@@ -54,9 +57,13 @@ exports.restaurants = {
       // if (details[0].result.photos) newRestaurant.photo_url = details[0].result.photos[0].photo_reference;
 
       var hours = places.parseHours(details[0].result.opening_hours); //parse the opening hours object
+     
+      console.log("Checking: "+place.name, place.formatted_address)
 
-      new Restaurant({place_id: details.place_id}).fetch().then(function(found) {
-        if (found) {
+      Restaurant.where({name: place.name, address: place.formatted_address }).fetchAll().then(function(found) {
+       console.log(found)
+
+        if (found.length) {
           res.status(409).send('Restaurant already exists.');
           console.log('Restaurant has already been added.');
         } else {
