@@ -1,11 +1,12 @@
  body {
 
-    background: url("../assets/images/tomato.jpg") no-repeat center center fixed; 
+    /*background: url("../assets/images/") no-repeat center center fixed;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
+
 @font-face {
     font-family: 'Glyphicons Halflings';
     src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot');
@@ -343,7 +344,7 @@ button{
   /*display: block;*/
   /*width: 110px;*/
   margin: auto;
-}   
+}
 
 .resultsOptions {
     width: 100%;
@@ -408,3 +409,4 @@ button{
   height: 300px;
   margin: auto;
 }
+
