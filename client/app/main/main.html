@@ -18,10 +18,10 @@
                          <img class="img-responsive popularImg" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference={{place.photo_url}}&key=AIzaSyDUYAAHTfuH1FhBacOWtF01FZGjF7Sd3mc" alt="">
                      </a>
                      <h3 class="btn btn-danger">
-                       {{ place.count }} people going
-                     </div>
+                       {{ place.going.length }} people going
+                     </h3>
                      <br>
-                     <h3 class="btn btn-danger">
+                     <h3 class="btn btn-danger" ng-click="going(place)">
                        + Add me to list
                      </h3>
                  </div>
