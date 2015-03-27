@@ -22,24 +22,31 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
   $scope.places = [];
 
 
-  // $scope.data = [
-  //  {"name": "Chipotle",
-  //   "imageUrl": "http://upload.wikimedia.org/wikipedia/en/thumb/3/3b/Chipotle_Mexican_Grill_logo.svg/1024px-Chipotle_Mexican_Grill_logo.svg.png",
-  //   "count": 12},
-  //  {"name": "In-N-Out",
-  //   "imageUrl": "http://upload.wikimedia.org/wikipedia/en/thumb/f/f2/InNOut.svg/1280px-InNOut.svg.png"  ,
-  //   "count": 5},
-  //  {"name": "California Pizza Kitchen",
-  //   "imageUrl": "http://upload.wikimedia.org/wikipedia/en/thumb/7/73/California_Pizza_Kitchen.svg/1277px-California_Pizza_Kitchen.svg.png",
-  //   "count": 3}
-  // ];
+  var images = {
+    'Chipotle Mexican Grill': 'http://upload.wikimedia.org/wikipedia/en/thumb/3/3b/Chipotle_Mexican_Grill_logo.svg/1024px-Chipotle_Mexican_Grill_logo.svg.png',
+    'In-N-Out': 'http://upload.wikimedia.org/wikipedia/en/thumb/f/f2/InNOut.svg/1280px-InNOut.svg.png',
+    'California Pizza Kitchen': 'http://upload.wikimedia.org/wikipedia/en/thumb/7/73/California_Pizza_Kitchen.svg/1277px-California_Pizza_Kitchen.svg.png'
+  };
 
+  // pulls numb
   $scope.refresh = function(){
     $http.get('/api/going').then(function(res){
-      // assign that data to $scope.data
-      $scope.data = res.data; 
+      // assign that data to var list
+      var list = res.data;
 
-      //TODO: implement logic so only top three resto's are asssigned to data
+     // iterate over restaurants to replace default images
+     for(var i = 0; i < list.length; i++) {
+      // replace images with curated images if they exist
+      if(images[list[i].name]) {
+        list[i].photo_url = images[list[i].name];
+      // otherwise just create the url using the default image (google only supplies the photo id, we build the full url)
+      } else {
+        var photoKey = list[i].photo_url;
+        list[i].photo_url = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=' + photoKey + '&key=AIzaSyDUYAAHTfuH1FhBacOWtF01FZGjF7Sd3mc';
+      }
+     }
+     // assigned curated restuarant list with new images to $scope.data
+     $scope.data = list;
     });
   
   }
