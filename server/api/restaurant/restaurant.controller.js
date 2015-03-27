@@ -39,7 +39,7 @@ exports.restaurants = {
       var newRestaurant = {
         place_id:                 place.place_id,
         name:                     place.name,
-        photo_url:                place.photos[0].photo_reference,
+        photo_url:                'https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=' + place.photos[0].photo_reference + '&key=AIzaSyDUYAAHTfuH1FhBacOWtF01FZGjF7Sd3mc',
         location_lat:             place.geometry.location.lat,
         location_long:            place.geometry.location.lng,
         map_url:                  'https://www.google.com/maps/@' + place.geometry.location.lat + ',' + place.geometry.location.lng + ',16z',
@@ -51,7 +51,7 @@ exports.restaurants = {
         description:              description
       };
 
-      if (details[0].result.photos) newRestaurant.photo_url = details[0].result.photos[0].photo_reference;
+      // if (details[0].result.photos) newRestaurant.photo_url = details[0].result.photos[0].photo_reference;
 
       var hours = places.parseHours(details[0].result.opening_hours); //parse the opening hours object
 

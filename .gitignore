@@ -3,6 +3,8 @@ public
 .tmp
 .idea
 client/bower_components
+client/npm-debug.log
+
 dist
 /server/config/local.env.js
 /server/config/local.env.js.sample
