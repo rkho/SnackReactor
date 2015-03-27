@@ -416,3 +416,7 @@ button{
   height: 300px;
   margin: auto;
 }
+
+.mainpanel {
+    padding-bottom: 20px;
+}
