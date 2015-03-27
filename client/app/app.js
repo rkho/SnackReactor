@@ -11,7 +11,7 @@ angular.module('snackReactorApp', [
   'google.places'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
- 
+
     $urlRouterProvider
       .otherwise('/');
 
@@ -53,7 +53,7 @@ angular.module('snackReactorApp', [
 
     $locationProvider.html5Mode(true);
 
-    $httpProvider.interceptors.push(function($q, $location){ 
+    $httpProvider.interceptors.push(function($q, $location){
     return {
       response: function(response) {
        // do something on success
@@ -66,7 +66,7 @@ angular.module('snackReactorApp', [
         }
         return $q.reject(response);
         }
-      }; 
+      };
     });
 
   });

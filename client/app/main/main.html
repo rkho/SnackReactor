@@ -1,13 +1,12 @@
 <div ng-controller="MainCtrl" class="main">
-<div class="overlay"></div>
   <div class="content">
-  <a id="logout" href="/auth/logout" ng-hide="isLogged" target="_self"><i class="fa fa-minus-circle fa-4x"></i></a>
-  <a href="/create" target="_self" class="venue"><i class="fa fa-plus-square fa-4x"></i></a>
+  <a id="logout" href="/auth/logout" ng-hide="isLogged" target="_self">Sign Out<!-- <i class="fa fa-minus-circle fa-4x"></i> --></a>
+  <a href="/create" target="_self" class="venue">Add Venue<!-- <i class="fa fa-plus-square fa-4x"></i> --></a>
     <div class="headline">
-      <h1>SnackPlant</h1>
-      <p class="subtitle">never eat alone</p>
+      <h1>Snackplant</h1>
+      <p class="subtitle">Never eat alone.</p>
     </div>
-    <div class="options">
+    <div class="container options col-lg-12 col-md-12">
      <div>
          <span>
              <div class="row">
@@ -15,7 +14,9 @@
                 are just defaulting to true to dummy data purposes -->
                  <div data-ng-repeat="place in data | orderBy: '-goingCount'" class="col-md-4 portfolio-item popular" ng-show="true">
                      <a href="#/going" ng-click="">
+                      <div class='img-wrapper'>
                          <img class="img-responsive popularImg" src="{{place.photo_url}}" alt="">
+                      </div>
                      </a>
                      <h3 class="btn btn-danger">
                        {{ place.going.length }} people going
@@ -24,7 +25,7 @@
                      <h3 class="btn btn-danger" ng-click="going(place)">
                        + Add me to list
                      </h3>
-                 </div> 
+                 </div>
              </span>
          </div>
      </div>
@@ -35,22 +36,23 @@
       <script type="text/ng-template" id="myModalContent.html">
 
           <div class="modal-header">
-              <h3 class="modal-title">Welcome to SnackPlant!</h3>
+              <h3 class="modal-title">Welcome to Snackplant!</h3>
           </div>
 
           <div class="modal-body">
-              Connect with classmates and colleagues at the best places to eat near you. Login or sign up with the button below, and start discovering popular places today.
-
-              <div class="modal-footer">
-                <a href="/auth/github" target= "_self" class="search fa fa-github btn btn-block btn-social btn-github">
-                Sign in with GitHub
-                </a>
-              </div>
-
+              <p>Connect with your classmates and colleagues at the best places to eat nearby. Login ind out where people are eating today.</p>
           </div>
+
+          <div class="modal-footer">
+            <a href="/auth/github" target= "_self" class="search fa fa-github btn btn-block btn-social btn-github">
+            Sign in with GitHub
+            </a>
+          </div>
+
+
       </script>
     </div>
-  </<div>
+  </div>
 
 
 </div>

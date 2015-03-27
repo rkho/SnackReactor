@@ -21,7 +21,7 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
   //used in our search function to generate results page.
   $scope.places = [];
 
-  // curated image library 
+  // curated image library
   var images = {
     'Chipotle Mexican Grill': 'http://upload.wikimedia.org/wikipedia/en/thumb/3/3b/Chipotle_Mexican_Grill_logo.svg/1024px-Chipotle_Mexican_Grill_logo.svg.png',
     'In-N-Out': 'http://upload.wikimedia.org/wikipedia/en/thumb/f/f2/InNOut.svg/1280px-InNOut.svg.png',
@@ -41,7 +41,7 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
       // iterate over restaurants to replace default images
       for(var i = 0; i < list.length; i++) {
       //Keep track of count
-      list[i].goingCount = list[i].going.length; 
+      list[i].goingCount = list[i].going.length;
 
       // replace images with curated images if they exist
       if(images[list[i].name]) {
@@ -57,13 +57,13 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
      $scope.data = list;
 
     });
-  
+
   }
 
   $scope.refresh();
 
   // query the sqlite db for restaurant data
-  
+
   $scope.logout = function (){
     $scope.isLogged = !$scope.isLogged;
   };
@@ -94,7 +94,7 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
       $scope.searching = false;
       $scope.noResults = true;
       console.log(data);
-    }); 
+    });
 
   }
 
