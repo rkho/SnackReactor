@@ -22,7 +22,10 @@ app.controller('CreateRestCtrl', function ($scope, $window, $http, $location, Cr
   $scope.failureMessage = '';
 
   $scope.addRestaurant = function(object){
-    CreateRestaurant(object.name, object.formatted_address, object.formatted_phone_number, object.place_id);
+    CreateRestaurant(object.name, object.formatted_address)
+      .success(function(data, status, headers, config){
+        console.log('Hooray!');
+      });
   }
 
   // $scope.submitRestaurant = function(){
