@@ -53,8 +53,8 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
         //Assign avatar to each user.
         //This can be improved by brining in the avatar in the /going response
         for (var x = 0; x < list[i].going.length; x++){
-          list[i].going[i].avatar = $scope.userAvatars[list[i].going[i].user_id];
-        }
+          list[i].going[x].avatar = $scope.userAvatars[list[i].going[x].user_id];
+         }
 
         // replace images with curated images if they exist
         if(images[list[i].name]) {
