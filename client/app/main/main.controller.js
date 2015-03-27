@@ -16,7 +16,7 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
   $scope.priceRank=1;
   $scope.searching = false;
   $scope.noResults = false;
-
+  $scope.userAvatars = [];
   //empty array that will store three random objects.
   //used in our search function to generate results page.
   $scope.places = [];
@@ -36,28 +36,41 @@ app.controller('MainCtrl', function ($scope, $http, $log, $document, ModalServic
   $scope.refresh = function(){
     $http.get('/api/going').then(function(res){
       // assign that data to var list
-      var list = res.data;
+      
+      var users = res.data.users;
 
+      for (var i = 0; i < users.length; i++){
+        $scope.userAvatars[users[i].id] = users[i].avatar; 
+      }
+      
+      var list = res.data.restaurants;
+      
       // iterate over restaurants to replace default images
       for(var i = 0; i < list.length; i++) {
-      //Keep track of count
-      list[i].goingCount = list[i].going.length;
+        //Keep track of count
+        list[i].goingCount = list[i].going.length; 
 
-      // replace images with curated images if they exist
-      if(images[list[i].name]) {
-        list[i].photo_url = images[list[i].name];
-      // otherwise just create the url using the default image (google only supplies the photo id, we build the full url)
-      } else {
-        var photoKey = list[i].photo_url;
-        list[i].photo_url = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=' + photoKey + '&key=AIzaSyDUYAAHTfuH1FhBacOWtF01FZGjF7Sd3mc';
-      }
+        //Assign avatar to each user.
+        //This can be improved by brining in the avatar in the /going response
+        for (var x = 0; x < list[i].going.length; x++){
+          list[i].going[i].avatar = $scope.userAvatars[list[i].going[i].user_id];
+        }
+
+        // replace images with curated images if they exist
+        if(images[list[i].name]) {
+          list[i].photo_url = images[list[i].name];
+        // otherwise just create the url using the default image (google only supplies the photo id, we build the full url)
+        } else {
+          var photoKey = list[i].photo_url;
+          list[i].photo_url = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=' + photoKey + '&key=AIzaSyDUYAAHTfuH1FhBacOWtF01FZGjF7Sd3mc';
+        }
      }
 
      // assigned curated restuarant list with new images to $scope.data
      $scope.data = list;
 
     });
-
+  
   }
 
   $scope.refresh();

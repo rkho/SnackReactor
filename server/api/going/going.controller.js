@@ -28,6 +28,7 @@ exports.going = {
     .then(function(){
       res.send(201, 'Created');
     });
+
   },
 
   list: function(req, res){
@@ -35,7 +36,10 @@ exports.going = {
     Restaurant.fetchAll({
       withRelated: ['going']
     }).then(function(restaurants){
-      res.json(restaurants.toJSON());
+      User.fetchAll({columns: ['avatar','id']}).then(function(users){
+        res.json({restaurants: restaurants.toJSON(), users: users });
+      })
     });
   }
+
 };

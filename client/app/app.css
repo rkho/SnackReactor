@@ -485,3 +485,9 @@ p.subtitle  {
     padding-bottom: 20px;
 }
 
+.avatar{
+    width: 50px;
+    border: 1px solid #fff;
+    margin: 4px;
+}
+

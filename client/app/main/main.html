@@ -17,14 +17,13 @@
                       <div class='img-wrapper'>
                          <img class="img-responsive popularImg" src="{{place.photo_url}}" alt="">
                       </div>
-                     </a>
-                     <h3 class="btn btn-danger">
-                       {{ place.going.length }} people going
-                     </h3>
-                     <br>
-                     <h3 class="btn btn-danger" ng-click="going(place)">
-                       + Add me to list
-                     </h3>
+                      </a>
+                      <br>
+                      <img ng-repeat="person in place.going" src="{{ person.avatar }}" class="avatar" />
+                      <br>
+                      <h3 class="btn btn-danger" ng-click="going(place)">
+                        + Add me to list
+                      </h3>
                  </div>
              </span>
          </div>
