@@ -4,14 +4,6 @@ var app = angular.module('snackReactorApp');
 
 app.controller('CreateRestCtrl', function ($scope, $window, $http, $location, CreateRestaurant) {
 
-  $scope.submitting = false;
-
-  $scope.isCollapsed = false;
-
-  var search = $location.search();
-
-  $scope.successMessage = '';
-  $scope.failureMessage = '';
   $scope.show = false;
 
   $scope.cancelButton = function() {
